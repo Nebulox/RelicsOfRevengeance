@@ -3,6 +3,9 @@ function init(...)
   neb_originalMeleeInit(...)
   
   self.animConfig = config.getParameter("scriptedAnimationParameters", {})
+  
+  animator.setAnimationState("sheathState", "hidden")
+  self.initCooldownTimer = config.getParameter("primaryAbility").fireTime --cooldown timer to prevent initial premature unsheathing of sword
 end
 
 neb_originalMeleeUpdate = update
@@ -10,7 +13,9 @@ function update(dt, fireMode, shiftHeld, ...)
   neb_originalMeleeUpdate(dt, fireMode, shiftHeld, ...)
   
   self.sheathed = math.max(0, (self.sheathed or 0) - dt)
-  if fireMode ~= "none" then
+  self.initCooldownTimer = math.max(0, self.initCooldownTimer  - dt)
+  
+  if fireMode ~= "none" and self.initCooldownTimer == 0 then
     self.sheathed = config.getParameter("sheathTimer", 2)
   end
   
