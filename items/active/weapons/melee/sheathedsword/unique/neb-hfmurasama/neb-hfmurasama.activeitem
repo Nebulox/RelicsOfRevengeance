@@ -35,20 +35,28 @@
   "animationScripts" : ["/items/active/effects/neb-sheathedsword.lua"],
 
   "scripts" : ["/items/active/weapons/melee/meleeweapon.lua", "/items/active/weapons/melee/sheathedsword/neb-sheathedmeleehook.lua"],
-  "sheathRotation" : -105,
-  "sheathOffset" : [-0.625, -1.375],
-  "sheathSprites" : {
-    "sheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathed",
-	"unsheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathAlone",
+  "scriptedAnimationParameters" : {
+    "sheathRotation" : -105,
+    "sheathOffset" : [-0.625, -1.375],
+    "sheathSprites" : {
+      "sheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathed",
+	  "unsheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathAlone",
 	
-	"hidden" : ""
-  },
-  "sheathSpritesFullbright" : {
-    "sheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png:sheathed",
-	"unsheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png:sheathAlone",
+	  "hidden" : ""
+    },
+    "sheathSpritesFullbright" : {
+      "sheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png:sheathed",
+	  "unsheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png:sheathAlone",
 	
-	"hidden" : ""
+	  "hidden" : ""
+    },
+    "chargeRingConfig" : {
+	  "image" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalring.png",
+	  "startEndScale" : [2, 0.5],
+	  "fullbright" : true
+	}
   },
+  "sheathTimer" : 2.5,	//Time until weapon is sheathed while no action is present
 
   "elementalType" : "physical",
 

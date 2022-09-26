@@ -1,5 +1,7 @@
 {
-  "globalTagDefaults" : {},
+  "globalTagDefaults" : {
+    "stanceDirectives" : ""
+  },
 
   "animatedParts" : {
     "stateTypes" : {
@@ -86,17 +88,17 @@
             },
             "sheathed" : {
               "properties" : {
-                "image" : "<partImage>:sheathed?<directives>?<bladeDirectives>?<stanceDirectives>"
+                "image" : "<partImage>:sheathed<stanceDirectives>"
               }
             },
             "halfSheathed" : {
               "properties" : {
-                "image" : "<partImage>:halfSheathed.<frame>?<directives>?<bladeDirectives>?<stanceDirectives>"
+                "image" : "<partImage>:halfSheathed.<frame><stanceDirectives>"
               }
             },
             "unsheathed" : {
               "properties" : {
-                "image" : "<partImage>:unsheathed?<directives>?<bladeDirectives>?<stanceDirectives>"
+                "image" : "<partImage>:unsheathed<stanceDirectives>"
               }
 			}
 		  }
@@ -122,17 +124,17 @@
             },
             "sheathed" : {
               "properties" : {
-                "image" : "<partImage>:sheathed?<directives>?<bladeDirectives>?<stanceDirectives>"
+                "image" : "<partImage>:sheathed<stanceDirectives>"
               }
             },
             "halfSheathed" : {
               "properties" : {
-                "image" : "<partImage>:halfSheathed.<frame>?<directives>?<bladeDirectives>?<stanceDirectives>"
+                "image" : "<partImage>:halfSheathed.<frame><stanceDirectives>"
               }
             },
             "unsheathed" : {
               "properties" : {
-                "image" : "<partImage>:unsheathed?<directives>?<bladeDirectives>?<stanceDirectives>"
+                "image" : "<partImage>:unsheathed<stanceDirectives>"
               }
 			}
 		  }

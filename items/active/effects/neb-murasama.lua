@@ -1,0 +1,1 @@
+function update(dt)  localAnimator.clearDrawables()  local sheathProperties = animationConfig.animationParameter("neb-sheathProperties")  if sheathProperties and sheathProperties.image ~= "" and sheathProperties.image ~= "/assetmissing.png" then    sheathProperties.centered = true    localAnimator.addDrawable(sheathProperties, sheathProperties.renderLayer)  endend

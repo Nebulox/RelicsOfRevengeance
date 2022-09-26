@@ -1,3 +1,10 @@
+neb_originalMeleeInit = init
+function init(...)
+  neb_originalMeleeInit(...)
+  
+  self.animConfig = config.getParameter("scriptedAnimationParameters", {})
+end
+
 neb_originalMeleeUpdate = update
 function update(dt, fireMode, shiftHeld, ...)
   neb_originalMeleeUpdate(dt, fireMode, shiftHeld, ...)
@@ -27,20 +34,20 @@ function updateSheath(state)
 
   local sheathLayer = mcontroller.facingDirection() * (config.getParameter("zLevelFlipped", false) and -1 or 1)
   local sheathProperties = {
-    image = config.getParameter("sheathSprites", {sheathed = "/assetmissing.png", unsheathed = "/assetmissing.png"})[state],
-	rotation = (config.getParameter("sheathRotation", 90) + weaponRot) * (math.pi/180),
+    image = self.animConfig.sheathSprites[state] or "/assetmissing.png",
+	rotation = (self.animConfig.sheathRotation or 90 + weaponRot) * (math.pi/180),
 	mirrored = mcontroller.facingDirection() > 0,
-	position = vec2.add(mcontroller.position(), vec2.add(vec2.mul(config.getParameter("sheathOffset", {0, -1.125}), {mcontroller.facingDirection(), 1}), mcontroller.crouching() and {0, -0.5} or {0, 0})),
+	position = vec2.add(mcontroller.position(), vec2.add(vec2.mul(self.animConfig.sheathOffset or {0, -1.25}, {mcontroller.facingDirection(), 1}), mcontroller.crouching() and {0, -0.5} or {0, 0})),
 	renderLayer = sheathLayer > 0 and "Player+1" or "Player-2"
   }
   activeItem.setScriptedAnimationParameter("neb-sheathProperties", sheathProperties)
   
   local sheathFullbrightProperties = {
-    image = config.getParameter("sheathSpritesFullbright", {sheathed = "/assetmissing.png", unsheathed = "/assetmissing.png"})[state],
-	rotation = (config.getParameter("sheathRotation", 90) + weaponRot) * (math.pi/180),
+    image = self.animConfig.sheathSpritesFullbright[state] or "/assetmissing.png",
+	rotation = (self.animConfig.sheathRotation or 90 + weaponRot) * (math.pi/180),
 	mirrored = mcontroller.facingDirection() > 0,
 	fullbright = true,
-	position = vec2.add(mcontroller.position(), vec2.add(vec2.mul(config.getParameter("sheathOffset", {0, -1.125}), {mcontroller.facingDirection(), 1}), mcontroller.crouching() and {0, -0.5} or {0, 0})),
+	position = vec2.add(mcontroller.position(), vec2.add(vec2.mul(self.animConfig.sheathOffset or {0, -1.25}, {mcontroller.facingDirection(), 1}), mcontroller.crouching() and {0, -0.5} or {0, 0})),
 	renderLayer = sheathLayer > 0 and "Player+2" or "Player-1"
   }
   activeItem.setScriptedAnimationParameter("neb-sheathFullbrightProperties", sheathFullbrightProperties)
