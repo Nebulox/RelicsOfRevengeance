@@ -1,0 +1,315 @@
+{
+  "globalTagDefaults" : {},
+
+  "animatedParts" : {
+    "stateTypes" : {
+      "swoosh" : {
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+          },
+
+          "fire" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "fire2" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "fire3" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "fire4" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "fire5" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          },
+          "fire6" : {
+            "frames" : 3,
+            "cycle" : 0.1,
+            "mode" : "transition",
+            "transition" : "idle"
+          }
+        }
+      },
+      "sheathState" : {
+        "default" : "hidden",
+        "states" : {
+          "hidden" : {
+          },
+          "sheathed" : {
+          },
+          "halfSheathed" : {
+            "frames" : 1,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "sheathed"
+          },
+          "unsheathed" : {
+          }
+        }
+      }
+    },
+
+    "parts" : {
+      "blade" : {
+        "properties" : {
+          "zLevel" : 0,
+          "centered" : true,
+          "offset" : [0, 1.875],
+          "transformationGroups" : ["weapon"],
+          "rotationCenter" : [0, 0],
+          "damageArea" : [ [-0.7, -1.0], [-0.7, 2.5], [0.5, 2.5], [0.5, -1.0] ]
+        },
+
+        "partStates" : {
+          "sheathState" : {
+            "hidden" : {
+              "properties" : {
+                "image" : ""
+              }
+            },
+            "sheathed" : {
+              "properties" : {
+                "image" : "<partImage>:sheathed?<directives>?<bladeDirectives>?<stanceDirectives>"
+              }
+            },
+            "halfSheathed" : {
+              "properties" : {
+                "image" : "<partImage>:halfSheathed.<frame>?<directives>?<bladeDirectives>?<stanceDirectives>"
+              }
+            },
+            "unsheathed" : {
+              "properties" : {
+                "image" : "<partImage>:unsheathed?<directives>?<bladeDirectives>?<stanceDirectives>"
+              }
+			}
+		  }
+		}
+      },
+      "bladeFullbright" : {
+        "properties" : {
+          "zLevel" : 2,
+          "centered" : true,
+          "fullbright" : true,
+          "offset" : [0, 1.875],
+          "transformationGroups" : ["weapon"],
+          "rotationCenter" : [0, 0],
+          "damageArea" : [ [-0.7, -1.0], [-0.7, 2.5], [0.5, 2.5], [0.5, -1.0] ]
+        },
+
+        "partStates" : {
+          "sheathState" : {
+            "hidden" : {
+              "properties" : {
+                "image" : ""
+              }
+            },
+            "sheathed" : {
+              "properties" : {
+                "image" : "<partImage>:sheathed?<directives>?<bladeDirectives>?<stanceDirectives>"
+              }
+            },
+            "halfSheathed" : {
+              "properties" : {
+                "image" : "<partImage>:halfSheathed.<frame>?<directives>?<bladeDirectives>?<stanceDirectives>"
+              }
+            },
+            "unsheathed" : {
+              "properties" : {
+                "image" : "<partImage>:unsheathed?<directives>?<bladeDirectives>?<stanceDirectives>"
+              }
+			}
+		  }
+		}
+      },
+      "swoosh" : {
+        "properties" : {
+          "zLevel" : -1,
+          "centered" : true,
+          "transformationGroups" : ["swoosh"],
+          "rotationCenter" : [0, 0]
+        },
+
+        "partStates" : {
+          "swoosh" : {
+            "idle" : {
+              "properties" : {
+                "image" : ""
+              }
+            },
+            "fire": {
+              "properties": {
+                "damageArea": [
+                  [-5.0625, -1.5625],
+                  [-3.0625, -2.6875],
+                  [-0.6875, -3.0625],
+                  [2.0625, -2.5625],
+                  [3.6875, -1.6875],
+                  [4.9375, 0.1875],
+                  [4.9375, 1.6875],
+                  [4.4375, 2.3125],
+                  [2.8125, 2.6875],
+                  [0.8125, 2.4375],
+                  [0.9375, 1.6875],
+                  [1.5625, -0.0625],
+                  [0.6875, -1.1875],
+                  [-0.9375, -1.9375],
+                  [-2.5625, -2.1875]                  
+                ],
+                "image": "swoosh/<partImage>downcut.png:<frame>?flipy",
+                "offset": [0, -2.5]
+              }
+            },
+            "fire2" : {
+              "properties": {
+                "damageArea": [
+                    [2, -3.25],
+                    [-1, -3.25],
+                    [-3, -2.5],
+                    [-5, -1.6],
+                    [-7, -0.3],
+                    [-7, 0.75],
+                    [-6, 1.6],
+                    [-4, 2.1],
+                    [-2, 2.5],
+                    [2, 2.75],
+                    [4, 2.5],
+                    [7, 1.75],
+                    [5, 1.25],
+                    [3, 1.15],
+                    [0, 0.9],
+                    [-2, 0.3],
+                    [-3.5, -0.3],
+                    [-3.5, -1],
+                    [-1.5, -2.25],
+                    [2, -3.25]
+                ],
+                "image": "swoosh/<partImage>horizontalslash.png:<frame>",
+                "offset": [-1.75, -1.25]
+              }
+            },
+            "fire3" : {
+              "properties" : {
+                "image" : "swoosh/<partImage>slice.png:<frame>",
+                "offset" : [-3, 0.375],
+                "damageArea" : [[6.875, -1.0625],
+                [-0.75, 1.0625],
+                [-5.25, 0.6875],
+                [-7.0, 0.0625],
+                [-1.5, -0.9375],
+                [1.0, -0.9375],
+                [-2.125, -0.0625]
+              ]
+              }
+            },
+            "fire4": {
+              "properties": {
+                "damageArea": [
+                  [-5.0625, 1.5625],
+                  [-3.0625, 2.6875],
+                  [-0.6875, 3.0625],
+                  [2.0625, 2.5625],
+                  [3.6875, 1.6875],
+                  [4.9375, -0.1875],
+                  [4.9375, -1.6875],
+                  [4.4375, -2.3125],
+                  [2.8125, -2.6875],
+                  [0.8125, -2.4375],
+                  [0.9375, -1.6875],
+                  [1.5625, 0.0625],
+                  [0.6875, 1.1875],
+                  [-0.9375, 1.9375],
+                  [-2.5625, 2.1875]
+                ],
+                "image": "swoosh/<partImage>downcut.png:<frame>",
+                "offset": [0, 2.5]
+              }
+            },
+            "fire5": {
+              "properties": {
+                "zindex": 1,
+                "damageArea": [
+                  [2, 3.25],
+                  [-1, 3.25],
+                  [-3, 2.5],
+                  [-5, 1.6],
+                  [-7, 0.3],
+                  [-7, -0.75],
+                  [-6, -1.6],
+                  [-4, -2.1],
+                  [-2, -2.5],
+                  [2, -2.75],
+                  [4, -2.5],
+                  [7, -1.75],
+                  [5, -1.25],
+                  [3, -1.15],
+                  [0, -0.9],
+                  [-2, -0.3],
+                  [-3.5, 0.3],
+                  [-3.5, 1],
+                  [-1.5, 2.25],
+                  [2, 3.25]
+                ],
+                "offset": [-1.75, 2.25],
+                "image": "swoosh/<partImage>horizontalslash.png:<frame>?flipy"
+              }
+            },
+            "fire6": {
+              "properties": {
+                "zindex": 2,
+                "damageArea": [
+                  [-4.0, -0.0625],
+                  [-0.125, -0.8125],
+                  [3.875, -0.0625],
+                  [-0.125, 0.6875]
+                ],
+                "image": "",
+                "offset": [3.5, 0]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "transformationGroups" : {
+    "weapon" : {},
+    "swoosh" : {}
+  },
+
+  "particleEmitters" : {
+    "physicalswoosh" : {
+      "active" : false,
+      "transformationGroups" : ["swoosh"],
+      "emissionRate" : 1,
+      "burstCount" : 1,
+      "particles" : []
+    }
+  },
+
+  "sounds" : {
+    "fire": [],
+    "fire2": [],
+    "fire3": [],
+    "fire4": [],
+    "fire5": [],
+    "fire6": []
+  }
+}

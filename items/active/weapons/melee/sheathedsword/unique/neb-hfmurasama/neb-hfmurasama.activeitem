@@ -1,0 +1,426 @@
+{
+  "itemName" : "neb-hfmurasama",
+  "price" : 1500,
+  "level" : 7,
+  "maxStack" : 1,
+  "rarity" : "Essential",
+  "description" : "A VT7 High-Frequency Blade. There will be bloodshed.",
+  "shortdescription" : "HF Murasama",
+  "tooltipKind" : "sword",
+  "category" : "broadsword",
+  "twoHanded" : true,
+  "itemTags" : ["weapon","melee","broadsword","katana"],
+
+  "inventoryIcon" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathed",
+  
+  "animation" : "neb-hfmurasama.animation",
+  "animationParts" : {
+    "blade" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png",
+	"bladeFullbright" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png",
+	
+	"swoosh" : ""
+  },
+  "animationCustom" : { 
+    "sounds" : {
+      "fire": ["/sfx/melee/swing_axe.ogg"],
+      "fire2": ["/sfx/melee/swing_broadsword.ogg"],
+      "fire3": ["/sfx/melee/swing_shortsword.ogg"],
+      "fire4": ["/sfx/melee/swing_axe.ogg"],
+      "fire5": ["/sfx/melee/swing_shortsword.ogg"],
+      "fire6": ["/sfx/melee/sword_parry.ogg"],
+	  
+      "unsheathSword" : [ "/sfx/melee/neb-sheathsword.ogg" ]
+    }
+  },
+  "animationScripts" : ["/items/active/effects/neb-sheathedsword.lua"],
+
+  "scripts" : ["/items/active/weapons/melee/meleeweapon.lua", "/items/active/weapons/melee/sheathedsword/neb-sheathedmeleehook.lua"],
+  "sheathRotation" : -105,
+  "sheathOffset" : [-0.625, -1.375],
+  "sheathSprites" : {
+    "sheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathed",
+	"unsheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathAlone",
+	
+	"hidden" : ""
+  },
+  "sheathSpritesFullbright" : {
+    "sheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png:sheathed",
+	"unsheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png:sheathAlone",
+	
+	"hidden" : ""
+  },
+
+  "elementalType" : "physical",
+
+  "primaryAbilityType" : "broadswordcombo",
+  "primaryAbility" : {
+    "name": "Broken Memories",
+    "scripts": ["/items/active/weapons/melee/neb-murasamacombo.lua"],
+    "class": "NebMurasamaCombo",
+	
+    "fireTime" : 0.83,
+    "baseDps" : 12.5,
+
+    "flashTime": 0.1,
+    "flashDirectives": "fade=FFFFFFFF=0.1",
+
+    "swooshOffsetRegions": [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0]
+    ],
+	
+    "damageConfig": {
+      "knockbackMode": "facing",
+      "timeout": 0.1,
+      "statusEffects": []
+    },
+	
+    "comboSteps": 6,
+    "stepDamageConfig": [
+      {
+		"damageSourceKind" : "broadsword",
+		"baseDamageFactor": 1.1,
+		"knockback": 10
+      },
+      {
+		"damageSourceKind" : "broadsword",
+		"baseDamageFactor": 0.9,
+		"knockback": 15
+      },
+      {
+		"damageSourceKind" : "shortsword",
+		"baseDamageFactor": 1,
+		"knockback": 10
+      },
+      {
+		"damageSourceKind" : "broadsword",
+		"baseDamageFactor": 0.8,
+		"knockback": 15
+      },
+      {
+		"damageSourceKind" : "broadsword",
+		"baseDamageFactor": 1.2,
+		"knockback": 5
+      },
+      {
+		"damageSourceKind" : "broadsword",
+		"baseDamageFactor": 0.7,
+		"knockback": 20
+      }
+    ],
+	
+	"stances" : {
+	  "idle" : {
+		"allowRotate": false,
+		"allowFlip": true,
+		"weaponRotation": 15,
+		"armRotation": -115,
+		"twoHanded": false,
+	  	"aimAngle": 0
+	  },
+	
+	
+	  //Step 1
+      "windup1" : {
+        "duration": 0.15,
+	  
+        "weaponRotation": -135,
+        "armRotation": -135,
+        "weaponAngularVelocity": 300,
+        "armAngularVelocity": -300,
+	  
+        "allowRotate": true,
+        "allowFlip": true,
+        "twoHanded": false,
+		
+		"directives" : "?flipx"
+      },
+      "preslash1" : {
+        "duration": 0.05,
+	  
+        "weaponRotation": -105,
+        "armRotation": -165,
+        "weaponAngularVelocity": -800,
+        "armAngularVelocity": 1250,
+	    
+        "allowRotation": true,
+        "allowFlip": false,
+        "twoHanded": false,
+		
+		"directives" : "?flipx"
+      },
+      "fire1" : {
+        "duration": 0.1625,
+	  
+        "weaponRotation": -140,
+        "armRotation": 80,
+	  
+        "allowRotate": false,
+        "allowFlip": false,
+        "twoHanded": true,
+		
+		"directives" : "?flipx"
+      },
+      "wait1" : {
+        "duration": 0.5,
+		
+        "weaponRotation": -140,
+        "armRotation": 80,
+		
+        "allowRotate": false,
+        "allowFlip": true,
+        "twoHanded": true,
+		
+		"directives" : "?flipx"
+      },
+	
+	  //Step 2
+      "windup2" : {
+        "duration": 0.15,
+	  
+        "weaponRotation": -220,
+        "armRotation": -45,
+        "weaponAngularVelocity": -1250,
+        "armAngularVelocity": 950,
+	   
+        "allowRotate": true,
+        "allowFlip": true,
+        "twoHanded": true
+      },
+      "preslash2" : {
+        "duration": 0.05,
+	  
+        "weaponRotation": 15,
+        "armRotation": 50,
+	  
+        "allowRotate": false,
+        "allowFlip": false,
+        "twoHanded": true
+      },
+      "fire2" : {
+        "duration": 0.2,
+	  
+        "weaponRotation": -150,
+        "armRotation": -120,
+	  
+        "allowRotate": false,
+        "allowFlip": false,
+        "twoHanded": false
+      },
+      "wait2" : {
+        "duration": 0.5,
+	  
+        "weaponRotation": -150,
+        "armRotation": -120,
+	  
+        "allowRotate": false,
+        "allowFlip": true,
+        "twoHanded": false
+      },
+	
+	  //Step 3
+      "windup3" : {
+        "duration": 0.15,
+	  
+        "weaponRotation": -135,
+        "armRotation": -135,
+        "weaponAngularVelocity": 300,
+        "armAngularVelocity": -300,
+	  
+        "allowRotate": true,
+        "allowFlip": true,
+        "twoHanded": false,
+		
+		"directives" : "?flipx"
+      },
+      "preslash3" : {
+        "duration": 0.05,
+		
+        "weaponRotation": -90,
+        "armRotation": 0,
+	  
+        "allowRotate": false,
+        "allowFlip": false,
+        "twoHanded": false,
+		
+		"directives" : "?flipx"
+      },
+      "fire3" : {
+        "duration": 0.175,
+	  
+        "weaponRotation": -55,
+        "armRotation": 135,
+	  
+        "allowRotate": false,
+        "allowFlip": false,
+        "twoHanded": false,
+		
+		"directives" : "?flipx"
+      },
+      "wait3" : {
+        "duration": 0.5,
+		
+        "weaponRotation": -55,
+        "armRotation": 135,
+	  
+        "allowRotate": false,
+        "allowFlip": true,
+        "twoHanded": false,
+		
+		"directives" : "?flipx"
+      },
+	
+	  //Step 4
+      "windup4" : {
+        "duration": 0.15,
+		
+        "weaponRotation": -65,
+        "armRotation": 135,
+        "armAngularVelocity": -300,
+		
+        "allowRotate": true,
+        "allowFlip": true,
+        "twoHanded": true
+      },
+      "preslash4" : {
+        "duration": 0.05,
+		
+        "weaponRotation": -10,
+        "armRotation": 120,
+		
+        "allowRotate": false,
+        "allowFlip": false,
+        "twoHanded": true
+      },
+      "fire4": {
+        "duration": 0.2,
+		
+        "weaponRotation": -55,
+        "armRotation": -60,
+		
+        "allowRotate": false,
+        "allowFlip": false,
+        "twoHanded": true
+      },
+      "wait4": {
+        "duration": 0.5,
+		
+        "weaponRotation": -55,
+        "armRotation": -60,
+		
+        "allowRotate": false,
+        "allowFlip": false,
+        "twoHanded": true
+      },
+	 
+	  //Step 5
+      "windup5": {
+        "duration": 0.125,
+		
+        "weaponRotation": -152.5,
+        "armRotation": -120,
+        "armAngularVelocity": 300,
+		
+        "allowRotate": true,
+        "allowFlip": true,
+        "twoHanded": false,
+		
+		"directives" : "?flipx"
+      },
+      "preslash5":{
+        "duration": 0.05,
+		
+        "weaponRotation": -90,
+        "armRotation": 0,
+		
+        "allowRotate": false,
+        "allowFlip": false,
+        "twoHanded": false,
+		
+		"directives" : "?flipx"
+      },
+      "fire5": {
+        "duration": 0.15,
+		
+        "weaponRotation": 1.5,
+        "armRotation": 90,
+		
+        "allowRotate": false,
+        "allowFlip": false,
+        "twoHanded": false,
+		
+		"directives" : "?flipx"
+      },
+      "wait5": {
+        "duration": 0.5,
+		
+        "weaponRotation": -358.5,
+        "armRotation": 90,
+		
+        "allowRotate": false,
+        "allowFlip": true,
+        "twoHanded": false,
+		
+		"directives" : "?flipx"
+      },
+
+      "windup6": {
+        "duration": 0.35,
+		
+		"bladeStorm" : true,
+		
+		"weaponRotation": -245,
+		"armRotation": -5,
+		"aimAngle": 0,
+		"weaponOffset" : [-0.5, -0.5],
+		
+		"frontArmFrame" : "walk.5",
+		
+		"allowRotate": false,
+		"allowFlip": true,
+        "twoHanded": true,
+		
+		"directives" : "?flipx"
+      },
+	  
+      "fire6": {
+        "duration": 0.55,
+		
+		"weaponRotation": -245,
+		"armRotation": -25,
+		"aimAngle": 0,
+		"weaponOffset" : [-0.5, -0.5],
+		
+		"frontArmFrame" : "walk.5",
+		
+		"targetOffset" : [0, 1],
+		"target" : [10, 0],
+		"targetTolerance" : 3.0,
+		
+		//Slightly marks enemies within forgivenessRange which moves the slash a little
+		"forgivenessRange" : 20,
+		
+		"projectileType" : "starforge-bladestorm",
+		"projectileParameters" : {},
+		"projectileDamage" : 3,
+		
+		"allowRotate": false,
+		"allowFlip": true,
+        "twoHanded": true,
+		
+		"directives" : "?flipx"
+      }
+	}
+  },
+
+  "altAbilityType" : "risingslash",
+  "altAbility" : {
+  
+  },
+
+  "builder" : "/items/buildscripts/buildunrandweapon.lua"
+}
