@@ -1,0 +1,25 @@
+{
+  "name" : "neb_wulfcombo",
+  "label" : "",
+  "image" : "/monsters/generated/ground/skills/icon.png",
+
+  "parameters" : {
+    "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfcombo.lua" ],
+    "neb_wulfcombo" : {
+    	"minDistance" : 0,
+		"maxDistance" : 20,
+		
+		"windupTime" : 0.5,
+		"skillTime" : 0.1,
+		"winddownTime" : 0.75,
+		
+		"comboWindupTime" : 0.2,
+		"comboWinddownTime" : 0.2,
+		
+		"jumpVelocity" : [40,15],
+		
+		"cooldownTime" : 3.0,
+		"cooldownCategory" : "neb_wulfcombo"
+    }
+  }
+}

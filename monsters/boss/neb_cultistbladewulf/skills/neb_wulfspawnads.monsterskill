@@ -1,0 +1,14 @@
+{
+  "name" : "neb_wulfspawnads",
+  "label" : "",
+  "image" : "/monsters/generated/ground/skills/icon.png",
+
+  "parameters" : {
+    "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfspawnads.lua" ],
+    "neb_wulfspawnads" : {
+    	"spawnAngle" : 0.2,
+    	"rotateInterval" : 0.1,
+    	"rotateAngle" : 0.05
+    }
+  }
+}

@@ -1,0 +1,11 @@
+sirbucketkicker's notes:
+
+if state update script returns "false" then runs stateMachine.pickState(), where the first skill state script returns something other than "nil"; if params are given, only state.enterWith functions will be called
+
+_ENV is a big table of all of the available scripts/table
+
+if state.enter() returns "nil", can optionally return a second value as well that will be used as a COOLDOWN time before the state will be considered again!
+
+self.targetId == entity id of current target
+self.targetPosition == current target's position
+hasTarget() == self.hadTarget

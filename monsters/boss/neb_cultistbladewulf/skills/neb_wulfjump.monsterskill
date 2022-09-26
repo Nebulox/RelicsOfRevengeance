@@ -1,0 +1,21 @@
+{
+  "name" : "neb_wulfjump",
+  "label" : "",
+  "image" : "/monsters/generated/ground/skills/icon.png",
+
+  "parameters" : {
+    "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfjump.lua" ],
+    "neb_wulfjump" : {
+    	"minDistance" : 5,
+		"maxDistance" : 30,
+		"windupTime" : 0.25,
+		"skillTime" : 0.1,
+		"winddownTime" : 0.4,
+		
+		"jumpVelocity" : [40,25],
+		
+		"cooldownTime" : 0.5,
+		"cooldownCategory" : "neb_wulfjump"
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "animatedParts" : {
+    "stateTypes" : {
+      "body" : {
+        "priority" : 1,
+        "default" : "idle",
+        "states" : {
+          "idle" : {
+          },
+		  "jumpbite" : {
+			"frames" : 1,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+		  },
+		  "combo" : {
+			"frames" : 1,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+		  }
+        }
+      }
+	},
+
+    "parts" : {
+      "body" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 4,
+          "rotationGroup" : "all"
+        },
+
+        "partStates" : {
+          "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+			},
+			"jumpbite" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+			},
+			"combo" : {
+              "properties" : {
+                "image" : "<partImage>"
+              }
+			}
+          }
+        }
+      },
+	  "jumpbite" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 4,
+          "rotationGroup" : "all"
+        },
+
+        "partStates" : {
+          "body" : {
+			"jumpbite" : {
+              "properties" : {
+				"damageArea" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ]
+              }
+			}
+          }
+        }
+      },
+	  "combo" : {
+        "properties" : {
+          "centered" : true,
+          "zLevel" : 4,
+          "rotationGroup" : "all"
+        },
+
+        "partStates" : {
+          "body" : {
+			"combo" : {
+              "properties" : {
+				"damageArea" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ]
+              }
+			}
+          }
+        }
+      }
+    }
+  },
+
+  "rotationGroups" : {
+    "all" : {
+      "angularVelocity" : 10
+    },
+    "beam1" : {
+      "angularVelocity" : 0.75
+    },
+    "beam2" : {
+      "angularVelocity" : 0.75
+    },
+    "beam3" : {
+      "angularVelocity" : 0.75
+    },
+    "beam4" : {
+      "angularVelocity" : 0.75
+    }
+  },
+
+  "particleEmitters" : {
+    "damage" : {
+      "emissionRate" : 0.7,
+      "particles" : [
+      ]
+    },
+
+    "deathPoof" : {
+      "particles" : [
+        {
+          "particle" : {
+            "type" : "animated",
+            "animation" : "/animations/puff2c/puff2c.animation",
+            "size" : 1,
+            "angularVelocity" : 35,
+            "fade" : 1,
+            "destructionTime" : 1,
+            "position" : [0, 0],
+            "initialVelocity" : [0, 0],
+            "finalVelocity" : [0, 0],
+            "approach" : [1, 1],
+            "timeToLive" : 0.4,
+            "layer" : "middle"
+          }
+        }
+      ]
+    }
+  },
+
+  "sounds" : {
+    "turnHostile" : [  ],
+    "deathPuff" : {
+      "pool" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+      "rangeMultiplier" : 1.5
+    },
+    "shatter" : {
+      "pool" : [ "/sfx/objects/vase_break_large1.ogg" ],
+      "rangeMultiplier" : 1.5
+    },
+    "hurt" : {
+      "pool" : [ "/sfx/npc/boss/crystalboss_pain1.ogg", "/sfx/npc/boss/crystalboss_pain2.ogg" ],
+      "rangeMultiplier" : 1.5
+    },
+    "death" : {
+      "pool" : [ "/sfx/npc/boss/crystalboss_death.ogg" ],
+      "rangeMultiplier" : 1.5
+    },
+    "spawnCharge" : {
+      "pool" : [ "/sfx/npc/boss/crystalboss_spawncharge.ogg" ],
+      "rangeMultiplier" : 1.5
+    },
+    "spawnAdd" : {
+      "pool" : [ "/sfx/npc/boss/crystalboss_spawnmonster.ogg" ],
+      "rangeMultiplier" : 1.5
+    }
+  },
+
+  "lights" : {
+    "glow" : {
+      "active" : true,
+      "position" : [0, 0],
+      "color" : [200, 0, 200],
+      "pointLight" : false
+    }
+  },
+
+  "effects" : {
+    "blink" : {
+      "type" : "flash",
+      "time" : 0.25,
+      "directives" : "fade=ffffff;0.5"
+    }
+  }
+}

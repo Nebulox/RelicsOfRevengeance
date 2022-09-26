@@ -1,0 +1,9 @@
+{
+  "name" : "neb_cultistbladewulf",
+  "category" : "neb_cultistbladewulf",
+  "type" : "body",
+
+  "frames" : {
+    "body" : "neb_cultistbladewulf.png"
+  }
+}

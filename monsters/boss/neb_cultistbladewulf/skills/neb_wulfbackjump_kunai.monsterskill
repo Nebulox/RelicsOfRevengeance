@@ -1,0 +1,23 @@
+{
+  "name" : "neb_wulfbackjump_kunai",
+  "label" : "",
+  "image" : "/monsters/generated/ground/skills/icon.png",
+
+  "parameters" : {
+    "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfbackjump_kunai.lua" ],
+    "neb_wulfbackjump_kunai" : {
+    	"minDistance" : 0,
+		"maxDistance" : 15,
+		"windupTime" : 0.5,
+		"skillTime" : 0.1,
+		"winddownTime" : 0.66,
+		
+		"jumpVelocity" : [-10,45],
+		"bufferTime" : 0.5,
+		"hopVelocity" : [-15,20],
+		
+		"cooldownTime" : 1.0,
+		"cooldownCategory" : "neb_wulfbackjump_kunai"
+    }
+  }
+}
