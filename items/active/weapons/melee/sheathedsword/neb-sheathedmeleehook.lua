@@ -36,18 +36,18 @@ end
 
 function updateSheath(state)
   local weaponRot = ((math.log(math.abs(mcontroller.xVelocity()) + 0.35, 3) + 1) * (mcontroller.xVelocity() > 0 and 1 or -1)) * mcontroller.facingDirection() + ((math.log(math.abs(mcontroller.yVelocity()) + 0.35, 2) + 1) * (mcontroller.yVelocity() > 0 and -1 or 1))
-
   local sheathLayer = mcontroller.facingDirection() * (config.getParameter("zLevelFlipped", false) and -1 or 1)
-  local sheathProperties = {
+  
+  local sheathProperties = {}
+  
+  local base = {
     image = self.animConfig.sheathSprites[state] or "/assetmissing.png",
 	rotation = (self.animConfig.sheathRotation or 90 + weaponRot) * (math.pi/180),
 	mirrored = mcontroller.facingDirection() > 0,
 	position = vec2.add(mcontroller.position(), vec2.add(vec2.mul(self.animConfig.sheathOffset or {0, -1.25}, {mcontroller.facingDirection(), 1}), mcontroller.crouching() and {0, -0.5} or {0, 0})),
 	renderLayer = sheathLayer > 0 and "Player+1" or "Player-2"
   }
-  activeItem.setScriptedAnimationParameter("neb-sheathProperties", sheathProperties)
-  
-  local sheathFullbrightProperties = {
+  local fullbright = {
     image = self.animConfig.sheathSpritesFullbright[state] or "/assetmissing.png",
 	rotation = (self.animConfig.sheathRotation or 90 + weaponRot) * (math.pi/180),
 	mirrored = mcontroller.facingDirection() > 0,
@@ -55,7 +55,10 @@ function updateSheath(state)
 	position = vec2.add(mcontroller.position(), vec2.add(vec2.mul(self.animConfig.sheathOffset or {0, -1.25}, {mcontroller.facingDirection(), 1}), mcontroller.crouching() and {0, -0.5} or {0, 0})),
 	renderLayer = sheathLayer > 0 and "Player+2" or "Player-1"
   }
-  activeItem.setScriptedAnimationParameter("neb-sheathFullbrightProperties", sheathFullbrightProperties)
+  table.insert(sheathProperties, base)
+  table.insert(sheathProperties, fullbright)
+  
+  activeItem.setScriptedAnimationParameter("neb-sheathProperties", sheathProperties)
   --player.setProperty("neb-sheathProperties", sheathProperties)
 end
 
