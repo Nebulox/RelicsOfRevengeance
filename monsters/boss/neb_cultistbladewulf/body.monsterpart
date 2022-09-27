@@ -4,6 +4,7 @@
   "type" : "body",
 
   "frames" : {
-    "body" : "neb_cultistbladewulf.png"
+    "body" : "neb_cultistbladewulf.png",
+	"bodyFullbright" : "neb_cultistbladewulfullbright.png"
   }
 }

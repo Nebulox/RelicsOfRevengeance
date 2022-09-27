@@ -213,8 +213,8 @@ end
 
 function setDamageSources()
   local partSources = {}
-  for part,ds in pairs(config.getParameter("damageParts", {})) do
-    local damageArea = animator.partPoly(part, "damageArea")
+  for part, ds in pairs(config.getParameter("damageParts", {})) do
+    local damageArea = animator.partPoly("body", part .. "DamageArea")
     if damageArea then
       ds.poly = damageArea
       table.insert(partSources, ds)

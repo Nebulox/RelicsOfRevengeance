@@ -65,7 +65,6 @@
 
     "portraitIcon" : "/monsters/boss/neb_cultistbladewulf/neb_cultistbladewulf.png",
 	
-
     "movementSettings" : {
       "gravityEnabled" : true,
 

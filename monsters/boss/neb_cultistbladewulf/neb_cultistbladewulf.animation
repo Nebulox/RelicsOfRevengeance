@@ -6,6 +6,9 @@
         "default" : "idle",
         "states" : {
           "idle" : {
+			"frames" : 6,
+            "cycle" : 1.0,
+            "mode" : "loop"
           },
 		  "jumpbite" : {
 			"frames" : 1,
@@ -27,59 +30,57 @@
       "body" : {
         "properties" : {
           "centered" : true,
-          "zLevel" : 4,
-          "rotationGroup" : "all"
-        },
+          "zLevel" : 1,
+          "rotationGroup" : "all",
+		  
+		  //DAMAGE AREAS
+		  "jumpbiteDamageArea" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ],
+		  "comboDamageArea" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ]
+		},
 
         "partStates" : {
           "body" : {
             "idle" : {
               "properties" : {
-                "image" : "<partImage>"
+                "image" : "<partImage>:idle.<frame>"
               }
 			},
 			"jumpbite" : {
               "properties" : {
-                "image" : "<partImage>"
+                "image" : "<partImage>:idle.1"
               }
 			},
 			"combo" : {
               "properties" : {
-                "image" : "<partImage>"
+                "image" : "<partImage>:idle.1"
               }
 			}
           }
         }
       },
-	  "jumpbite" : {
+      "bodyFullbright" : {
         "properties" : {
           "centered" : true,
-          "zLevel" : 4,
+          "fullbright" : true,
+          "zLevel" : 2,
           "rotationGroup" : "all"
-        },
+		},
 
         "partStates" : {
           "body" : {
+            "idle" : {
+              "properties" : {
+                "image" : "<partImage>:idle.<frame>"
+              }
+			},
 			"jumpbite" : {
               "properties" : {
-				"damageArea" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ]
+                "image" : "<partImage>:idle.1"
               }
-			}
-          }
-        }
-      },
-	  "combo" : {
-        "properties" : {
-          "centered" : true,
-          "zLevel" : 4,
-          "rotationGroup" : "all"
-        },
-
-        "partStates" : {
-          "body" : {
+			},
 			"combo" : {
               "properties" : {
-				"damageArea" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ]
+                "image" : "<partImage>:idle.1"
               }
 			}
           }
