@@ -104,16 +104,17 @@ function neb_wulfjump_combo.update(dt, stateData)
 	  stateData.counterTriggered = false
 	  
 	  --ex {"hitType":"ShieldHit","damageSourceKind":"shield","sourceEntityId":629,"healthLost":0,"damageDealt":0,"targetMaterialKind":"organic","targetEntityId":-65536,"position":[334.153,1117.5]}
-	  --stateData.damageListener = damageListener("inflictedDamage", function(notifications)
-		--for _, notification in pairs(notifications) do
-			--if notification.healthLost == 0 and notification.hitType == "ShieldHit" and notification.damageSourceKind == "shield" then
-			
-				--stateData.countered = true
-				--return
-				
-			--end
-		--end
-	  --end)
+	  stateData.damageListener = damageListener("inflictedHits", function(notifications)
+		for _, notification in pairs(notifications) do
+			--sb.logInfo(sb.printJson(notification))
+			if notification.hitType == "ShieldHit" then
+				--animator.playSound("hiltSmashHit")
+				--sb.logInfo("counter plz")
+				stateData.countered = true
+			return
+			end
+		end
+	  end)
     end
 	
 	else
@@ -138,22 +139,22 @@ function neb_wulfjump_combo.update(dt, stateData)
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
 	
-	--if stateData.countered then --mimics behavior from the actual source game - that being if Blade Wolf is parried, he'll bounce backwards from his jump attack.
-		--if not stateData.counterTriggered then
-			--local vel = config.getParameter("neb_wulfjump_combo.jumpVelocity")
-			--mcontroller.setVelocity({vel[1] * -xDir * 0.5,vel[2] * 0.5})
-			--stateData.counterTriggered = true
-			--stateData.damageListener = nil
-			--animator.playSound("shatter")
+	if stateData.countered then --mimics behavior from the actual source game - that being if Blade Wolf is parried, he'll bounce backwards from his jump attack.
+		if not stateData.counterTriggered then
+			local vel = config.getParameter("neb_wulfjump_combo.jumpVelocity")
+			mcontroller.setVelocity({vel[1] * -xDir * 0.5,vel[2] * 0.5})
+			stateData.counterTriggered = true
+			stateData.damageListener = nil
+			animator.playSound("shatter")
 			
-			--monster.setDamageOnTouch(false)
+			monster.setDamageOnTouch(false)
 			
-			--stateData.winddownTimer = config.getParameter("neb_wulfjump_combo.winddownTime", 1.0) * 1.5
-		--end
-	--else
-		--sb.logInfo("ticking damage listener")
-		--stateData.damageListener:update()
-	--end
+			stateData.winddownTimer = config.getParameter("neb_wulfjump_combo.winddownTime", 1.0) * 1.5
+		end
+	else
+		sb.logInfo("ticking damage listener")
+		stateData.damageListener:update()
+	end
     stateData.winddownTimer = stateData.winddownTimer - dt
     return false
   end

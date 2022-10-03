@@ -32,8 +32,8 @@
 
     "phases" : [
       {
-        //"skills" : ["neb_wulfcombo","neb_wulfjump_combo","neb_wulfbackjump_kunai","neb_wulfjump","neb_wulfbackjump","neb_wulfrun"]
-		"skills" : ["neb_wulfjump"]
+        "skills" : ["neb_wulfcombo","neb_wulfjump_combo","neb_wulfbackjump_kunai","neb_wulfjump","neb_wulfbackjump","neb_wulfrun"]
+		//"skills" : ["neb_wulfjump"]
       },
       {
         "trigger" : "healthPercentage",
@@ -69,7 +69,7 @@
     "movementSettings" : {
       "gravityEnabled" : true,
 
-      "collisionPoly" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ],
+      "collisionPoly" : [ [2, 2], [2, -1.5], [-2, -1.5], [-2, 2] ],
       "mass" : 1.0,
 	  //"groundFriction" : 0.5,
       "walkSpeed" : 5,
@@ -90,7 +90,7 @@
     //"fallSensors" : [ [2, -3.5], [2, -5.5], [2, -6.5], [4, -4.5], [4, -5.5], [4, -6.5] ],
 
     "touchDamage" : {
-      "poly" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ],
+      "collisionPoly" : [ [2, 2], [2, -1.5], [-2, -1.5], [-2, 2] ],
       "damage" : 0,
 	  //"knockback" : 30,
 	  "damageRepeatTimeout" : 0.25,

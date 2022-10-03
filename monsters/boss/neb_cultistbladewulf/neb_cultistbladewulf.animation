@@ -42,12 +42,13 @@
         "properties" : {
           "centered" : true,
           "zLevel" : 1,
+		  "offset" : [0.0,2.0],
           "rotationGroup" : "all",
 		  
 		  //DAMAGE AREAS
-		  "jumpbiteDamageArea" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ],
-		  "chargeDamageArea" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ],
-		  "comboDamageArea" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ]
+		  "jumpbiteDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
+		  "chargeDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
+		  "comboDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ]
 		},
 
         "partStates" : {
@@ -85,6 +86,7 @@
           "centered" : true,
           "fullbright" : true,
           "zLevel" : 2,
+		  "offset" : [0.0,2.0],
           "rotationGroup" : "all"
 		},
 

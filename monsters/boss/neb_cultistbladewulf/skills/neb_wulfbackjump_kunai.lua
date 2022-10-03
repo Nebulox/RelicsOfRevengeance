@@ -85,7 +85,7 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
 	  
 	  local params = {}
 	  params.power = root.evalFunction("monsterLevelPowerMultiplier", monster.level()) * 20
-	  params.speed = 100
+	  params.speed = 75
 	  params.timeToLive = 1.0
 	  
 	  world.spawnProjectile("energyshard", mcontroller.position(), entity.id(), {math.cos(aimDir),math.sin(aimDir)}, false, params)

@@ -100,10 +100,10 @@ function neb_wulfcombo.update(dt, stateData)
 	  stateData.countered = false
 	  stateData.counterTriggered = false
 	  
-	  stateData.damageListener = damageListener("inflictedDamage", function(notifications)
+	  stateData.damageListener = damageListener("inflictedHits", function(notifications)
 		for _, notification in pairs(notifications) do
 			--sb.logInfo(sb.printJson(notification))
-			if notification.healthLost == 0 and notification.hitType == "ShieldHit" and notification.damageSourceKind == "shield" then
+			if notification.hitType == "ShieldHit" then
 				--animator.playSound("hiltSmashHit")
 				--sb.logInfo("counter plz")
 				stateData.countered = true
