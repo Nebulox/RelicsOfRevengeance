@@ -27,12 +27,13 @@
       "/monsters/boss/neb_cultistbladewulf/idleState.lua"
     ],
 
-    "skillCount" : 7,
-    "skills" : [ "neb_wulfcombo", "neb_wulfspawnads","neb_wulfbackjump_kunai","neb_wulfbackjump","neb_wulfjump","neb_wulfrun"],
+    "skillCount" : 8,
+    "skills" : [ "neb_wulfcombo", "neb_wulfjump_combo","neb_wulfspawnads","neb_wulfbackjump_kunai","neb_wulfbackjump","neb_wulfjump","neb_wulfrun"],
 
     "phases" : [
       {
-        "skills" : ["neb_wulfcombo","neb_wulfbackjump_kunai","neb_wulfjump","neb_wulfbackjump","neb_wulfrun"]
+        //"skills" : ["neb_wulfcombo","neb_wulfjump_combo","neb_wulfbackjump_kunai","neb_wulfjump","neb_wulfbackjump","neb_wulfrun"]
+		"skills" : ["neb_wulfjump"]
       },
       {
         "trigger" : "healthPercentage",
@@ -70,6 +71,7 @@
 
       "collisionPoly" : [ [2, 1], [2, -3.5], [-2, -3.5], [-2, 1] ],
       "mass" : 1.0,
+	  //"groundFriction" : 0.5,
       "walkSpeed" : 5,
       "runSpeed" : 13,
       "airForce" : 200,
@@ -101,6 +103,14 @@
 	"damageParts" : {
       "jumpbite" : {
         "damage" : 100,
+        //"damageType" : "ignoreDef",
+        "teamType" : "enemy",
+		"damageRepeatTimeout" : 0.25,
+        "damageSourceKind" : "bite",
+        "knockback" : 40
+      },
+	  "charge" : {
+        "damage" : 200,
         //"damageType" : "ignoreDef",
         "teamType" : "enemy",
 		"damageRepeatTimeout" : 0.25,

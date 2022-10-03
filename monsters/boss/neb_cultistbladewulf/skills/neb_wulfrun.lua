@@ -152,6 +152,7 @@ function neb_wulfrun.update(dt, stateData)
   end
   
   --monster.setDamageOnTouch(false)
+  stateData.damageListener = nil
   self.state.stateCooldown(neb_wulfrun.cooldownCategory,config.getParameter("neb_wulfrun.cooldownTime"))
   return true
 end

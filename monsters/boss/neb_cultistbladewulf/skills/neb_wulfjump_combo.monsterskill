@@ -1,0 +1,28 @@
+{
+  "name" : "neb_wulfjump_combo",
+  "label" : "",
+  "image" : "/monsters/generated/ground/skills/icon.png",
+
+  "parameters" : {
+    "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfjump_combo.lua" ],
+    "neb_wulfjump_combo" : {
+    	"minDistance" : 10,
+		"maxDistance" : 13,
+		
+		"windupTime" : 0.25,
+		"skillTime" : 0.1,
+		"winddownTime" : 0.1,
+		
+		"jumpVelocity" : [27,40],
+		
+		"comboWindupTime" : 0.1,
+		"comboWinddownTime" : 0.2,
+		
+		"chargeTime" : 0.5,
+		"chargeVelocity" : 60,
+		
+		"cooldownTime" : 5.0,
+		"cooldownCategory" : "neb_wulfjump_combo"
+    }
+  }
+}

@@ -145,7 +145,7 @@ function neb_wulfcombo.update(dt, stateData)
   
   if stateData.comboCount > 0 then 
 	stateData.comboCount = stateData.comboCount - 1
-	stateData.windupTimer = config.getParameter("neb_wulfcombo.comboWindupTime", 1.0)
+	stateData.windupTimer = config.getParameter("neb_wulfcombo.comboWindupTime", 1.0)/2
     stateData.timer = config.getParameter("neb_wulfcombo.skillTime", 0.3)
     stateData.winddownTimer = config.getParameter("neb_wulfcombo.comboWinddownTime", 1.0)
 	
@@ -158,6 +158,7 @@ function neb_wulfcombo.update(dt, stateData)
 	return false
   end
   
+  stateData.damageListener = nil
   self.state.stateCooldown(neb_wulfcombo.cooldownCategory,config.getParameter("neb_wulfcombo.cooldownTime"))
   return true
 end

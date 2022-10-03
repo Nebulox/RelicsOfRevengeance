@@ -19,9 +19,9 @@ function idleState.update(dt, stateData)
     stateData.timer = stateData.timer - stateData.bobInterval
   end
 
-  local bobOffset = math.sin((stateData.timer / stateData.bobInterval) * math.pi * 2) * stateData.bobHeight
-  local targetPosition = {self.spawnPosition[1], self.spawnPosition[2] + bobOffset}
-  local toTarget = world.distance(targetPosition, mcontroller.position())
+  --local bobOffset = math.sin((stateData.timer / stateData.bobInterval) * math.pi * 2) * stateData.bobHeight
+  --local targetPosition = {self.spawnPosition[1], self.spawnPosition[2] + bobOffset}
+  --local toTarget = world.distance(targetPosition, mcontroller.position())
 
-  mcontroller.controlApproachVelocity(vec2.mul(toTarget, 1/dt), 30)
+  --mcontroller.controlApproachVelocity(vec2.mul(toTarget, 1/dt), 30)
 end

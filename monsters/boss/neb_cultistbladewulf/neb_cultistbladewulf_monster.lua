@@ -215,7 +215,8 @@ function setDamageSources()
   local partSources = {}
   for part, ds in pairs(config.getParameter("damageParts", {})) do
     local damageArea = animator.partPoly("body", part .. "DamageArea")
-    if damageArea then
+	local state = animator.animationState("body")
+    if damageArea and state == part then
       ds.poly = damageArea
       table.insert(partSources, ds)
     end
@@ -233,6 +234,7 @@ function setDamageSources()
 
     return ds
   end)
+  
   monster.setDamageSources(damageSources)
 end
 

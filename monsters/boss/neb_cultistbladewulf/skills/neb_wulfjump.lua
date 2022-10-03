@@ -87,7 +87,7 @@ function neb_wulfjump.update(dt, stateData)
 	  --params.power = root.evalFunction("monsterLevelPowerMultiplier", monster.level()) * 50
 	  --params.knockback = 50
 	  
-	  monster.setDamageOnTouch(true)
+	  --monster.setDamageOnTouch(true)
 	  
 	  --world.spawnProjectile("meleebite", vec2.add(mcontroller.position(),{2.5*math.cos(aimDir),2.5*math.sin(aimDir)-1.0}), entity.id(), aimVector, true, params)
 	  
@@ -117,7 +117,7 @@ function neb_wulfjump.update(dt, stateData)
   
   --monster.setDamageParts({})
 
-  if stateData.winddownTimer > 0 then
+  if stateData.winddownTimer + 1.0 > 0 then
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
 	
