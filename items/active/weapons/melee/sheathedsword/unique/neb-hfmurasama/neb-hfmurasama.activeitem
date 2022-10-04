@@ -6,7 +6,7 @@
   "rarity" : "Essential",
   "description" : "A VT7 High-Frequency Blade. There will be bloodshed.",
   "shortdescription" : "HF Murasama",
-  "tooltipKind" : "sword",
+  "tooltipKind" : "base",
   "category" : "broadsword",
   "twoHanded" : true,
   "itemTags" : ["weapon","melee","broadsword","katana"],
@@ -29,12 +29,13 @@
       "fire5": ["/sfx/melee/swing_shortsword.ogg"],
       "fire6": ["/sfx/melee/sword_parry.ogg"],
 	  
+      "fireUnsheath": ["/sfx/melee/swing_broadsword.ogg"],
+      "fireUnsheathCharged": ["/sfx/melee/swing_broadsword.ogg"],
+	  
       "unsheathSword" : [ "/sfx/melee/neb-sheathsword.ogg" ]
     }
   },
-  "animationScripts" : ["/items/active/effects/neb-sheathedsword.lua"],
-
-  "scripts" : ["/items/active/weapons/melee/meleeweapon.lua", "/items/active/weapons/melee/sheathedsword/neb-sheathedmeleehook.lua"],
+  "animationScripts" : ["/items/active/effects/neb-murasama.lua"],
   "scriptedAnimationParameters" : {
     "sheathRotation" : -105,
     "sheathOffset" : [-0.625, -1.375],
@@ -49,14 +50,11 @@
 	  "unsheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png:sheathAlone",
 	
 	  "hidden" : ""
-    },
-    "chargeRingConfig" : {
-	  "image" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalring.png",
-	  "startEndScale" : [2, 0.5],
-	  "fullbright" : true
-	}
+    }
   },
   "sheathTimer" : 2.5,	//Time until weapon is sheathed while no action is present
+
+  "scripts" : ["/items/active/weapons/melee/meleeweapon.lua", "/items/active/weapons/melee/sheathedsword/neb-sheathedmeleehook.lua"],
 
   "elementalType" : "physical",
 
@@ -121,6 +119,31 @@
       }
     ],
 	
+    "chargeRingConfig" : {
+	  "image" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalring.png",
+	  "startEndScale" : [2, 0.25],
+	  "fullbright" : true,
+	  "rotationRate" : 1
+	},
+	"unsheathDamageConfig" : {
+	  "regular" : {
+        "knockbackMode": "facing",
+        "timeout": 0.1,
+        "statusEffects": [],
+		"damageSourceKind" : "broadsword",
+		"baseDamage": 13,
+		"knockback": 17
+	  },
+	  "charged" : {
+        "knockbackMode": "facing",
+        "timeout": 0.1,
+        "statusEffects": [],
+		"damageSourceKind" : "broadsword",
+		"baseDamage": 25,
+		"knockback": 30
+	  }
+	},
+	
 	"stances" : {
 	  "idle" : {
 		"allowRotate": false,
@@ -130,7 +153,43 @@
 		"twoHanded": false,
 	  	"aimAngle": 0
 	  },
-	
+	  
+	  //Unsheath
+      "windupUnsheath" : {
+        "duration" : 0.25,
+        "armRotation" : -90,
+        "weaponRotation" : -170,
+        "twoHanded" : true,
+
+        "allowRotate" : true,
+        "allowFlip" : false,
+		
+		"holdTime" : 2.0,
+		"directives" : "?flipx"
+      },
+      "fireUnsheath" : {
+        "duration": 0.2,
+	  
+        "weaponRotation": -140,
+        "armRotation": 80,
+	  
+        "allowRotate": false,
+        "allowFlip": false,
+        "twoHanded": true,
+		
+		"directives" : "?flipx"
+      },
+      "waitUnsheath" : {
+        "duration" : 0.1,
+        "armRotation" : 45,
+        "weaponRotation" : -125,
+        "twoHanded" : true,
+
+        "allowRotate" : false,
+        "allowFlip" : false,
+		
+		"directives" : "?flipx"
+      },
 	
 	  //Step 1
       "windup1" : {
@@ -423,11 +482,6 @@
 		"directives" : "?flipx"
       }
 	}
-  },
-
-  "altAbilityType" : "risingslash",
-  "altAbility" : {
-  
   },
 
   "builder" : "/items/buildscripts/buildunrandweapon.lua"

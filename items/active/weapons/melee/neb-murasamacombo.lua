@@ -40,20 +40,23 @@ function NebMurasamaCombo:update(dt, fireMode, shiftHeld)
     end
   end
 
+  --self.activatingFireMode = fireMode ~= "none" and fireMode or self.activatingFireMode
+
   self.edgeTriggerTimer = math.max(0, self.edgeTriggerTimer - dt)
-  if self.lastFireMode ~= (self.activatingFireMode or self.abilitySlot) and fireMode == (self.activatingFireMode or self.abilitySlot) then
+  --if self.lastFireMode ~= (self.activatingFireMode or self.abilitySlot) and fireMode == (self.activatingFireMode or self.abilitySlot) then
+  if self.lastFireMode == "none" and fireMode ~= "none" then
     self.edgeTriggerTimer = self.edgeTriggerGrace
   end
   self.lastFireMode = fireMode
-
   if not self.weapon.currentAbility and self:shouldActivate() then
-    self:setState(self.windup)
+    self:setState(self.windup, self.activatingFireMode == "alt" and "Unsheath" or nil)
   end
 end
 
 -- State: windup
-function NebMurasamaCombo:windup()
-  local stance = self.stances["windup"..self.comboStep]
+function NebMurasamaCombo:windup(overWrite)
+  local stanceSuffix = (overWrite or self.comboStep)
+  local stance = self.stances["windup" .. stanceSuffix]
 
   animator.setGlobalTag("stanceDirectives", stance.directives or "")
   self.weapon:setStance(stance)
@@ -71,13 +74,48 @@ function NebMurasamaCombo:windup()
   
   self.edgeTriggerTimer = 0
   
-  if stance.hold then
-    while self.fireMode == (self.activatingFireMode or self.abilitySlot) do
+  local timer = 0
+  local charged = "regular"
+  if stance.holdTime then
+    --while timer < stance.holdTime and self.fireMode == (self.activatingFireMode or self.abilitySlot) do
+	local ringFactor = 0
+	local ringRotation = math.random() * math.pi * 2
+	
+	local targetGrav = world.gravity(mcontroller.position()) * -0.005
+    while timer < stance.holdTime and self.fireMode ~= "none" do
+	  timer = timer + self.dt
+	  
+	  
+	  if timer > stance.duration then
+	    ringFactor = timer / (stance.holdTime - stance.duration)
+	    mcontroller.controlApproachVelocity({0, targetGrav}, 1000 * ringFactor)
+		
+	    ringRotation = ringRotation + (self.dt * self.chargeRingConfig.rotationRate)
+	    local ring = {
+		  fullbright = self.chargeRingConfig.fullbright,
+		  image = self.chargeRingConfig.image,
+	      color = {255, 255, 255, math.min(255, 255 * ringFactor)},
+	      scale = (ringFactor * (self.chargeRingConfig.startEndScale[2] - self.chargeRingConfig.startEndScale[1]) + self.chargeRingConfig.startEndScale[1]),
+	      centered = true,
+		  rotation = ringRotation,
+          position = vec2.add(mcontroller.position(), activeItem.handPosition()),
+		
+		  renderLayer = mcontroller.facingDirection() > 0 and "Player-1" or "Player+1"
+        }
+        activeItem.setScriptedAnimationParameter("ringProperties", ring)
+	  end
+
       coroutine.yield()
     end
+    if timer >= stance.holdTime then
+      charged = "charged"
+    elseif timer < stance.duration then
+	  util.wait(stance.duration - timer)
+	end
   else
     util.wait(stance.duration)
   end
+  activeItem.setScriptedAnimationParameter("ringProperties", nil)
   animator.setGlobalTag("stanceDirectives", "")
 
   if self.energyUsage then
@@ -86,17 +124,17 @@ function NebMurasamaCombo:windup()
   
   if stance.bladeStorm then
     self:setState(self.bladeStorm)
-  elseif self.stances["preslash"..self.comboStep] then
-    self:setState(self.preslash)
+  elseif self.stances["preslash" .. stanceSuffix] then
+    self:setState(self.preslash, overWrite)
   else
-    self:setState(self.fire)
+    self:setState(self.fire, overWrite, charged)
   end
 end
 
 -- State: wait
 -- waiting for next combo input
 function NebMurasamaCombo:bladeStorm()
-  local stance = self.stances["fire"..self.comboStep]
+  local stance = self.stances["fire" .. self.comboStep]
 
   animator.setGlobalTag("stanceDirectives", stance.directives or "")
   self.weapon:setStance(stance)
@@ -155,15 +193,16 @@ function NebMurasamaCombo:bladeStorm()
   end
 end
 
-function NebMurasamaCombo:wait()
-  local stance = self.stances["wait"..(self.comboStep - 1)]
+function NebMurasamaCombo:wait(overWrite)
+  local stanceSuffix = (overWrite or (self.comboStep - 1))
+  local stance = self.stances["wait" .. stanceSuffix]
 
   animator.setGlobalTag("stanceDirectives", stance.directives or "")
   self.weapon:setStance(stance)
 
   util.wait(stance.duration, function()
     if self:shouldActivate() then
-      self:setState(self.windup)
+      self:setState(self.windup, overWrite and nil or (self.activatingFireMode == "alt" and "Unsheath"))
       return
     end
   end)
@@ -175,8 +214,9 @@ end
 
 -- State: preslash
 -- brief frame in between windup and fire
-function NebMurasamaCombo:preslash()
-  local stance = self.stances["preslash"..self.comboStep]
+function NebMurasamaCombo:preslash(overWrite, charged)
+  local stanceSuffix = (overWrite or self.comboStep)
+  local stance = self.stances["preslash" .. stanceSuffix]
 
   animator.setGlobalTag("stanceDirectives", stance.directives or "")
   self.weapon:setStance(stance)
@@ -185,18 +225,20 @@ function NebMurasamaCombo:preslash()
   util.wait(stance.duration)
   animator.setGlobalTag("stanceDirectives", "")
 
-  self:setState(self.fire)
+  self:setState(self.fire, overWrite, charged)
 end
 
 -- State: fire
-function NebMurasamaCombo:fire()
-  local stance = self.stances["fire"..self.comboStep]
+function NebMurasamaCombo:fire(overWrite, charged)
+  local stanceSuffix = (overWrite or self.comboStep)
+  local stance = self.stances["fire" .. stanceSuffix]
 
   animator.setGlobalTag("stanceDirectives", stance.directives or "")
   self.weapon:setStance(stance)
   self.weapon:updateAim()
 
-  local animStateKey = self.animKeyPrefix .. (self.comboStep > 1 and "fire"..self.comboStep or "fire")
+  local isCharged = (charged == "charged")
+  local animStateKey = self.animKeyPrefix .. "fire" .. (overWrite or (self.comboStep > 1 and self.comboStep or "")) .. (isCharged and "Charged" or "")
   animator.setAnimationState("swoosh", animStateKey)
   animator.playSound(animStateKey)
 
@@ -204,15 +246,16 @@ function NebMurasamaCombo:fire()
   animator.setParticleEmitterOffsetRegion(swooshKey, self.swooshOffsetRegions[self.comboStep])
   animator.burstParticleEmitter(swooshKey)
   
+  local damageConfig = overWrite and self.unsheathDamageConfig[charged] or self.stepDamageConfig[self.comboStep]
+  local damageArea = partDamageArea("swoosh")
   util.wait(stance.duration, function()
-    local damageArea = partDamageArea("swoosh")
-    self.weapon:setDamage(self.stepDamageConfig[self.comboStep], damageArea)
+    self.weapon:setDamage(damageConfig, damageArea)
   end)
   animator.setGlobalTag("stanceDirectives", "")
-
+  
   if self.comboStep < self.comboSteps then
     self.comboStep = self.comboStep + 1
-    self:setState(self.wait)
+    self:setState(self.wait, isCharged and nil or overWrite)
   else
     self.cooldownTimer = self.cooldowns[self.comboStep]
     self.comboStep = 1
@@ -222,9 +265,12 @@ end
 function NebMurasamaCombo:shouldActivate()
   if self.cooldownTimer == 0 and (self.energyUsage == 0 or not status.resourceLocked("energy")) then
     if self.comboStep > 1 then
+	  self.activatingFireMode = self.fireMode
       return self.edgeTriggerTimer > 0
     else
-      return self.fireMode == (self.activatingFireMode or self.abilitySlot)
+      --return self.fireMode == (self.activatingFireMode or self.abilitySlot)
+	  self.activatingFireMode = self.fireMode
+      return self.fireMode ~= "none"
     end
   end
 end
