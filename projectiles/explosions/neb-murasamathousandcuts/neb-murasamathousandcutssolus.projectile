@@ -1,0 +1,78 @@
+{
+  "projectileName" : "neb-murasamathousandcutssolus",
+  "image" : "neb-murasamathousandcutssolus.png",
+  "frameNumber" : 5,
+  "animationCycle" : 0.2,
+  "speed" : 0,
+  "damagePoly" : [ [-17, 0], [-8, -8], [0, -17], [8, -8], [17, 0], [8, 8], [0, 17], [-8, 8] ],
+  "animationLoops" : false,
+  "piercing" : true,
+  "bounces" : -1,
+  "flippable" : true,
+  "soundActions" : [
+    //SOUND
+    {
+      "time" : 0.1,
+      "repeat" : false,
+      "action" : "sound",
+      "options" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"]
+    }
+  ],
+  "periodicActions" : [
+	{
+      "time" : 0.05,
+      "repeat" : false,
+      "action" : "projectile",
+      "rotate" : true,
+      "type" : "neb-murasamathousandcutssolus",
+      "config" : {
+	    "damageRepeatTimeout" : 0.15,
+	    "periodicActions" : []
+	  },
+      "inheritDamageFactor" : 1,
+      "fuzzAngle" : 360
+    },
+	{
+      "time" : 0.1,
+      "repeat" : false,
+      "action" : "projectile",
+      "rotate" : true,
+      "type" : "neb-murasamathousandcutssolus",
+      "config" : {
+	    "damageRepeatTimeout" : 0.15,
+	    "periodicActions" : []
+	  },
+      "inheritDamageFactor" : 1,
+      "fuzzAngle" : 360
+    },
+	{
+      "time" : 0.15,
+      "repeat" : false,
+      "action" : "projectile",
+      "rotate" : true,
+      "type" : "neb-murasamathousandcutssolus",
+      "config" : {
+	    "damageRepeatTimeout" : 0.15,
+	    "periodicActions" : []
+	  },
+      "inheritDamageFactor" : 1,
+      "fuzzAngle" : 360
+    },
+	{
+      "time" : 0.2,
+      "repeat" : false,
+      "action" : "projectile",
+      "rotate" : true,
+      "type" : "neb-murasamathousandcutssolus",
+      "config" : {
+	    "damageRepeatTimeout" : 0.15,
+	    "periodicActions" : []
+	  },
+      "inheritDamageFactor" : 1,
+      "fuzzAngle" : 360
+    }
+  ],
+  "scripts" : ["neb-murasamathousandcuts.lua"],
+  "loops" : 1,
+  "damageKind" : "broadsword"
+}

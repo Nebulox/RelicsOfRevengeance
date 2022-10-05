@@ -81,12 +81,13 @@ function NebMurasamaCombo:windup(overWrite)
 	local ringFactor = 0
 	local ringRotation = math.random() * math.pi * 2
 	
+	animator.playSound("chargeSheath", -1)
 	local targetGrav = world.gravity(mcontroller.position()) * -0.005
     while timer < stance.holdTime and self.fireMode ~= "none" do
 	  timer = timer + self.dt
 	  
-	  
-	  if timer > stance.duration then
+	  animator.setSoundPitch("chargeSheath", ringFactor > 0 and 0.1 + ringFactor or 0.01)
+	  if timer > stance.duration then		
 	    ringFactor = timer / (stance.holdTime - stance.duration)
 	    mcontroller.controlApproachVelocity({0, targetGrav}, 1000 * ringFactor)
 		
@@ -107,6 +108,7 @@ function NebMurasamaCombo:windup(overWrite)
 
       coroutine.yield()
     end
+	animator.stopAllSounds("chargeSheath")
     if timer >= stance.holdTime then
       charged = "charged"
     elseif timer < stance.duration then
@@ -241,6 +243,10 @@ function NebMurasamaCombo:fire(overWrite, charged)
   local animStateKey = self.animKeyPrefix .. "fire" .. (overWrite or (self.comboStep > 1 and self.comboStep or "")) .. (isCharged and "Charged" or "")
   animator.setAnimationState("swoosh", animStateKey)
   animator.playSound(animStateKey)
+  
+  if isCharged then
+    status.overConsumeResource("energy", status.resourceMax("energy"))
+  end
 
   local swooshKey = self.animKeyPrefix .. (self.elementalType or self.weapon.elementalType) .. "swoosh"
   animator.setParticleEmitterOffsetRegion(swooshKey, self.swooshOffsetRegions[self.comboStep])

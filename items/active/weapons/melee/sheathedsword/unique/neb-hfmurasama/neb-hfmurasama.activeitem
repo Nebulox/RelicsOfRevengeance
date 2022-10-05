@@ -22,15 +22,16 @@
   },
   "animationCustom" : { 
     "sounds" : {
-      "fire": ["/sfx/melee/swing_axe.ogg"],
-      "fire2": ["/sfx/melee/swing_broadsword.ogg"],
-      "fire3": ["/sfx/melee/swing_shortsword.ogg"],
-      "fire4": ["/sfx/melee/swing_axe.ogg"],
-      "fire5": ["/sfx/melee/swing_shortsword.ogg"],
-      "fire6": ["/sfx/melee/sword_parry.ogg"],
+      "fire" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
+      "fire2" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
+      "fire3" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
+      "fire4" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
+      "fire5" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
+      "fire6" : ["/sfx/melee/sword_parry.ogg"],
 	  
-      "fireUnsheath": ["/sfx/melee/swing_broadsword.ogg"],
-      "fireUnsheathCharged": ["/sfx/melee/swing_broadsword.ogg"],
+	  "chargeSheath" : ["/sfx/melee/neb-murasama/neb_murasama_chargeslash_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_5.ogg"],
+      "fireUnsheath" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
+      "fireUnsheathCharged" : ["/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_4.ogg"],
 	  
       "unsheathSword" : [ "/sfx/melee/neb-sheathsword.ogg" ]
     }
@@ -156,13 +157,22 @@
 	  
 	  //Unsheath
       "windupUnsheath" : {
-        "duration" : 0.25,
-        "armRotation" : -90,
-        "weaponRotation" : -170,
-        "twoHanded" : true,
-
-        "allowRotate" : true,
-        "allowFlip" : false,
+        "duration": 0.15,
+		
+		"weaponRotation": -245,
+		"armRotation": -5,
+		"aimAngle": 0,
+		"weaponOffset" : [-0.5, -0.5],
+		
+		"frontArmFrame" : "walk.5",
+		
+        "animationStates" : {
+          "sheathState" : "halfSheathed"
+        },
+		
+		"allowRotate": false,
+		"allowFlip": true,
+        "twoHanded": true,
 		
 		"holdTime" : 2.0,
 		"directives" : "?flipx"
@@ -172,6 +182,10 @@
 	  
         "weaponRotation": -140,
         "armRotation": 80,
+		
+        "animationStates" : {
+          "sheathState" : "unsheathed"
+        },
 	  
         "allowRotate": false,
         "allowFlip": false,
@@ -465,15 +479,15 @@
 		"frontArmFrame" : "walk.5",
 		
 		"targetOffset" : [0, 1],
-		"target" : [10, 0],
+		"target" : [7, 0],
 		"targetTolerance" : 3.0,
 		
 		//Slightly marks enemies within forgivenessRange which moves the slash a little
-		"forgivenessRange" : 20,
+		"forgivenessRange" : 25,
 		
-		"projectileType" : "starforge-bladestorm",
+		"projectileType" : "neb-murasamathousandcuts",
 		"projectileParameters" : {},
-		"projectileDamage" : 3,
+		"projectileDamage" : 1,
 		
 		"allowRotate": false,
 		"allowFlip": true,
