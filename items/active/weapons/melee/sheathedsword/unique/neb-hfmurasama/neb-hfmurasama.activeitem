@@ -32,6 +32,8 @@
 	  "chargeSheath" : ["/sfx/melee/neb-murasama/neb_murasama_chargeslash_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_5.ogg"],
       "fireUnsheath" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
       "fireUnsheathCharged" : ["/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_4.ogg"],
+	  "chargePing" : [ "/sfx/npc/monsters/orbide_windup2.ogg" ],
+	  "parry" : [ "/sfx/melee/rs_reydetodosoficiosparry.ogg" ],
 	  
       "unsheathSword" : [ "/sfx/melee/neb-sheathsword.ogg" ]
     }
@@ -66,7 +68,7 @@
     "class": "NebMurasamaCombo",
 	
     "fireTime" : 0.83,
-    "baseDps" : 12.5,
+    "baseDps" : 12,
 
     "flashTime": 0.1,
     "flashDirectives": "fade=FFFFFFFF=0.1",
@@ -82,7 +84,7 @@
 	
     "damageConfig": {
       "knockbackMode": "facing",
-      "timeout": 0.1,
+      "timeout" : 0.5,
       "statusEffects": []
     },
 	
@@ -126,24 +128,6 @@
 	  "fullbright" : true,
 	  "rotationRate" : 1
 	},
-	"unsheathDamageConfig" : {
-	  "regular" : {
-        "knockbackMode": "facing",
-        "timeout": 0.1,
-        "statusEffects": [],
-		"damageSourceKind" : "broadsword",
-		"baseDamage": 13,
-		"knockback": 17
-	  },
-	  "charged" : {
-        "knockbackMode": "facing",
-        "timeout": 0.1,
-        "statusEffects": [],
-		"damageSourceKind" : "broadsword",
-		"baseDamage": 25,
-		"knockback": 30
-	  }
-	},
 	
 	"stances" : {
 	  "idle" : {
@@ -157,7 +141,7 @@
 	  
 	  //Unsheath
       "windupUnsheath" : {
-        "duration": 0.15,
+        "duration": 0.075,
 		
 		"weaponRotation": -245,
 		"armRotation": -5,
@@ -170,15 +154,18 @@
           "sheathState" : "halfSheathed"
         },
 		
-		"allowRotate": false,
+		"allowRotate": true,
 		"allowFlip": true,
         "twoHanded": true,
 		
-		"holdTime" : 2.0,
+		"holdTime" : 1.15,
+		"walkWhileHolding" : true,
+		"chargeDirectives" : "?fade=FFFFFF=0.025?border=2;FF484850;00000000",
+		
 		"directives" : "?flipx"
       },
       "fireUnsheath" : {
-        "duration": 0.2,
+        "duration": 0.2125,
 	  
         "weaponRotation": -140,
         "armRotation": 80,
@@ -194,13 +181,14 @@
 		"directives" : "?flipx"
       },
       "waitUnsheath" : {
-        "duration" : 0.1,
-        "armRotation" : 45,
-        "weaponRotation" : -125,
-        "twoHanded" : true,
-
-        "allowRotate" : false,
-        "allowFlip" : false,
+        "duration": 0.2,
+		
+        "weaponRotation": -140,
+        "armRotation": 80,
+		
+        "allowRotate": false,
+        "allowFlip": true,
+        "twoHanded": true,
 		
 		"directives" : "?flipx"
       },
@@ -487,7 +475,7 @@
 		
 		"projectileType" : "neb-murasamathousandcuts",
 		"projectileParameters" : {},
-		"projectileDamage" : 1,
+		"projectileDamage" : 1.5,
 		
 		"allowRotate": false,
 		"allowFlip": true,

@@ -1,3 +1,5 @@
+require "/scripts/status.lua"
+
 -- Melee primary ability
 NebMurasamaCombo = WeaponAbility:new()
 
@@ -45,7 +47,11 @@ function NebMurasamaCombo:update(dt, fireMode, shiftHeld)
   self.edgeTriggerTimer = math.max(0, self.edgeTriggerTimer - dt)
   --if self.lastFireMode ~= (self.activatingFireMode or self.abilitySlot) and fireMode == (self.activatingFireMode or self.abilitySlot) then
   if self.lastFireMode == "none" and fireMode ~= "none" then
-    self.edgeTriggerTimer = self.edgeTriggerGrace
+    if self.wasAlt and (fireMode == "primary") then
+      self.edgeTriggerTimer = self.edgeTriggerGrace
+	elseif not self.wasAlt then
+      self.edgeTriggerTimer = self.edgeTriggerGrace
+	end
   end
   self.lastFireMode = fireMode
   if not self.weapon.currentAbility and self:shouldActivate() then
@@ -72,6 +78,7 @@ function NebMurasamaCombo:windup(overWrite)
     animator.setParticleEmitterOffsetRegion(swooshKey, self.swooshOffsetRegions[self.comboStep])
   end
   
+  self.wasAlt = overWrite
   self.edgeTriggerTimer = 0
   
   local timer = 0
@@ -84,13 +91,28 @@ function NebMurasamaCombo:windup(overWrite)
 	animator.playSound("chargeSheath", -1)
 	local targetGrav = world.gravity(mcontroller.position()) * -0.005
     while timer < stance.holdTime and self.fireMode ~= "none" do
+	  --Count down timer
 	  timer = timer + self.dt
 	  
+	  --Prevent energy regen while charging
+	  status.setResourcePercentage("energyRegenBlock", 0.6)
+	  
+	  --Enable walk while charging
+	  if stance.walkWhileHolding == true then
+        mcontroller.controlModifiers({runningSuppressed=true})
+	  end
+	  
+	  --Charge sound
 	  animator.setSoundPitch("chargeSheath", ringFactor > 0 and 0.1 + ringFactor or 0.01)
-	  if timer > stance.duration then		
+	  --If the charge has made a enough progress to be considered a charge attack, trigger the visual effects
+	  if timer > stance.duration then
+	    --The factor (0-1) of the charge, 1 being full
 	    ringFactor = timer / (stance.holdTime - stance.duration)
-	    mcontroller.controlApproachVelocity({0, targetGrav}, 1000 * ringFactor)
 		
+	    --Fake time slow effect, where the player slows down while charging
+	    mcontroller.controlApproachVelocity({0, targetGrav}, 350 * ringFactor)
+		
+		--Ring local animator VFX
 	    ringRotation = ringRotation + (self.dt * self.chargeRingConfig.rotationRate)
 	    local ring = {
 		  fullbright = self.chargeRingConfig.fullbright,
@@ -108,22 +130,28 @@ function NebMurasamaCombo:windup(overWrite)
 
       coroutine.yield()
     end
+	--Finish our charging
 	animator.stopAllSounds("chargeSheath")
     if timer >= stance.holdTime then
       charged = "charged"
-    elseif timer < stance.duration then
-	  util.wait(stance.duration - timer)
+	  
+	  --Charge finish effects
+	  animator.setGlobalTag("bladeDirectives", stance.chargeDirectives or "")
+	  animator.playSound("chargePing")
 	end
-  else
-    util.wait(stance.duration)
   end
+  
+  --Clear effects
+  animator.setGlobalTag("bladeDirectives", self.chargeDirectives or "")
   activeItem.setScriptedAnimationParameter("ringProperties", nil)
-  animator.setGlobalTag("stanceDirectives", "")
+  
+  util.wait(stance.duration)
 
   if self.energyUsage then
     status.overConsumeResource("energy", self.energyUsage)
   end
   
+  animator.setGlobalTag("stanceDirectives", "")
   if stance.bladeStorm then
     self:setState(self.bladeStorm)
   elseif self.stances["preslash" .. stanceSuffix] then
@@ -195,7 +223,7 @@ function NebMurasamaCombo:bladeStorm()
   end
 end
 
-function NebMurasamaCombo:wait(overWrite)
+function NebMurasamaCombo:wait(overWrite, wasCharged)
   local stanceSuffix = (overWrite or (self.comboStep - 1))
   local stance = self.stances["wait" .. stanceSuffix]
 
@@ -203,14 +231,17 @@ function NebMurasamaCombo:wait(overWrite)
   self.weapon:setStance(stance)
 
   util.wait(stance.duration, function()
-    if self:shouldActivate() then
-      self:setState(self.windup, overWrite and nil or (self.activatingFireMode == "alt" and "Unsheath"))
+    if wasCharged then
       return
-    end
+    elseif self:shouldActivate() then
+      self:setState(self.windup, self.activatingFireMode == "alt" and "Unsheath" or nil)
+      return
+	end
   end)
-  animator.setGlobalTag("stanceDirectives", "")
 
+  self.wasAlt = nil
   self.cooldownTimer = math.max(0, self.cooldowns[self.comboStep - 1] - stance.duration)
+  animator.setGlobalTag("stanceDirectives", "")
   self.comboStep = 1
 end
 
@@ -244,38 +275,118 @@ function NebMurasamaCombo:fire(overWrite, charged)
   animator.setAnimationState("swoosh", animStateKey)
   animator.playSound(animStateKey)
   
-  if isCharged then
-    status.overConsumeResource("energy", status.resourceMax("energy"))
+  local shieldDamageListener = nil
+  
+  local damageConfig = {}
+  for x, y in pairs(self.stepDamageConfig[self.comboStep]) do
+    damageConfig[x] = y
+  end
+  
+  if overWrite then
+    --Dynamically multiply damage based on current step
+    damageConfig.knockback = damageConfig.knockback * 1.5
+    damageConfig.baseDamage = damageConfig.baseDamage * 1.5
+    if isCharged then
+      damageConfig.knockback = damageConfig.knockback * 1.5
+      damageConfig.baseDamage = damageConfig.baseDamage * 1.5
+	  
+	  --Consume energy if charged
+      status.overConsumeResource("energy", status.resourceMax("energy"))
+    end
+  
+    --Seting up the damage listener for actions on shield hit
+    shieldDamageListener = damageListener("damageTaken", function(notifications)
+	  --Optionally spawn a parry projectile when the shield is hit
+	  for _, notification in pairs(notifications) do
+	    if notification.hitType == "ShieldHit" then
+		  --Fire a projectile when the shield is hit
+		  if #self.reflectedProjectiles > 0 and not hit then
+		    animator.playSound("parry")
+	        hit = true
+		    status.overConsumeResource("energy", status.resourceMax("energy"))
+		  end
+		
+		  --Projectile parameters
+		  for _, projectileConfig in ipairs(self.reflectedProjectiles) do
+		    local params = copy(projectileConfig)
+		    --params.power = params.power * config.getParameter("damageLevelMultiplier")
+		    params.power = self.baseDps * config.getParameter("damageLevelMultiplier") / #self.reflectedProjectiles
+		    params.speed = params.speed * 1.25
+		  
+		    --Projectile spawn code
+		    if not world.pointTileCollision(mcontroller.position()) then
+		      for i = 1, self.projectileCount or 1 do
+			    local aimAngle = math.atan(params.position[2] - activeItem.ownerAimPosition()[2], params.position[1] - activeItem.ownerAimPosition()[1])
+			    local aimVec = vec2.rotate({1,0}, -aimAngle)
+		  	    aimVec[1] = aimVec[1] * -1
+		    	world.spawnProjectile(projectileConfig.projectileName, params.position, activeItem.ownerEntityId(), aimVec, false, params)
+		      end
+		    end
+		  end
+		
+		  return
+	    end
+	  end
+    end)
   end
 
   local swooshKey = self.animKeyPrefix .. (self.elementalType or self.weapon.elementalType) .. "swoosh"
   animator.setParticleEmitterOffsetRegion(swooshKey, self.swooshOffsetRegions[self.comboStep])
   animator.burstParticleEmitter(swooshKey)
   
-  local damageConfig = overWrite and self.unsheathDamageConfig[charged] or self.stepDamageConfig[self.comboStep]
+  self.reflectedProjectiles = {}
+  local populatedProjectiles = false
   local damageArea = partDamageArea("swoosh")
   util.wait(stance.duration, function()
+	if shieldDamageListener then 
+	  shieldDamageListener:update() 
+	
+	  local shieldPoly = animator.partPoly("swoosh", "damageArea")
+      activeItem.setItemShieldPolys({shieldPoly})
+	  
+	  if isCharged then
+		foundProjectiles = world.entityQuery(mcontroller.position(), 7, 
+		  {
+			withoutEntityId = entity.id(),
+			includedTypes = {"projectile"},
+			order = "nearest"
+		  }
+		)
+		if #foundProjectiles > 0 and not populatedProjectiles then
+		  populatedProjectiles = true
+		  for _, projectile in ipairs(foundProjectiles) do
+			local projectileName = world.entityName(projectile)
+			local projectileConfig = root.projectileConfig(projectileName)
+			projectileConfig.position = world.entityPosition(projectile)
+			if not projectileConfig.piercing then
+			  table.insert(self.reflectedProjectiles, projectileConfig)
+			end
+		  end
+		end
+	  end
+	end
+	
     self.weapon:setDamage(damageConfig, damageArea)
   end)
-  animator.setGlobalTag("stanceDirectives", "")
+  activeItem.setItemShieldPolys({})
   
   if self.comboStep < self.comboSteps then
     self.comboStep = self.comboStep + 1
-    self:setState(self.wait, isCharged and nil or overWrite)
+    self:setState(self.wait, overWrite, isCharged)
   else
     self.cooldownTimer = self.cooldowns[self.comboStep]
+    animator.setGlobalTag("stanceDirectives", "")
     self.comboStep = 1
   end
 end
 
 function NebMurasamaCombo:shouldActivate()
   if self.cooldownTimer == 0 and (self.energyUsage == 0 or not status.resourceLocked("energy")) then
+	self.activatingFireMode = self.fireMode
     if self.comboStep > 1 then
-	  self.activatingFireMode = self.fireMode
       return self.edgeTriggerTimer > 0
     else
       --return self.fireMode == (self.activatingFireMode or self.abilitySlot)
-	  self.activatingFireMode = self.fireMode
       return self.fireMode ~= "none"
     end
   end
