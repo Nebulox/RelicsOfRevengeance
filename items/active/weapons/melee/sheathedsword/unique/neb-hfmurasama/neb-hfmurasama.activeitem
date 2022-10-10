@@ -117,7 +117,7 @@
       },
       {
 		"damageSourceKind" : "broadsword",
-		"baseDamageFactor": 0.7,
+		"baseDamageFactor": 1.5,
 		"knockback": 20
       }
     ],

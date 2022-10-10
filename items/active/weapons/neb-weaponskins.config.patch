@@ -3,259 +3,235 @@
     "op": "add",
     "path": "/weaponSkins/neb-hfmurasama",
     "value": {
-      "traditional": {
-        "description": "A VT7 High-Frequency Blade. There will be bloodshed.",
-        "shortdescription": "HF Murasama",
-        "inventoryIcon": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png",
-        "animationParts": {
-          "blade": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png",
-          "bladeFullbright": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png",
-          "swoosh": ""
-        },
-        "sheathSprites": {
-          "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathed",
-          "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathAlone",
-          "hidden": ""
-        },
-        "sheathSpritesFullbright": {
-          "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png:sheathed",
-          "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png:sheathAlone",
-          "hidden": ""
-        },
-        "animationCustom": {
-          "sounds": {
-            "fire": [
-              "/sfx/melee/swing_axe.ogg"
-            ],
-            "fire2": [
-              "/sfx/melee/swing_broadsword.ogg"
-            ],
-            "fire3": [
-              "/sfx/melee/swing_shortsword.ogg"
-            ],
-            "fire4": [
-              "/sfx/melee/swing_axe.ogg"
-            ],
-            "fire5": [
-              "/sfx/melee/swing_shortsword.ogg"
-            ],
-            "fire6": [
-              "/sfx/melee/sword_parry.ogg"
-            ],
-            "unsheathSword": [
-              "/sfx/melee/neb-sheathsword.ogg"
-            ]
-          }
-        }
-      },
       "starseries": {
-        "description": "A second generation Star Series Murasama, its blade is sharpened beyong comprehension. There will be bloodshed.",
-        "shortdescription": "SS-2 Murasama",
-        "inventoryIcon": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseries.png",
-        "animationParts": {
-          "blade": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseries.png",
-          "bladeFullbright": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseriesfullbright.png",
-          "swoosh": ""
-        },
-        "sheathSprites": {
-          "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseries.png:sheathed",
-          "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseries.png:sheathAlone",
-          "hidden": ""
-        },
-        "sheathSpritesFullbright": {
-          "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseriesfullbright.png:sheathed",
-          "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseriesfullbright.png:sheathAlone",
-          "hidden": ""
-        },
-        "animationCustom": {
-          "sounds": {
-            "fire": [
-              "/sfx/melee/swing_axe.ogg"
+	    "skinName" : "Starsent Gift",
+	    "unlockDescription" : "Unlocked by default.",
+        "prerequisiteQuests": [],
+	  
+        "skinConfig": {
+          "description": "Leave nothing in your path of dying stars.",
+          "shortdescription": "Starsent Gift",
+          "inventoryIcon": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseries.png:sheathed",
+          "animationParts": {
+            "blade": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseries.png",
+            "bladeFullbright": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseriesfullbright.png",
+            "swoosh": "starseries"
+          },
+          "scriptedAnimationParameters": {
+            "sheathRotation": -105,
+            "sheathOffset": [
+              -0.625,
+              -1.375
             ],
-            "fire2": [
-              "/sfx/melee/swing_broadsword.ogg"
-            ],
-            "fire3": [
-              "/sfx/melee/swing_shortsword.ogg"
-            ],
-            "fire4": [
-              "/sfx/melee/swing_axe.ogg"
-            ],
-            "fire5": [
-              "/sfx/melee/swing_shortsword.ogg"
-            ],
-            "fire6": [
-              "/sfx/melee/sword_parry.ogg"
-            ],
-            "unsheathSword": [
-              "/sfx/melee/neb-sheathsword.ogg"
-            ]
+            "sheathSprites": {
+              "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseries.png:sheathed",
+              "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseries.png:sheathAlone",
+              "hidden": ""
+            },
+            "sheathSpritesFullbright": {
+              "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseriesfullbright.png:sheathed",
+              "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseriesfullbright.png:sheathAlone",
+              "hidden": ""
+            }
+          },
+          "primaryAbility": {
+            "chargeRingConfig": {
+              "image": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/starseriesring.png"
+            },
+            "stances": {
+              "fire6": {
+                "projectileType": "neb-murasamathousandcutsstarseries"
+              }
+            }
           }
         }
       },
       "solus": {
-        "description": "A blade connected to the core of a sun, it seethes burning rage. There will be bloodshed.",
-        "shortdescription": "Song of Solus",
-        "inventoryIcon": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solus.png",
-        "animationParts": {
-          "blade": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solus.png",
-          "bladeFullbright": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusfullbright.png",
-          "swoosh": "solus"
-        },
-        "sheathSprites": {
-          "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solus.png:sheathed",
-          "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solus.png:sheathAlone",
-          "hidden": ""
-        },
-        "sheathSpritesFullbright": {
-          "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusfullbright.png:sheathed",
-          "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusfullbright.png:sheathAlone",
-          "hidden": ""
-        },
-        "animationCustom": {
-          "animatedParts": {
-            "stateTypes": {
-              "sheathState": {
-                "default": "hidden",
-                "states": {
-                  "hidden": {
-                    "properties": {
-                      "lightsOff": [
-                        "glow"
-                      ],
-                      "particleEmittersOff": [
-                        "blade"
-                      ]
+	    "skinName" : "Song of Solus",
+	    "unlockDescription" : "Receive the swan's final gesture.",
+        "prerequisiteQuests": ["cultist_mission1"],
+		
+        "skinConfig": {
+          "description": "Bring forth the fury of the sun and let it sing.",
+          "shortdescription": "Song of Solus",
+          "inventoryIcon": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solus.png:sheathed",
+          "animationParts": {
+            "blade": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solus.png",
+            "bladeFullbright": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusfullbright.png",
+            "swoosh": "solus"
+          },
+          "animationCustom": {
+            "animatedParts": {
+              "stateTypes": {
+                "sheathState": {
+                  "default": "hidden",
+                  "states": {
+                    "hidden": {
+                      "properties": {
+                        "lightsOff": [
+                          "glow"
+                        ],
+                        "particleEmittersOff": [
+                          "blade"
+                        ]
+                      }
+                    },
+                    "sheathed": {
+                      "properties": {
+                        "lightsOff": [
+                          "glow"
+                        ],
+                        "particleEmittersOff": [
+                          "blade"
+                        ]
+                      }
+                    },
+                    "halfSheathed": {
+                      "properties": {
+                        "lightsOff": [
+                          "glow"
+                        ],
+                        "particleEmittersOff": [
+                          "blade"
+                        ]
+                      }
+                    },
+                    "unsheathed": {
+                      "properties": {
+                        "lightsOn": [
+                          "glow"
+                        ],
+                        "particleEmittersOn": [
+                          "blade"
+                        ],
+                        "persistentSound": "/sfx/tools/energypickaxe_idle.ogg"
+                      }
                     }
-                  },
-                  "sheathed": {
-                    "properties": {
-                      "lightsOff": [
-                        "glow"
-                      ],
-                      "particleEmittersOff": [
-                        "blade"
-                      ]
-                    }
-                  },
-                  "halfSheathed": {
-                    "properties": {
-                      "lightsOff": [
-                        "glow"
-                      ],
-                      "particleEmittersOff": [
-                        "blade"
-                      ]
-                    }
-                  },
-                  "unsheathed": {
-                    "properties": {
-                      "lightsOn": [
-                        "glow"
-                      ],
-                      "particleEmittersOn": [
-                        "blade"
-                      ],
-                      "persistentSound": "/sfx/tools/energypickaxe_idle.ogg"
-                    }
+                  }
+                }
+              },
+              "parts": {
+                "swoosh": {
+                  "properties": {
+                    "fullbright": true
                   }
                 }
               }
             },
-            "parts": {
-              "swoosh": {
-                "properties": {
-                  "fullbright": true
-                }
+            "particleEmitters": {
+              "physicalswoosh": {
+                "active": false,
+                "transformationGroups": [
+                  "swoosh"
+                ],
+                "burstCount": 4,
+                "particles": [
+                  {
+                    "particle": "soluskatana1"
+                  },
+                  {
+                    "particle": "soluskatana2"
+                  }
+                ]
+              },
+              "blade": {
+                "active": false,
+                "transformationGroups": [
+                  "weapon"
+                ],
+                "offsetRegion": [
+                  -0.5,
+                  1.5,
+                  0.5,
+                  4
+                ],
+                "emissionRate": 5,
+                "particles": [
+                  {
+                    "particle": "soluskatana1"
+                  },
+                  {
+                    "particle": "soluskatana2"
+                  }
+                ]
+              }
+            },
+            "lights": {
+              "glow": {
+                "position": [
+                  0,
+                  2
+                ],
+                "color": [
+                  128,
+                  72,
+                  40
+                ],
+                "transformationGroups": [
+                  "weapon"
+                ]
+              }
+            },
+            "sounds": {
+              "fire": [
+                "/sfx/melee/laser_weapon_swing1.ogg",
+                "/sfx/melee/laser_weapon_swing2.ogg",
+                "/sfx/melee/laser_weapon_swing3.ogg"
+              ],
+              "fire2": [
+                "/sfx/melee/laser_weapon_swing1.ogg",
+                "/sfx/melee/laser_weapon_swing2.ogg",
+                "/sfx/melee/laser_weapon_swing3.ogg"
+              ],
+              "fire3": [
+                "/sfx/melee/laser_weapon_swing1.ogg",
+                "/sfx/melee/laser_weapon_swing2.ogg",
+                "/sfx/melee/laser_weapon_swing3.ogg"
+              ],
+              "fire4": [
+                "/sfx/melee/laser_weapon_swing1.ogg",
+                "/sfx/melee/laser_weapon_swing2.ogg",
+                "/sfx/melee/laser_weapon_swing3.ogg"
+              ],
+              "fire5": [
+                "/sfx/melee/laser_weapon_swing1.ogg",
+                "/sfx/melee/laser_weapon_swing2.ogg",
+                "/sfx/melee/laser_weapon_swing3.ogg"
+              ],
+              "fire6": [
+                "/sfx/melee/sword_parry.ogg"
+              ],
+              "unsheathSword": [
+                "/sfx/melee/neb-sheathsword.ogg"
+              ]
+            }
+          },
+          "scriptedAnimationParameters": {
+            "sheathRotation": -105,
+            "sheathOffset": [
+              -0.625,
+              -1.375
+            ],
+            "sheathSprites": {
+              "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solus.png:sheathed",
+              "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solus.png:sheathAlone",
+              "hidden": ""
+            },
+            "sheathSpritesFullbright": {
+              "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusfullbright.png:sheathed",
+              "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusfullbright.png:sheathAlone",
+              "hidden": ""
+            }
+          },
+          "primaryAbility": {
+            "chargeRingConfig": {
+              "image": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusring.png"
+            },
+            "stances": {
+              "fire6": {
+                "projectileType": "neb-murasamathousandcutssolus"
               }
             }
-          },
-          "particleEmitters": {
-            "physicalswoosh": {
-              "active": false,
-              "transformationGroups": [
-                "swoosh"
-              ],
-              "burstCount": 4,
-              "particles": [
-                {
-                  "particle": "soluskatana1"
-                },
-                {
-                  "particle": "soluskatana2"
-                }
-              ]
-            },
-            "blade": {
-              "active": false,
-              "transformationGroups": [
-                "weapon"
-              ],
-              "offsetRegion": [
-                -0.5,
-                1.5,
-                0.5,
-                4
-              ],
-              "emissionRate": 5,
-              "particles": [
-                {
-                  "particle": "soluskatana1"
-                },
-                {
-                  "particle": "soluskatana2"
-                }
-              ]
-            }
-          },
-          "lights": {
-            "glow": {
-              "position": [
-                0,
-                2
-              ],
-              "color": [
-                128,
-                72,
-                40
-              ],
-              "transformationGroups": [
-                "weapon"
-              ]
-            }
-          },
-          "sounds": {
-            "fire": [
-              "/sfx/melee/laser_weapon_swing1.ogg",
-              "/sfx/melee/laser_weapon_swing2.ogg",
-              "/sfx/melee/laser_weapon_swing3.ogg"
-            ],
-            "fire2": [
-              "/sfx/melee/laser_weapon_swing1.ogg",
-              "/sfx/melee/laser_weapon_swing2.ogg",
-              "/sfx/melee/laser_weapon_swing3.ogg"
-            ],
-            "fire3": [
-              "/sfx/melee/laser_weapon_swing1.ogg",
-              "/sfx/melee/laser_weapon_swing2.ogg",
-              "/sfx/melee/laser_weapon_swing3.ogg"
-            ],
-            "fire4": [
-              "/sfx/melee/laser_weapon_swing1.ogg",
-              "/sfx/melee/laser_weapon_swing2.ogg",
-              "/sfx/melee/laser_weapon_swing3.ogg"
-            ],
-            "fire5": [
-              "/sfx/melee/laser_weapon_swing1.ogg",
-              "/sfx/melee/laser_weapon_swing2.ogg",
-              "/sfx/melee/laser_weapon_swing3.ogg"
-            ],
-            "fire6": [
-              "/sfx/melee/sword_parry.ogg"
-            ],
-            "unsheathSword": [
-              "/sfx/melee/neb-sheathsword.ogg"
-            ]
           }
         }
       }
