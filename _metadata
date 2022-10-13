@@ -4,8 +4,7 @@
   "friendlyName" : "Relics of Revengeance",
   "link" : "",
   "name" : "Nebulox_Echo_Relics_Of_Revengeance",
-  "priority" : 1,
+  "priority" : 99999,
   "steamContentId" : "",
-  "version" : "0",
-  "requires" : ["Nebulox_Revisualiser_Mod"]
+  "version" : "0"
 }
