@@ -1,20 +1,44 @@
 {
   "frameGrid" : {
     "size" : [75, 55],
-    "dimensions" : [7, 1],
+    "dimensions" : [7, 13],
 
     "names" : [
 	//IDLE
-	  [ null, "idle.1", "idle.2", "idle.3", "idle.4", "idle.5", "idle.6"]
-	//JUMPBITE
-	
-	//SLASH
-	
-	//CUM
+	  [ null, "idle.1", "idle.2", "idle.3", "idle.4", "idle.5", "idle.6"],
+	//FLIP WINDUP + FLIP - ALSO FOR SLASH
+	  [ null, "flipWindup.1", "flipWindup.2", "flipWindup.3", "flipWindup.4", null, "flip"],
+	//GENERAL WINDUP
+	  [ null, "generalWindup.1", "generalWindup.2", "generalWindup.3", "generalWindup.4", null, null],
+	//RUN
+	  [ null, "run.1", "run.2", "run.3", "run.4", null, null],
+	//BITE
+	  [ null, "bite.1", "bite.2", "bite.3", "bite.4", null, null],
+	//POUNCE
+	  [ null, "pounce.1", "pounce.2", "pounce.3", "pounce.4", null, null],
+	//SLASH - USE FLIP WINDUP
+	  [ null, "slash.1", "slash.2", "slash.3", "slash.4", null, null],
+	//STAGGER
+	  [ null, "intoStagger.1", "intoStagger.2", "intoStagger.3", "intoStagger.4", null, null],
+	//JUMP WINDUP + JUMP (y>0)
+	  [ null, "jumpWindup.1", "jumpWindup.2", "jumpWindup.3", null, "jump", null],
+	//FALL / IN AIR
+	  [ null, "inAirNeutral", null, "inAirBack", null, "inAirForward", null],
+	//TELEPORT OUT
+	  [ null, "teleportOut.1", "teleportOut.2", "teleportOut.3", "teleportOut.4", "teleportOut.5", "teleportOut.6"],
+	//TELEPORT IN
+	  [ null, "teleportIn.1", "teleportIn.2", "teleportIn.3", "teleportIn.4", "teleportIn.5", null],
+	//TRIGGER PHASE 2
+	  [ null, "enterPhase.1", "enterPhase.2", "enterPhase.3", "enterPhase.4", "enterPhase.5", "enterPhase.6"]
     ]
   },
   "aliases" : {
-    //TEMP
-	"blade.1" : "idle.1"
+  //STAGGER
+	"holdStagger.1" : "intoStagger.4",
+	
+	"outOfStagger.1" : "intoStagger.4",
+	"outOfStagger.2" : "intoStagger.3",
+	"outOfStagger.3" : "intoStagger.2",
+	"outOfStagger.4" : "intoStagger.1"
   }
 }

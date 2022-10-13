@@ -5,31 +5,128 @@
         "priority" : 1,
         "default" : "idle",
         "states" : {
+		//INVIS
+          "hidden" : {
+			"frames" : 1,
+            "cycle" : 1.0,
+            "mode" : "loop"
+          },
+		//IDLE
           "idle" : {
 			"frames" : 6,
             "cycle" : 1.0,
             "mode" : "loop"
           },
-		  "jumpbite" : {
+		//FLIP WINDUP + FLIP
+		  "flipWindup" : {
+			"frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+		  },
+		  "flip" : {
 			"frames" : 1,
+            "cycle" : 1.0,
+            "mode" : "loop"
+		  },
+		//GENERAL WINDUP
+		  "generalWindup" : {
+			"frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+		  },
+		//RUN
+		  "run" : {
+			"frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "loop"
+		  },
+		//BITE
+		  "bite" : {
+			"frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+		  },
+		//POUNCE
+		  "pounce" : {
+			"frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+		  },
+		//SLASH
+		  "slash" : {
+			"frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+		  },
+		//STAGGER STATES
+		  "intoStagger" : {
+			"frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "holdStagger"
+		  },
+		  "holdStagger" : {
+			"frames" : 1,
+            "cycle" : 1.0,
+            "mode" : "loop"
+		  },
+		  "outOfStagger" : {
+			"frames" : 4,
+            "cycle" : 0.25,
+            "mode" : "transition",
+            "transition" : "idle"
+		  },
+		//JUMP WINDUP + JUMP
+		  "jumpWindup" : {
+			"frames" : 3,
             "cycle" : 0.25,
             "mode" : "transition",
             "transition" : "idle"
 		  },
 		  "jump" : {
 			"frames" : 1,
-            "cycle" : 0.75,
-            "mode" : "transition",
-            "transition" : "idle"
+            "cycle" : 1.0,
+            "mode" : "loop"
 		  },
-		  "charge" : {
+		//FALL STATES
+		  "inAirNeutral" : {
 			"frames" : 1,
             "cycle" : 0.5,
             "mode" : "loop"
 		  },
-		  "combo" : {
+		  "inAirBack" : {
 			"frames" : 1,
-            "cycle" : 0.25,
+            "cycle" : 0.5,
+            "mode" : "loop"
+		  },
+		  "inAirForward" : {
+			"frames" : 1,
+            "cycle" : 0.5,
+            "mode" : "loop"
+		  },
+		//TELEPORT OUT
+		  "teleportOut" : {
+			"frames" : 6,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "hidden"
+		  },
+		//TELEPORT IN
+		  "teleportIn" : {
+			"frames" : 5,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "inAirNeutral"
+		  },
+		//TRIGGER PHASE 2
+		  "enterPhase" : {
+			"frames" : 6,
+            "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "idle"
 		  }
@@ -53,29 +150,118 @@
 
         "partStates" : {
           "body" : {
+		  //HIDDEN/INVIS
+            "hidden" : {
+              "properties" : {
+                "image" : ""
+              }
+			},
+		  //IDLE
             "idle" : {
               "properties" : {
                 "image" : "<partImage>:idle.<frame>"
               }
 			},
-			"jumpbite" : {
+		  //FLIP WINDUP + FLIP - ALSO FOR SLASH
+            "flipWindup" : {
               "properties" : {
-                "image" : "<partImage>:idle.1"
+                "image" : "<partImage>:flipWindup.<frame>"
               }
 			},
-			"charge" : {
+            "flip" : {
               "properties" : {
-                "image" : "<partImage>:idle.1"
+                "image" : "<partImage>:flip"
               }
 			},
-			"jump" : {
+		  //GENERAL WINDUP
+            "generalWindup" : {
               "properties" : {
-                "image" : "<partImage>:idle.1"
+                "image" : "<partImage>:generalWindup.<frame>"
               }
 			},
-			"combo" : {
+		  //RUN
+            "run" : {
               "properties" : {
-                "image" : "<partImage>:idle.1"
+                "image" : "<partImage>:run.<frame>"
+              }
+			},
+		  //BITE
+            "bite" : {
+              "properties" : {
+                "image" : "<partImage>:bite.<frame>"
+              }
+			},
+		  //POUNCE
+            "pounce" : {
+              "properties" : {
+                "image" : "<partImage>:pounce.<frame>"
+              }
+			},
+		  //SLASH
+            "slash" : {
+              "properties" : {
+                "image" : "<partImage>:slash.<frame>"
+              }
+			},
+		  //STAGGER STATES
+            "intoStagger" : {
+              "properties" : {
+                "image" : "<partImage>:intoStagger.<frame>"
+              }
+			},
+            "holdStagger" : {
+              "properties" : {
+                "image" : "<partImage>:holdStagger.<frame>"
+              }
+			},
+            "outOfStagger" : {
+              "properties" : {
+                "image" : "<partImage>:outOfStagger.<frame>"
+              }
+			},
+		  //JUMP WINDUP + JUMP
+            "jumpWindup" : {
+              "properties" : {
+                "image" : "<partImage>:jumpWindup.<frame>"
+              }
+			},
+            "jump" : {
+              "properties" : {
+                "image" : "<partImage>:jump"
+              }
+			},
+		  //FALL STATES
+            "inAirNeutral" : {
+              "properties" : {
+                "image" : "<partImage>:inAirNeutral"
+              }
+			},
+            "inAirBack" : {
+              "properties" : {
+                "image" : "<partImage>:inAirBack"
+              }
+			},
+            "inAirForward" : {
+              "properties" : {
+                "image" : "<partImage>:inAirForward"
+              }
+			},
+		  //TELEPORT OUT
+            "teleportOut" : {
+              "properties" : {
+                "image" : "<partImage>:teleportOut.<frame>"
+              }
+			},
+		  //TELEPORT IN
+            "teleportIn" : {
+              "properties" : {
+                "image" : "<partImage>:teleportIn.<frame>"
+              }
+			},
+		  //TRIGGER PHASE 2
+            "enterPhase" : {
+              "properties" : {
+                "image" : "<partImage>:enterPhase.<frame>"
               }
 			}
           }
@@ -92,34 +278,121 @@
 
         "partStates" : {
           "body" : {
+		  //HIDDEN/INVIS
+            "hidden" : {
+              "properties" : {
+                "image" : ""
+              }
+			},
+		  //IDLE
             "idle" : {
               "properties" : {
-                //"image" : "<partImage>:idle.<frame>"
-				"image" : "<partImage>:idle.1"
+                "image" : "<partImage>:idle.<frame>"
               }
 			},
-			"jumpbite" : {
+		  //FLIP WINDUP + FLIP - ALSO FOR SLASH
+            "flipWindup" : {
               "properties" : {
-                "image" : "<partImage>:idle.1"
+                "image" : "<partImage>:flipWindup.<frame>"
               }
 			},
-			"charge" : {
+            "flip" : {
               "properties" : {
-                "image" : "<partImage>:idle.1"
+                "image" : "<partImage>:flip"
               }
 			},
-			"jump" : {
+		  //GENERAL WINDUP
+            "generalWindup" : {
               "properties" : {
-                "image" : "<partImage>:idle.1"
+                "image" : "<partImage>:generalWindup.<frame>"
               }
 			},
-			"combo" : {
+		  //RUN
+            "run" : {
               "properties" : {
-                "image" : "<partImage>:idle.1"
+                "image" : "<partImage>:run.<frame>"
+              }
+			},
+		  //BITE
+            "bite" : {
+              "properties" : {
+                "image" : "<partImage>:bite.<frame>"
+              }
+			},
+		  //POUNCE
+            "pounce" : {
+              "properties" : {
+                "image" : "<partImage>:pounce.<frame>"
+              }
+			},
+		  //SLASH
+            "slash" : {
+              "properties" : {
+                "image" : "<partImage>:slash.<frame>"
+              }
+			},
+		  //STAGGER STATES
+            "intoStagger" : {
+              "properties" : {
+                "image" : "<partImage>:intoStagger.<frame>"
+              }
+			},
+            "holdStagger" : {
+              "properties" : {
+                "image" : "<partImage>:holdStagger.<frame>"
+              }
+			},
+            "outOfStagger" : {
+              "properties" : {
+                "image" : "<partImage>:outOfStagger.<frame>"
+              }
+			},
+		  //JUMP WINDUP + JUMP
+            "jumpWindup" : {
+              "properties" : {
+                "image" : "<partImage>:jumpWindup.<frame>"
+              }
+			},
+            "jump" : {
+              "properties" : {
+                "image" : "<partImage>:jump"
+              }
+			},
+		  //FALL STATES
+            "inAirNeutral" : {
+              "properties" : {
+                "image" : "<partImage>:inAirNeutral"
+              }
+			},
+            "inAirBack" : {
+              "properties" : {
+                "image" : "<partImage>:inAirBack"
+              }
+			},
+            "inAirForward" : {
+              "properties" : {
+                "image" : "<partImage>:inAirForward"
+              }
+			},
+		  //TELEPORT OUT
+            "teleportOut" : {
+              "properties" : {
+                "image" : "<partImage>:teleportOut.<frame>"
+              }
+			},
+		  //TELEPORT IN
+            "teleportIn" : {
+              "properties" : {
+                "image" : "<partImage>:teleportIn.<frame>"
+              }
+			},
+		  //TRIGGER PHASE 2
+            "enterPhase" : {
+              "properties" : {
+                "image" : "<partImage>:enterPhase.<frame>"
               }
 			}
           }
-        }
       }
     }
   },

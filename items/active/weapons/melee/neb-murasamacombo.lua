@@ -284,11 +284,12 @@ function NebMurasamaCombo:fire(overWrite, charged)
   
   if overWrite then
     --Dynamically multiply damage based on current step
-    damageConfig.knockback = damageConfig.knockback * 1.5
-    damageConfig.baseDamage = damageConfig.baseDamage * 1.5
+    damageConfig.knockback = damageConfig.knockback * 1.35
+    damageConfig.baseDamage = damageConfig.baseDamage * 1.35
     if isCharged then
-      damageConfig.knockback = damageConfig.knockback * 1.5
-      damageConfig.baseDamage = damageConfig.baseDamage * 1.5
+	  local chargeTime = self.stances["windup" .. stanceSuffix].holdTime or 1
+      damageConfig.knockback = damageConfig.knockback * 1.35 * chargeTime
+      damageConfig.baseDamage = damageConfig.baseDamage * 1.35 * chargeTime
 	  
 	  --Consume energy if charged
       status.overConsumeResource("energy", status.resourceMax("energy"))
