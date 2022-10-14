@@ -1,4 +1,7 @@
 {
+  "globalTagDefaults" : {
+	"fullbrightImage" : "/monsters/boss/neb_cultistbladewulf/nobright.png"
+  },
   "animatedParts" : {
     "stateTypes" : {
       "body" : {
@@ -32,7 +35,7 @@
 		//GENERAL WINDUP
 		  "generalWindup" : {
 			"frames" : 4,
-            "cycle" : 0.25,
+            "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "idle"
 		  },
@@ -126,7 +129,7 @@
 		//TRIGGER PHASE 2
 		  "enterPhase" : {
 			"frames" : 6,
-            "cycle" : 0.3,
+            "cycle" : 0.6,
             "mode" : "transition",
             "transition" : "idle"
 		  }
@@ -141,11 +144,12 @@
           "zLevel" : 1,
 		  "offset" : [0.0,2.0],
           "rotationGroup" : "all",
+		  "transformationGroups" : ["all"],
 		  
 		  //DAMAGE AREAS
-		  "jumpbiteDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
-		  "chargeDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
-		  "comboDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ]
+		  "pounceDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
+		  "biteDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
+		  "runDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ]
 		},
 
         "partStates" : {
@@ -273,7 +277,8 @@
           "fullbright" : true,
           "zLevel" : 2,
 		  "offset" : [0.0,2.0],
-          "rotationGroup" : "all"
+          "rotationGroup" : "all",
+		  "transformationGroups" : ["all"]
 		},
 
         "partStates" : {
@@ -287,116 +292,121 @@
 		  //IDLE
             "idle" : {
               "properties" : {
-                "image" : "<partImage>:idle.<frame>"
+                "image" : "<fullbrightImage>:idle.<frame>"
               }
 			},
 		  //FLIP WINDUP + FLIP - ALSO FOR SLASH
             "flipWindup" : {
               "properties" : {
-                "image" : "<partImage>:flipWindup.<frame>"
+                "image" : "<fullbrightImage>:flipWindup.<frame>"
               }
 			},
             "flip" : {
               "properties" : {
-                "image" : "<partImage>:flip"
+                "image" : "<fullbrightImage>:flip"
               }
 			},
 		  //GENERAL WINDUP
             "generalWindup" : {
               "properties" : {
-                "image" : "<partImage>:generalWindup.<frame>"
+                "image" : "<fullbrightImage>:generalWindup.<frame>"
               }
 			},
 		  //RUN
             "run" : {
               "properties" : {
-                "image" : "<partImage>:run.<frame>"
+                "image" : "<fullbrightImage>:run.<frame>"
               }
 			},
 		  //BITE
             "bite" : {
               "properties" : {
-                "image" : "<partImage>:bite.<frame>"
+                "image" : "<fullbrightImage>:bite.<frame>"
               }
 			},
 		  //POUNCE
             "pounce" : {
               "properties" : {
-                "image" : "<partImage>:pounce.<frame>"
+                "image" : "<fullbrightImage>:pounce.<frame>"
               }
 			},
 		  //SLASH
             "slash" : {
               "properties" : {
-                "image" : "<partImage>:slash.<frame>"
+                "image" : "<fullbrightImage>:slash.<frame>"
               }
 			},
 		  //STAGGER STATES
             "intoStagger" : {
               "properties" : {
-                "image" : "<partImage>:intoStagger.<frame>"
+                "image" : "<fullbrightImage>:intoStagger.<frame>"
               }
 			},
             "holdStagger" : {
               "properties" : {
-                "image" : "<partImage>:holdStagger.<frame>"
+                "image" : "<fullbrightImage>:holdStagger.<frame>"
               }
 			},
             "outOfStagger" : {
               "properties" : {
-                "image" : "<partImage>:outOfStagger.<frame>"
+                "image" : "<fullbrightImage>:outOfStagger.<frame>"
               }
 			},
 		  //JUMP WINDUP + JUMP
             "jumpWindup" : {
               "properties" : {
-                "image" : "<partImage>:jumpWindup.<frame>"
+                "image" : "<fullbrightImage>:jumpWindup.<frame>"
               }
 			},
             "jump" : {
               "properties" : {
-                "image" : "<partImage>:jump"
+                "image" : "<fullbrightImage>:jump"
               }
 			},
 		  //FALL STATES
             "inAirNeutral" : {
               "properties" : {
-                "image" : "<partImage>:inAirNeutral"
+                "image" : "<fullbrightImage>:inAirNeutral"
               }
 			},
             "inAirBack" : {
               "properties" : {
-                "image" : "<partImage>:inAirBack"
+                "image" : "<fullbrightImage>:inAirBack"
               }
 			},
             "inAirForward" : {
               "properties" : {
-                "image" : "<partImage>:inAirForward"
+                "image" : "<fullbrightImage>:inAirForward"
               }
 			},
 		  //TELEPORT OUT
             "teleportOut" : {
               "properties" : {
-                "image" : "<partImage>:teleportOut.<frame>"
+                "image" : "<fullbrightImage>:teleportOut.<frame>"
               }
 			},
 		  //TELEPORT IN
             "teleportIn" : {
               "properties" : {
-                "image" : "<partImage>:teleportIn.<frame>"
+                "image" : "<fullbrightImage>:teleportIn.<frame>"
               }
 			},
 		  //TRIGGER PHASE 2
             "enterPhase" : {
               "properties" : {
-                "image" : "<partImage>:enterPhase.<frame>"
+                "image" : "<fullbrightImage>:enterPhase.<frame>"
               }
 			}
           }
       }
     }
+  }
   },
-
+  
+  "transformationGroups" : {
+	"all" : {}
+  },
+  
   "rotationGroups" : {
     "all" : {
       "angularVelocity" : 10

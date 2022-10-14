@@ -1,6 +1,6 @@
 --Not really an attack, just some idle time between attacks
 neb_wulfspawnads = {
-  stateNames = {"one", "two", "three", "four", "five", "six"}
+  --stateNames = {"one", "two", "three", "four", "five", "six"}
 }
 
 -- function neb_wulfspawnads.enter()
@@ -31,7 +31,7 @@ function neb_wulfspawnads.enterWith(args) --this way, skills that function by tr
   --if self.moontants <= 1 then return nil end
 
   return {
-    windupTimer = 0.5,
+    windupTimer = 0.3,
     timer = config.getParameter("neb_wulfspawnads.skillTime", 0.3),
     winddownTimer = 0.5,
     spawnAngle = config.getParameter("neb_wulfspawnads.spawnAngle", 0.2),
@@ -42,7 +42,6 @@ function neb_wulfspawnads.enterWith(args) --this way, skills that function by tr
 end
 
 function neb_wulfspawnads.enteringState(stateData)
-  --animator.setAnimationState("eye", "windup")
   animator.playSound("spawnCharge")
 end
 
@@ -57,18 +56,13 @@ function neb_wulfspawnads.update(dt, stateData)
   if stateData.timer > 0 then
     stateData.timer = stateData.timer - dt
 
-    --local duration = config.getParameter("crystalShatterAttack.skillTime", 1) - stateData.timer
-    --local angle = crystalShatterAttack.angleFactorFromTime(stateData.timer, stateData.rotateInterval) * stateData.rotateAngle - stateData.rotateAngle/2
-    --animator.rotateGroup("all", angle, true)
-
     if stateData.timer < 0 then
-      --local downAngle = -0.5 * math.pi
-      --local spawnAngle = downAngle + stateData.direction * stateData.spawnAngle
-      --local aimVector = {math.cos(spawnAngle), math.sin(spawnAngle)}
+	   animator.setGlobalTag("fullbrightImage", "/monsters/boss/neb_cultistbladewulf/neb_cultistbladewulffullbright.png")
+	  animator.setAnimationState("body", "enterPhase")
+	
+	  --update this later, spawn actual NPCs or mobs for release. placeholder right now.
       world.spawnProjectile("moontantspawn", mcontroller.position(), entity.id(), {0,-1}, false, {power = 0, level = monster.level()} )
 
-      --self.moontants = self.moontants - 1
-      --animator.setAnimationState("organs", neb_wulfspawnads.stateNames[self.moontants])
 
       animator.playSound("spawnAdd")
     end
@@ -77,11 +71,12 @@ function neb_wulfspawnads.update(dt, stateData)
   end
 
   if stateData.winddownTimer > 0 then
-    --animator.rotateGroup("all", 0, true)
-    --animator.setAnimationState("eye", "winddown")
+	
     stateData.winddownTimer = stateData.winddownTimer - dt
     return false
   end
+  
+  animator.setAnimationState("body", "idle")
 
   return true
 end

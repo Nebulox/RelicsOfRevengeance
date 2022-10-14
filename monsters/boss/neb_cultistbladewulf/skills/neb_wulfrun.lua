@@ -45,7 +45,7 @@ function neb_wulfrun.enter()
 end
 
 function neb_wulfrun.enteringState(stateData)
-  --animator.setAnimationState("eye", "windup")
+  animator.setAnimationState("body", "run")
   animator.playSound("spawnCharge")
 end
 
@@ -77,7 +77,8 @@ function neb_wulfrun.update(dt, stateData)
 	if not neb_wulfrun.checkDistance() then
 		stateData.jumpWindupTimer = 0.01
 		stateData.jumpWinddownTimer = 0.5
-		sb.logInfo("run into jump!")
+		--sb.logInfo("run into jump!")
+		
 		stateData.jumpTriggered = true
 		--self.state.endState()
 		--neb_wulfforcejump.enterWith({enteringJump = true})
@@ -92,7 +93,7 @@ function neb_wulfrun.update(dt, stateData)
     stateData.jumpWindupTimer = stateData.jumpWindupTimer - dt
 	
 	if stateData.jumpWindupTimer <= 0 then
-		animator.setAnimationState("body", "jumpbite")
+		animator.setAnimationState("body", "pounce")
 		local aimVector = world.distance(self.targetPosition, mcontroller.position())
 		local aimDir = math.atan(aimVector[2],aimVector[1])
 	  
@@ -131,6 +132,13 @@ function neb_wulfrun.update(dt, stateData)
   if stateData.jumpWinddownTimer > 0 then
     mcontroller.controlFace(targetDir)
 	
+	if stateData.jumpWinddownTimer <= 0.3 and stateData.counterTriggered then
+		animator.setAnimationState("body", "outOfStagger",true)
+		stateData.cancelListener = true
+		stateData.counterTriggered = false
+		stateData.countered = false
+	end
+	
 	if stateData.countered then --mimics behavior from the actual source game - that being if Blade Wolf is parried, he'll bounce backwards from his jump attack.
 		if not stateData.counterTriggered then
 			local vel = config.getParameter("neb_wulfrun.jumpVelocity")
@@ -138,18 +146,24 @@ function neb_wulfrun.update(dt, stateData)
 			stateData.counterTriggered = true
 			stateData.damageListener = nil
 			animator.playSound("shatter")
+			
+			animator.setAnimationState("body", "intoStagger",true)
 			--monster.setDamageOnTouch(false)
 			
 			stateData.jumpWinddownTimer = 0.75
 		end
 	else
 		--sb.logInfo("ticking damage listener")
-		stateData.damageListener:update()
+		if not stateData.cancelListener then
+			stateData.damageListener:update()
+		end
 	end
 	
     stateData.jumpWinddownTimer = stateData.jumpWinddownTimer - dt
     return false
   end
+  
+  animator.setAnimationState("body", "idle")
   
   --monster.setDamageOnTouch(false)
   stateData.damageListener = nil

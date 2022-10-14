@@ -38,7 +38,7 @@ function neb_wulfjump.enter()
 end
 
 function neb_wulfjump.enteringState(stateData)
-  --animator.setAnimationState("eye", "windup")
+  animator.setAnimationState("body", "generalWindup")
   animator.playSound("spawnCharge")
 end
 
@@ -62,6 +62,7 @@ function neb_wulfjump.update(dt, stateData)
 	if (not neb_wulfjump.checkDistance() == true) and (self.state.stateCooldown("neb_wulfbackjump") == 0) then --transitions to backjump if too close
 	
 		--sb.logInfo("switch to different state!!")
+		-- note: debatable if this even works....
 		neb_wulfbackjump.enter()
 		return true
 	end
@@ -73,23 +74,12 @@ function neb_wulfjump.update(dt, stateData)
     stateData.timer = stateData.timer - dt
 
     if stateData.timer <= 0 then
-	  animator.setAnimationState("body", "jumpbite")
-	  --mcontroller.controlApproachXVelocity(200, 200)
-	  --mcontroller.controlApproachYVelocity(200, 200)
-	  --mcontroller.controlJump()
-	  --mcontroller.controlApproachVelocity({40 * xDir,20}, 10000)
+	  animator.setAnimationState("body", "pounce")
 	  
 	  --monster.setDamageParts({"jumpbite"})
 	  local aimVector = world.distance(self.targetPosition, mcontroller.position())
 	  local aimDir = math.atan(aimVector[2],aimVector[1])
 	  
-	  --local params = {}
-	  --params.power = root.evalFunction("monsterLevelPowerMultiplier", monster.level()) * 50
-	  --params.knockback = 50
-	  
-	  --monster.setDamageOnTouch(true)
-	  
-	  --world.spawnProjectile("meleebite", vec2.add(mcontroller.position(),{2.5*math.cos(aimDir),2.5*math.sin(aimDir)-1.0}), entity.id(), aimVector, true, params)
 	  
 	  local vel = config.getParameter("neb_wulfjump.jumpVelocity")
 	  mcontroller.setVelocity({vel[1] * xDir,vel[2]})
@@ -121,6 +111,13 @@ function neb_wulfjump.update(dt, stateData)
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
 	
+	if stateData.winddownTimer <= 0.3 and stateData.counterTriggered then
+		animator.setAnimationState("body", "outOfStagger",true)
+		stateData.cancelListener = true
+		stateData.counterTriggered = false
+		stateData.countered = false
+	end
+	
 	if stateData.countered then --mimics behavior from the actual source game - that being if Blade Wolf is parried, he'll bounce backwards from his jump attack.
 		if not stateData.counterTriggered then
 			local vel = config.getParameter("neb_wulfjump.jumpVelocity")
@@ -129,17 +126,22 @@ function neb_wulfjump.update(dt, stateData)
 			stateData.damageListener = nil
 			animator.playSound("shatter")
 			
+			animator.setAnimationState("body", "intoStagger",true)
 			--monster.setDamageOnTouch(false)
 			
-			stateData.winddownTimer = config.getParameter("neb_wulfjump.winddownTime", 1.0) * 1.5
+			stateData.winddownTimer = 2.0
 		end
 	else
 		--sb.logInfo("ticking damage listener")
-		stateData.damageListener:update()
+		if not stateData.cancelListener then
+			stateData.damageListener:update()
+		end
 	end
     stateData.winddownTimer = stateData.winddownTimer - dt
     return false
   end
+  
+  animator.setAnimationState("body", "idle")
   
   --monster.setDamageOnTouch(false)
   self.damageListener = nil

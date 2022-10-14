@@ -56,6 +56,7 @@ end
 
 function neb_wulfjump_combo.enteringState(stateData)
   --animator.setAnimationState("eye", "windup")
+  animator.setAnimationState("body", "jumpWindup")
   animator.playSound("spawnCharge")
 end
 
@@ -78,7 +79,7 @@ function neb_wulfjump_combo.update(dt, stateData)
     stateData.windupTimer = stateData.windupTimer - dt
 	
 	if stateData.windupTimer <= 0 and stateData.comboCount == 0 then
-		animator.setAnimationState("body", "charge")
+		animator.setAnimationState("body", "run")
 		stateData.chargeDir = xDir
 	end
 	
@@ -122,9 +123,10 @@ function neb_wulfjump_combo.update(dt, stateData)
 		local wallBlock = checkWalls(stateData.chargeDir)
 		
 		if wallBlock then --if hit wall, then stun
-			animator.setAnimationState("body", "idle")
+			animator.setAnimationState("body", "intoStagger",true)
+			stateData.counterTriggered = true
 			stateData.timer = 0
-			stateData.winddownTimer = config.getParameter("neb_wulfjump_combo.winddownTime", 1.0) * 3
+			stateData.winddownTimer = 2.0
 			animator.playSound("shatter")
 		end
 	end
@@ -135,9 +137,15 @@ function neb_wulfjump_combo.update(dt, stateData)
   --monster.setDamageParts({})
 
   if stateData.winddownTimer > 0 then
-	if not mcontroller.onGround() then return false end
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
+	
+	if stateData.winddownTimer <= 0.3 and stateData.counterTriggered then
+		animator.setAnimationState("body", "outOfStagger",true)
+		stateData.cancelListener = true
+		stateData.counterTriggered = false
+		stateData.countered = false
+	end
 	
 	if stateData.countered then --mimics behavior from the actual source game - that being if Blade Wolf is parried, he'll bounce backwards from his jump attack.
 		if not stateData.counterTriggered then
@@ -147,13 +155,16 @@ function neb_wulfjump_combo.update(dt, stateData)
 			stateData.damageListener = nil
 			animator.playSound("shatter")
 			
-			monster.setDamageOnTouch(false)
+			animator.setAnimationState("body", "intoStagger",true)
+			--monster.setDamageOnTouch(false)
 			
-			stateData.winddownTimer = config.getParameter("neb_wulfjump_combo.winddownTime", 1.0) * 1.5
+			stateData.winddownTimer = 2.0
 		end
 	else
-		sb.logInfo("ticking damage listener")
-		stateData.damageListener:update()
+		--sb.logInfo("ticking damage listener")
+		if not stateData.cancelListener then
+			stateData.damageListener:update()
+		end
 	end
     stateData.winddownTimer = stateData.winddownTimer - dt
     return false
@@ -165,10 +176,13 @@ function neb_wulfjump_combo.update(dt, stateData)
     stateData.timer = config.getParameter("neb_wulfjump_combo.skillTime", 0.3)
     stateData.winddownTimer = config.getParameter("neb_wulfjump_combo.comboWinddownTime", 1.0)
 	
+	animator.setAnimationState("body", "jumpWindup")
 	animator.playSound("spawnCharge")
 	
 	if stateData.comboCount == 0 or neb_wulfjump_combo.checkOverDistance() then --transition to a dash attack
 		--monster.setDamageOnTouch(false)
+		animator.setAnimationState("body", "run",true)
+		
 		stateData.windupTimer = config.getParameter("neb_wulfjump_combo.windupTimer", 1.0)/2
 		stateData.timer = config.getParameter("neb_wulfjump_combo.chargeTime", 0.3)
 		
@@ -177,6 +191,8 @@ function neb_wulfjump_combo.update(dt, stateData)
 	end
 	return false
   end
+  
+  animator.setAnimationState("body", "idle")
   
   --monster.setDamageOnTouch(false)
   animator.setAnimationState("body", "idle")

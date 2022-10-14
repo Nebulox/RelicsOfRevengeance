@@ -28,12 +28,14 @@ function neb_wulfbackjump_kunai.enter()
     windupTimer = config.getParameter("neb_wulfbackjump_kunai.windupTime", 1.0),
     timer = config.getParameter("neb_wulfbackjump_kunai.skillTime", 0.3),
 	bufferTime = config.getParameter("neb_wulfbackjump_kunai.bufferTime", 0.3),
-    winddownTimer = config.getParameter("neb_wulfbackjump_kunai.winddownTime", 1.0)
+    winddownTimer = config.getParameter("neb_wulfbackjump_kunai.winddownTime", 1.0),
+	degreesTurned = 0,
+	finishedTurn = false
   }
 end
 
 function neb_wulfbackjump_kunai.enteringState(stateData)
-  --animator.setAnimationState("eye", "windup")
+  animator.setAnimationState("body", "jumpWindup")
   animator.playSound("spawnCharge")
 end
 
@@ -60,11 +62,7 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
     stateData.timer = stateData.timer - dt
 
     if stateData.timer <= 0 then
-	  --mcontroller.controlApproachXVelocity(200, 200)
-	  --mcontroller.controlApproachYVelocity(200, 200)
-	  --mcontroller.controlJump()
-	  --mcontroller.controlApproachVelocity({40 * xDir,20}, 10000)
-	  
+	  animator.setAnimationState("body", "inAirBack")
 	  mcontroller.controlFace(targetDir)
 	  local vel = config.getParameter("neb_wulfbackjump_kunai.jumpVelocity")
 	  mcontroller.setVelocity({vel[1] * xDir,vel[2]})
@@ -80,6 +78,8 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
     if stateData.bufferTime <= 0 then
 	  local aimVector = world.distance(self.targetPosition, mcontroller.position())
 	  local aimDir = math.atan(aimVector[2],aimVector[1])
+	  
+	  animator.setAnimationState("body", "flip")
 	  
 	  mcontroller.controlFace(targetDir)
 	  
@@ -103,8 +103,20 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
 
     return false
   end
+  
+  if not stateData.finishedTurn then
+	stateData.degreesTurned = stateData.degreesTurned + 35/180*math.pi
+	animator.rotateTransformationGroup("all", 35/180*math.pi)
+  end
 
   if stateData.winddownTimer > 0 then
+	if not mcontroller.onGround() then return false end
+	
+	if not stateData.finishedTurn then 
+		animator.rotateTransformationGroup("all", -stateData.degreesTurned)
+		stateData.finishedTurn = true
+		animator.setAnimationState("body", "intoStagger")
+	end
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
     stateData.winddownTimer = stateData.winddownTimer - dt

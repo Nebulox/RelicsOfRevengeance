@@ -8,7 +8,7 @@
     "neb_wulfjump" : {
     	"minDistance" : 5,
 		"maxDistance" : 30,
-		"windupTime" : 0.25,
+		"windupTime" : 0.3,
 		"skillTime" : 0.1,
 		"winddownTime" : 0.4,
 		

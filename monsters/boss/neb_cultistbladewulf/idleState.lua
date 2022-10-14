@@ -18,6 +18,8 @@ function idleState.update(dt, stateData)
   if stateData.timer > stateData.bobInterval then
     stateData.timer = stateData.timer - stateData.bobInterval
   end
+  
+  animator.setGlobalTag("fullbrightImage", "/monsters/boss/neb_cultistbladewulf/nobright.png")
 
   --local bobOffset = math.sin((stateData.timer / stateData.bobInterval) * math.pi * 2) * stateData.bobHeight
   --local targetPosition = {self.spawnPosition[1], self.spawnPosition[2] + bobOffset}

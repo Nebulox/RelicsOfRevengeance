@@ -8,9 +8,9 @@
     "neb_wulfbackjump" : {
     	"minDistance" : 0,
 		"maxDistance" : 8,
-		"windupTime" : 0.25,
+		"windupTime" : 0.3,
 		"skillTime" : 0.1,
-		"winddownTime" : 0.25,
+		"winddownTime" : 0.3,
 		
 		"jumpVelocity" : [-30,20],
 		

@@ -32,7 +32,7 @@ function neb_wulfbackjump.enter()
 end
 
 function neb_wulfbackjump.enteringState(stateData)
-  --animator.setAnimationState("eye", "windup")
+  animator.setAnimationState("body", "jumpWindup")
   animator.playSound("spawnCharge")
 end
 
@@ -57,12 +57,10 @@ function neb_wulfbackjump.update(dt, stateData)
 
   if stateData.timer > 0 then
     stateData.timer = stateData.timer - dt
+	
 
     if stateData.timer <= 0 then
-	  --mcontroller.controlApproachXVelocity(200, 200)
-	  --mcontroller.controlApproachYVelocity(200, 200)
-	  --mcontroller.controlJump()
-	  --mcontroller.controlApproachVelocity({40 * xDir,20}, 10000)
+	  animator.setAnimationState("body", "inAirBack")
 	  local vel = config.getParameter("neb_wulfbackjump.jumpVelocity")
 	  mcontroller.setVelocity({vel[1] * xDir,vel[2]})
       animator.playSound("spawnAdd")
@@ -72,6 +70,9 @@ function neb_wulfbackjump.update(dt, stateData)
   end
 
   if stateData.winddownTimer > 0 then
+	if not mcontroller.onGround() then return false end
+	
+	if animator.animationState("body") == "inAirBack" then animator.setAnimationState("body", "intoStagger") end
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
     stateData.winddownTimer = stateData.winddownTimer - dt

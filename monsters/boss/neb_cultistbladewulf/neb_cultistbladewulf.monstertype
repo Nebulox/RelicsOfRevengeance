@@ -32,14 +32,14 @@
 
     "phases" : [
       {
-        "skills" : ["neb_wulfcombo","neb_wulfjump_combo","neb_wulfbackjump_kunai","neb_wulfjump","neb_wulfbackjump","neb_wulfrun"]
-		//"skills" : ["neb_wulfjump"]
+        "skills" : ["neb_wulfcombo","neb_wulfjump_combo","neb_wulfjump","neb_wulfbackjump","neb_wulfrun"]
+		//"skills" : ["neb_wulfspawnads"]
       },
       {
         "trigger" : "healthPercentage",
         "healthPercentage" : 0.4,
         "enterPhase" : "neb_wulfspawnads",
-        "skills" : [ "neb_wulfcombo","neb_wulfbackjump_kunai","neb_wulfjump","neb_wulfbackjump","neb_wulfrun" ]
+        "skills" : [ "neb_wulfcombo","neb_wulfjump_combo","neb_wulfbackjump_kunai","neb_wulfjump","neb_wulfbackjump","neb_wulfrun" ]
       }//,
       //{
         //"trigger" : "healthPercentage",
@@ -101,7 +101,7 @@
     },
 	
 	"damageParts" : {
-      "jumpbite" : {
+      "pounce" : {
         "damage" : 100,
         //"damageType" : "ignoreDef",
         "teamType" : "enemy",
@@ -109,7 +109,7 @@
         "damageSourceKind" : "bite",
         "knockback" : 40
       },
-	  "charge" : {
+	  "run" : {
         "damage" : 200,
         //"damageType" : "ignoreDef",
         "teamType" : "enemy",
@@ -117,7 +117,7 @@
         "damageSourceKind" : "bite",
         "knockback" : 40
       },
-	  "combo" : {
+	  "bite" : {
         "damage" : 50,
         //"damageType" : "ignoreDef",
         "teamType" : "enemy",
