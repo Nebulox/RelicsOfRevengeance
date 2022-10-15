@@ -125,7 +125,7 @@ function neb_wulfcombo.update(dt, stateData)
 				stateData.damageListener = nil
 				animator.playSound("shatter")
 				
-				stateData.comboCount == 0
+				stateData.comboCount = 0
 				
 				animator.setAnimationState("body", "intoStagger",true)
 				--monster.setDamageOnTouch(false)
