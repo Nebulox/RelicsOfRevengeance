@@ -45,7 +45,7 @@ function neb_wulfrun.enter()
 end
 
 function neb_wulfrun.enteringState(stateData)
-  animator.setAnimationState("body", "run")
+  animator.setAnimationState("body", "jumpWindup")
   animator.playSound("spawnCharge")
 end
 
@@ -65,6 +65,10 @@ function neb_wulfrun.update(dt, stateData)
   if stateData.windupTimer > 0 then
     mcontroller.controlFace(targetDir)
     stateData.windupTimer = stateData.windupTimer - dt
+	
+	if stateData.windupTimer <= 0 then
+		animator.setAnimationState("body", "run")
+	end
     return false
   end
   
@@ -89,7 +93,7 @@ function neb_wulfrun.update(dt, stateData)
   end
   
   if stateData.jumpWindupTimer > 0 then
-    mcontroller.controlFace(targetDir)
+    --mcontroller.controlFace(targetDir)
     stateData.jumpWindupTimer = stateData.jumpWindupTimer - dt
 	
 	if stateData.jumpWindupTimer <= 0 then
@@ -130,7 +134,7 @@ function neb_wulfrun.update(dt, stateData)
   end
   
   if stateData.jumpWinddownTimer > 0 then
-    mcontroller.controlFace(targetDir)
+    --mcontroller.controlFace(targetDir)
 	
 	if stateData.jumpWinddownTimer <= 0.3 and stateData.counterTriggered then
 		animator.setAnimationState("body", "outOfStagger",true)

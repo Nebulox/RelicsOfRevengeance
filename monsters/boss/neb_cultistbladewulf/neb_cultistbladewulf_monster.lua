@@ -5,6 +5,8 @@ require "/scripts/status.lua"
 function init()
   self.tookDamage = false
   self.dead = false
+  
+  self.phase = 1
 
   if rangedAttack then
     rangedAttack.loadConfig()

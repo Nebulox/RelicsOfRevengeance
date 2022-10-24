@@ -136,7 +136,7 @@ function neb_wulfjump_combo.update(dt, stateData)
   
   --monster.setDamageParts({})
 
-  if stateData.winddownTimer > 0 then
+  if stateData.comboCount > 0 and stateData.winddownTimer > 0 then
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
 	
@@ -171,6 +171,9 @@ function neb_wulfjump_combo.update(dt, stateData)
   end
   
   if stateData.comboCount > 0 then 
+  
+	if not mcontroller.onGround() then return false end
+	
 	stateData.comboCount = stateData.comboCount - 1
 	stateData.windupTimer = config.getParameter("neb_wulfjump_combo.comboWindupTime", 1.0)
     stateData.timer = config.getParameter("neb_wulfjump_combo.skillTime", 0.3)
@@ -178,21 +181,26 @@ function neb_wulfjump_combo.update(dt, stateData)
 	
 	animator.setAnimationState("body", "jumpWindup")
 	animator.playSound("spawnCharge")
+	mcontroller.controlFace(targetDir)
 	
 	if stateData.comboCount == 0 or neb_wulfjump_combo.checkOverDistance() then --transition to a dash attack
 		--monster.setDamageOnTouch(false)
-		animator.setAnimationState("body", "run",true)
+		animator.setAnimationState("body", "jumpWindup",true)
 		
 		stateData.windupTimer = config.getParameter("neb_wulfjump_combo.windupTimer", 1.0)/2
 		stateData.timer = config.getParameter("neb_wulfjump_combo.chargeTime", 0.3)
 		
 		stateData.comboCount = 0
-		stateData.winddownTimer = config.getParameter("neb_wulfjump_combo.winddownTime", 1.0)
+		stateData.winddownTimer = 0.6
 	end
 	return false
   end
   
-  animator.setAnimationState("body", "idle")
+  if stateData.comboCount == 0 and stateData.winddownTimer > 0 then
+    animator.setAnimationState("body", "idle")
+    stateData.winddownTimer = stateData.winddownTimer - dt
+    return false
+  end
   
   --monster.setDamageOnTouch(false)
   animator.setAnimationState("body", "idle")

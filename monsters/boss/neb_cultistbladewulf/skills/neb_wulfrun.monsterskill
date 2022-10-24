@@ -6,7 +6,7 @@
   "parameters" : {
     "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfrun.lua" ],
     "neb_wulfrun" : {
-    	"minDistance" : 10,
+    	"minDistance" : 13,
 		"maxDistance" : 999,
 		"windupTime" : 0.5,
 		"runSpeed" : 40,
