@@ -63,6 +63,17 @@ end
 
 function update(dt)
   self.tookDamage = false
+  
+  if status.resourcePositive("stunned") then
+	self.stunned = true
+	
+	--monster.say("i'm stunned ow")
+	--sb.logInfo("stunned bladewulf")
+	
+	mcontroller.clearControls()
+  else
+	self.stunned = false
+  end
 
   if not status.resourcePositive("health") then
     local inState = self.state.stateDesc()
@@ -85,7 +96,7 @@ function update(dt)
 	
 	self.state.updateCooldownTimers(dt)
 	
-	if self.behaviorTick >= self.behaviorTickRate then
+	if self.behaviorTick >= self.behaviorTickRate and not self.stunned then
 		self.behaviorTick = self.behaviorTick - self.behaviorTickRate
 		
 		self.damageSources:clear()
@@ -98,7 +109,10 @@ function update(dt)
 
     if hasTarget() then
       script.setUpdateDelta(1)
-      updatePhase(dt)
+	  
+	  if not self.stunned then
+		updatePhase(dt)
+	  end
 
       monster.setDamageBar("Special")
       monster.setAggressive(true)
@@ -120,14 +134,17 @@ function update(dt)
         monster.setDamageBar("None")
         monster.setAggressive(false)
 		
+		animator.setGlobalTag("fullbrightImage", "/monsters/boss/neb_cultistbladewulf/nobright.png")
+		
 		mcontroller.setVelocity({0,0})
       end
 
       script.setUpdateDelta(10)
 
-      if not self.state.update(dt) then
-        self.state.pickState()
-      end
+      
+	  if not self.state.update(dt) then
+		self.state.pickState()
+	  end
 
       setBattleMusicEnabled(false)
     end
@@ -225,6 +242,11 @@ function setDamageSources()
   local damageSources = util.mergeLists(partSources, self.damageSources:values())
   damageSources = util.map(damageSources, function(ds)
     ds.damage = ds.damage * root.evalFunction("monsterLevelPowerMultiplier", monster.level()) * status.stat("powerMultiplier")
+	
+	if self.phase > 1 then
+		ds.damage = ds.damage * 1.5
+	end
+	
     if ds.knockback and type(ds.knockback) == "table" then
       ds.knockback[1] = ds.knockback[1] * mcontroller.facingDirection()
     end

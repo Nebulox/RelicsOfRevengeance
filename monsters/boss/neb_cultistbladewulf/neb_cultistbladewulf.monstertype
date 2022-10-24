@@ -187,7 +187,7 @@
         "stunned" : {
           "deltaValue" : -1.0,
           "initialValue" : 0.0,
-          "maxValue" : 0.0
+          "maxValue" : 1.0
         },
         "health" : {
           "maxStat" : "maxHealth",

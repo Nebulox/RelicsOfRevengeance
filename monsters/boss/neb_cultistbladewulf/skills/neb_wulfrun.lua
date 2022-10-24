@@ -72,7 +72,7 @@ function neb_wulfrun.update(dt, stateData)
 	mcontroller.controlFace(targetDir)
 	mcontroller.setXVelocity(stateData.runSpeed * xDir)
 	
-	sb.logInfo(sb.printJson(neb_wulfrun.checkDistance()))
+	--sb.logInfo(sb.printJson(neb_wulfrun.checkDistance()))
 
 	if not neb_wulfrun.checkDistance() then
 		stateData.jumpWindupTimer = 0.01
