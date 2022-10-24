@@ -14,6 +14,20 @@ function neb_wulfjump.checkDistance()
   return false
 end
 
+function neb_wulfjump.checkShortDistance()
+  local minDistance = config.getParameter("neb_wulfjump.minDistance", 5)
+  local maxDistance = config.getParameter("neb_wulfjump.maxDistance", 20)
+  
+  neb_wulfjump.toTarget = world.distance(self.targetPosition, mcontroller.position())
+  local distance = math.abs(vec2.mag(neb_wulfjump.toTarget))
+  
+  if (distance > minDistance) then --distance check
+	return true
+  end
+  
+  return false
+end
+
 function neb_wulfjump.enter()
   neb_wulfjump.cooldownCategory = config.getParameter("neb_wulfjump.cooldownCategory")
   
@@ -59,7 +73,7 @@ function neb_wulfjump.update(dt, stateData)
     mcontroller.controlFace(targetDir)
     stateData.windupTimer = stateData.windupTimer - dt
 	
-	if (not neb_wulfjump.checkDistance() == true) and (self.state.stateCooldown("neb_wulfbackjump") == 0) then --transitions to backjump if too close
+	if (not neb_wulfjump.checkShortDistance() == true) and (self.state.stateCooldown("neb_wulfbackjump") == 0) then --transitions to backjump if too close
 	
 		--sb.logInfo("switch to different state!!")
 		-- note: debatable if this even works....

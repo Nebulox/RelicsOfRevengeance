@@ -11,7 +11,7 @@
 		"windupTime" : 0.5,
 		"runSpeed" : 40,
 		
-		"jumpVelocity" : [40,25],
+		"jumpVelocity" : [40,27],
 		
 		"cooldownTime" : 1.0,
 		"cooldownCategory" : "neb_wulfrun"
