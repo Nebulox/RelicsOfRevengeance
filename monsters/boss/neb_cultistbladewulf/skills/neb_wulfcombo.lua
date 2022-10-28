@@ -131,11 +131,15 @@ function neb_wulfcombo.update(dt, stateData)
 				--monster.setDamageOnTouch(false)
 			
 				stateData.winddownTimer = 2.0
+				
+				status.setResource("poise",100)
 			end
 		else
 			--sb.logInfo("ticking damage listener")
 			if not stateData.cancelListener then
 				stateData.damageListener:update()
+			else
+				status.setResource("poise",100)
 			end
 		end
 	--end

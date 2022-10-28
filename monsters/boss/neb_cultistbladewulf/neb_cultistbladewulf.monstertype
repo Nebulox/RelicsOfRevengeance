@@ -149,7 +149,7 @@
           "baseValue" : 1.0
         },
         "maxHealth" : {
-          "baseValue" : 3000
+          "baseValue" : 6000
         },
         "protection" : {
           "baseValue" : 50
@@ -187,7 +187,14 @@
         "stunned" : {
           "deltaValue" : -1.0,
           "initialValue" : 0.0,
-          "maxValue" : 1.0
+          "maxValue" : 1.0,
+		  "minValue" : 0.0
+        },
+		"poise" : {
+          "deltaValue" : 1,
+          "initialValue" : 100.0,
+          "maxValue" : 100.0,
+		  "minValue" : 0.0
         },
         "health" : {
           "maxStat" : "maxHealth",

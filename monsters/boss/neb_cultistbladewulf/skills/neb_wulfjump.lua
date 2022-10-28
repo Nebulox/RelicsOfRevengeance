@@ -144,6 +144,8 @@ function neb_wulfjump.update(dt, stateData)
 			--monster.setDamageOnTouch(false)
 			
 			stateData.winddownTimer = 2.0
+			
+			status.setResource("poise",100)
 		end
 	else
 		--sb.logInfo("ticking damage listener")

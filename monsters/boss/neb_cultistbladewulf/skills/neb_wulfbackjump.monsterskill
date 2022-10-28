@@ -14,7 +14,7 @@
 		
 		"jumpVelocity" : [-30,20],
 		
-		"cooldownTime" : 0.0,
+		"cooldownTime" : 0.5,
 		"cooldownCategory" : "neb_wulfbackjump"
     }
   }

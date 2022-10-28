@@ -61,6 +61,22 @@ function init()
   monster.setDamageBar("None")
 
   self.musicEnabled = false
+  
+  -- damage listener to calculate poise damage and etc
+  self.poiseDamageListener = damageListener("damageTaken", function(notifications)
+    for _,notification in pairs(notifications) do
+      --if notification.healthLost == 0 then
+	  if not self.stunned then
+		status.modifyResource("poise", -notification.healthLost * 0.1)
+        return
+	  end
+      --end
+    end
+  end)
+  
+  self.poiseStunTicks = 0
+  self.poiseMaxStunTicks = 20 --when poise broken, set poiseStunTicks to this value; will keep bladewolf stunned until poiseStunTicks reaches zero
+  
 end
 
 function update(dt)
@@ -73,8 +89,20 @@ function update(dt)
 	--sb.logInfo("stunned bladewulf")
 	
 	mcontroller.clearControls()
+	
+	self.state.endState(1.0)
+	
+	animator.resetTransformationGroup("all")
+	--status.setResource("poise",100)
   else
 	self.stunned = false
+  end
+  
+  world.debugText(status.resource("poise"), mcontroller.position(),"yellow")
+  
+  self.poiseStunTicks = math.max(0,self.poiseStunTicks - 1)
+  if self.poiseStunTicks > 0 then
+	status.setResource("stunned",1.0)
   end
 
   if not status.resourcePositive("health") then
@@ -97,6 +125,18 @@ function update(dt)
     end
 	
 	self.state.updateCooldownTimers(dt)
+	
+	-- poise stuff
+	self.poiseDamageListener:update()
+	if status.resource("poise") <= 1.0 then
+		self.poiseStunTicks = self.poiseMaxStunTicks
+		status.setResource("poise",100)
+		animator.setAnimationState("body", "intoStagger",true)
+		
+		status.setResource("stunned",1.0)
+		
+		animator.playSound("shatter")
+	end
 	
 	if self.behaviorTick >= self.behaviorTickRate and not self.stunned then
 		self.behaviorTick = self.behaviorTick - self.behaviorTickRate
@@ -127,7 +167,7 @@ function update(dt)
         if currentPhase() then
           self.phaseStates[currentPhase()].endState()
         end
-        self.phase = nil
+        self.phase = 1
         self.lastPhase = nil
         setPhaseStates(self.phases)
         status.setResource("health", status.stat("maxHealth"))
@@ -245,7 +285,7 @@ function setDamageSources()
   damageSources = util.map(damageSources, function(ds)
     ds.damage = ds.damage * root.evalFunction("monsterLevelPowerMultiplier", monster.level()) * status.stat("powerMultiplier")
 	
-	if self.phase > 1 then
+	if (self.phase or 1) > 1 then
 		ds.damage = ds.damage * 1.5
 	end
 	

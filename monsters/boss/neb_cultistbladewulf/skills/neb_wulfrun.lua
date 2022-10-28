@@ -154,12 +154,16 @@ function neb_wulfrun.update(dt, stateData)
 			animator.setAnimationState("body", "intoStagger",true)
 			--monster.setDamageOnTouch(false)
 			
-			stateData.jumpWinddownTimer = 0.75
+			stateData.jumpWinddownTimer = 2.0
+			
+			status.setResource("poise",100)
 		end
 	else
 		--sb.logInfo("ticking damage listener")
 		if not stateData.cancelListener then
 			stateData.damageListener:update()
+		else
+			status.setResource("poise",100)
 		end
 	end
 	
