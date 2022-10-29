@@ -39,6 +39,9 @@ end
 
 function neb_wulfcombo.enteringState(stateData)
   animator.setAnimationState("body", "generalWindup")
+  
+  animator.setAnimationState("flash", "on")
+  
   animator.playSound("spawnCharge")
 end
 
@@ -85,6 +88,7 @@ function neb_wulfcombo.update(dt, stateData)
 	  
 	  stateData.countered = false
 	  stateData.counterTriggered = false
+	  stateData.cancelListener = false
 	  
 	  stateData.damageListener = damageListener("inflictedHits", function(notifications)
 		for _, notification in pairs(notifications) do
@@ -103,7 +107,6 @@ function neb_wulfcombo.update(dt, stateData)
   end
   
   --monster.setDamageParts({})
-
   if stateData.winddownTimer > 0 then
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
@@ -117,7 +120,7 @@ function neb_wulfcombo.update(dt, stateData)
 	end
 	
 	--if stateData.comboCount == 0 then
-		if stateData.countered then --mimics behavior from the actual source game - but modified, can only "counter" bladewolf on the last attack.
+		if stateData.countered then --mimics behavior from the actual source game
 			if not stateData.counterTriggered then
 				local vel = config.getParameter("neb_wulfcombo.jumpVelocity")
 				mcontroller.setVelocity({vel[1] * -xDir * 0.5,vel[2] * 0.5})
@@ -160,6 +163,7 @@ function neb_wulfcombo.update(dt, stateData)
 		--monster.setDamageOnTouch(false)
 		stateData.winddownTimer = config.getParameter("neb_wulfcombo.winddownTime", 1.0)
 	end
+	
 	return false
   end
   

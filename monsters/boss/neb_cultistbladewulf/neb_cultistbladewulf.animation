@@ -4,6 +4,22 @@
   },
   "animatedParts" : {
     "stateTypes" : {
+	  "flash" : {
+		"default" : "off",
+		"states" : {
+			"off" : {},
+			"on" : {
+				"frames" : 4,
+				"cycle" : 0.3,
+				"mode" : "transition",
+				"transition" : "off",
+				
+				"properties" : {
+					"immediateSound" : "/sfx/melee/mech_chainsaw_swing1.ogg"
+				}
+			}
+		}
+	  },
       "body" : {
         "priority" : 1,
         "default" : "idle",
@@ -138,6 +154,30 @@
 	},
 
     "parts" : {
+	  "redflash" : {
+		"properties" : {
+			"centered" : true,
+			"zLevel" : 3,
+			"offset" : [1.0,-2.0],
+			"rotationGroup" : "all",
+			"transformationGroups" : ["all"],
+			"anchorPart" : "body"
+		},
+		"partStates" : {
+			"flash" : {
+				"off" : {
+					"properties" : {
+						"image" : ""
+					}
+				},
+				"on" : {
+					"properties" : {
+						"image" : "/monsters/boss/neb_cultistbladewulf/redflash.png:<frame>?scalenearest=2.0"
+					}
+				}
+			}
+		}
+	  },
       "body" : {
         "properties" : {
           "centered" : true,
@@ -147,11 +187,12 @@
 		  "transformationGroups" : ["all"],
 		  
 		  //DAMAGE AREAS
-		  //these hitboxes are temporary for now
-		  "pounceDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
-		  "biteDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
+		  "pounceDamageArea" : [ [3.5, 0], [3.5, -3.5], [0, -3.5], [0, 0] ],
+		  "biteDamageArea" : [ [3.5, 0], [3.5, -3.5], [0, -3.5], [0, 0] ],
+		  
 		  "runDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
-		  "slashDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
+		  
+		  "slashDamageArea" : [ [4.5, 1], [4.5, -3.5], [2, -3.5], [2, 1] ],
 		  "flipDamageArea" : [ [-1, -1], [-1, 2], [-5, 2], [-5, -1] ]
 		},
 

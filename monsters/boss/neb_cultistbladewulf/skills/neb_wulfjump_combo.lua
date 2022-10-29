@@ -177,8 +177,9 @@ function neb_wulfjump_combo.update(dt, stateData)
 	if stateData.comboCount == 0 or neb_wulfjump_combo.checkOverDistance() then --transition to a dash attack
 		--monster.setDamageOnTouch(false)
 		animator.setAnimationState("body", "jumpWindup",true)
+		animator.setAnimationState("flash", "on")
 		
-		stateData.windupTimer = config.getParameter("neb_wulfjump_combo.windupTimer", 1.0) * 2
+		stateData.windupTimer = 0.6--config.getParameter("neb_wulfjump_combo.windupTimer", 1.0)
 		stateData.timer = config.getParameter("neb_wulfjump_combo.chargeTime", 0.3)
 		
 		stateData.comboCount = 0

@@ -6,7 +6,7 @@
   "parameters" : {
     "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfjump.lua" ],
     "neb_wulfjump" : {
-    	"minDistance" : 0,//10,
+    	"minDistance" : 8,
 		"maxDistance" : 13,
 		"windupTime" : 0.3,
 		"skillTime" : 0.1,

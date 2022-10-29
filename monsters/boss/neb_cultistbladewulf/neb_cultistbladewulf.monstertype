@@ -33,7 +33,7 @@
     "phases" : [
       {
         "skills" : ["neb_wulfcombo","neb_wulfjump_combo","neb_wulfjump","neb_wulfbackjump","neb_wulfrun"]
-		//"skills" : ["neb_wulfbackjump"]
+		//"skills" : ["neb_wulfcombo"]
       },
       {
         "trigger" : "healthPercentage",
@@ -169,7 +169,7 @@
           "baseValue" : 1500
         },
         "protection" : {
-          "baseValue" : 50
+          "baseValue" : 40
         },
         "healthRegen" : {
           "baseValue" : 0.0

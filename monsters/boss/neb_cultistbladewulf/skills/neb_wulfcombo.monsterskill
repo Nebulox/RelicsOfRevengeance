@@ -11,12 +11,12 @@
 		
 		"windupTime" : 0.5,
 		"skillTime" : 0.1,
-		"winddownTime" : 0.75,
+		"winddownTime" : 1.0,
 		
 		"comboWindupTime" : 0.2,
-		"comboWinddownTime" : 0.2,
+		"comboWinddownTime" : 0.3,
 		
-		"jumpVelocity" : [40,15],
+		"jumpVelocity" : [40,17],
 		
 		"cooldownTime" : 4.0,
 		"cooldownCategory" : "neb_wulfcombo"

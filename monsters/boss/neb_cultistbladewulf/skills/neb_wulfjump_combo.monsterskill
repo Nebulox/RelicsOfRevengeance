@@ -7,7 +7,7 @@
     "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfjump_combo.lua" ],
     "neb_wulfjump_combo" : {
     	"minDistance" : 10,
-		"maxDistance" : 13,
+		"maxDistance" : 15,
 		
 		"windupTime" : 0.25,
 		"skillTime" : 0.01,

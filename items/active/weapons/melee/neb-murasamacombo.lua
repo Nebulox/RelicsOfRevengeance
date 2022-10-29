@@ -109,7 +109,7 @@ function NebMurasamaCombo:windup(overWrite)
 	  --If the charge has made a enough progress to be considered a charge attack, trigger the visual effects
 	  if timer > stance.duration then
 	    --The factor (0-1) of the charge, 1 being full
-	    ringFactor = math.min((timer / (stance.holdTime - stance.duration)),1.15) -- find mathmatical reason for this constant value?
+	    ringFactor = math.min((timer / (stance.holdTime - stance.duration)),1.125) -- find mathmatical reason for this constant value?
 		
 	    --Fake time slow effect, where the player slows down while charging
 	    mcontroller.controlApproachVelocity({0, targetGrav}, 350 * ringFactor)

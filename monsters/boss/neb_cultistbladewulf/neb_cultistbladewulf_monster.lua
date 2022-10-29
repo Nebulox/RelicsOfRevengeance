@@ -90,9 +90,12 @@ function update(dt)
 	
 	mcontroller.clearControls()
 	
-	self.state.endState(1.0)
+	--self.state.endState(1.0)
+	self.phaseStates[currentPhase()].endState()
 	
 	animator.resetTransformationGroup("all")
+	
+	monster.setDamageParts({})
 	--status.setResource("poise",100)
   else
 	self.stunned = false
