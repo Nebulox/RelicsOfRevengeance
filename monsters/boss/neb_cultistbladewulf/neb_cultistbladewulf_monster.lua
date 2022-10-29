@@ -67,7 +67,7 @@ function init()
     for _,notification in pairs(notifications) do
       --if notification.healthLost == 0 then
 	  if not self.stunned then
-		status.modifyResource("poise", -notification.healthLost * 0.1)
+		status.modifyResource("poise", -notification.healthLost * 0.2)
         return
 	  end
       --end
@@ -177,6 +177,10 @@ function update(dt)
         monster.setAggressive(false)
 		
 		animator.setGlobalTag("fullbrightImage", "/monsters/boss/neb_cultistbladewulf/nobright.png")
+		animator.resetTransformationGroup("all")
+		animator.setAnimationState("body","idle")
+		
+		status.setResource("poise",100)
 		
 		mcontroller.setVelocity({0,0})
       end

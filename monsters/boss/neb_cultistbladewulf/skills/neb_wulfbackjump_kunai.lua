@@ -84,7 +84,7 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
 	  mcontroller.controlFace(targetDir)
 	  
 	  local params = {}
-	  params.power = root.evalFunction("monsterLevelPowerMultiplier", monster.level()) * 20
+	  params.power = root.evalFunction("monsterLevelPowerMultiplier", monster.level()) * 5 --5 damage at base, technically 10 because of the kunai explosion
 	  params.speed = 75
 	  params.timeToLive = 1.0
 	  

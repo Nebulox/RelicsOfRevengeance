@@ -158,6 +158,7 @@ function neb_wulfrun.update(dt, stateData)
 			
 			status.setResource("poise",100)
 		end
+		status.setResource("poise",100)
 	else
 		--sb.logInfo("ticking damage listener")
 		if not stateData.cancelListener then

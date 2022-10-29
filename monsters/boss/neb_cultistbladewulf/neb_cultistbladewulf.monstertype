@@ -33,13 +33,14 @@
     "phases" : [
       {
         "skills" : ["neb_wulfcombo","neb_wulfjump_combo","neb_wulfjump","neb_wulfbackjump","neb_wulfrun"]
-		//"skills" : ["neb_wulfspawnads"]
+		//"skills" : ["neb_wulfbackjump"]
       },
       {
         "trigger" : "healthPercentage",
-        "healthPercentage" : 0.4,
+        "healthPercentage" : 0.5,
         "enterPhase" : "neb_wulfspawnads",
         "skills" : [ "neb_wulfcombo","neb_wulfjump_combo","neb_wulfbackjump_kunai","neb_wulfjump","neb_wulfbackjump","neb_wulfrun" ]
+		//"skills" : ["neb_wulfjump_combo"]
       }//,
       //{
         //"trigger" : "healthPercentage",
@@ -102,28 +103,44 @@
 	
 	"damageParts" : {
       "pounce" : {
-        "damage" : 100,
+        "damage" : 10,
         //"damageType" : "ignoreDef",
         "teamType" : "enemy",
-		"damageRepeatTimeout" : 0.25,
+		"damageRepeatTimeout" : 0.3,
         "damageSourceKind" : "bite",
         "knockback" : 40
       },
 	  "run" : {
-        "damage" : 200,
+        "damage" : 40,
         //"damageType" : "ignoreDef",
         "teamType" : "enemy",
-		"damageRepeatTimeout" : 0.25,
+		"damageRepeatTimeout" : 0.3,
         "damageSourceKind" : "bite",
-        "knockback" : 40
+        "knockback" : 50
       },
 	  "bite" : {
-        "damage" : 50,
+        "damage" : 5,
         //"damageType" : "ignoreDef",
         "teamType" : "enemy",
-		"damageRepeatTimeout" : 0.25,
+		"damageRepeatTimeout" : 0.3,
         "damageSourceKind" : "default",
         "knockback" : 30
+      },
+	  "slash" : {
+        "damage" : 5,
+        //"damageType" : "ignoreDef",
+        "teamType" : "enemy",
+		"damageRepeatTimeout" : 0.3,
+        "damageSourceKind" : "default",
+        "knockback" : 40
+      },
+	  "flip" : {
+        "damage" : 5,
+        //"damageType" : "ignoreDef",
+        "teamType" : "enemy",
+		"damageRepeatTimeout" : 0.3,
+        "damageSourceKind" : "default",
+        "knockback" : 40
       }
     },
 
@@ -149,7 +166,7 @@
           "baseValue" : 1.0
         },
         "maxHealth" : {
-          "baseValue" : 6000
+          "baseValue" : 1500
         },
         "protection" : {
           "baseValue" : 50

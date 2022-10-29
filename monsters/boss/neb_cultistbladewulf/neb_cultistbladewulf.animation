@@ -23,7 +23,7 @@
 		//FLIP WINDUP + FLIP
 		  "flipWindup" : {
 			"frames" : 4,
-            "cycle" : 0.25,
+            "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "idle"
 		  },
@@ -42,34 +42,34 @@
 		//RUN
 		  "run" : {
 			"frames" : 4,
-            "cycle" : 0.25,
+            "cycle" : 0.3,
             "mode" : "loop"
 		  },
 		//BITE
 		  "bite" : {
 			"frames" : 4,
-            "cycle" : 0.25,
+            "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "idle"
 		  },
 		//POUNCE
 		  "pounce" : {
 			"frames" : 4,
-            "cycle" : 0.25,
+            "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "idle"
 		  },
 		//SLASH
 		  "slash" : {
 			"frames" : 4,
-            "cycle" : 0.25,
+            "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "idle"
 		  },
 		//STAGGER STATES
 		  "intoStagger" : {
 			"frames" : 4,
-            "cycle" : 0.25,
+            "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "holdStagger"
 		  },
@@ -80,14 +80,14 @@
 		  },
 		  "outOfStagger" : {
 			"frames" : 4,
-            "cycle" : 0.25,
+            "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "idle"
 		  },
 		//JUMP WINDUP + JUMP
 		  "jumpWindup" : {
 			"frames" : 3,
-            "cycle" : 0.25,
+            "cycle" : 0.3,
             "mode" : "transition",
             "transition" : "idle"
 		  },
@@ -147,9 +147,12 @@
 		  "transformationGroups" : ["all"],
 		  
 		  //DAMAGE AREAS
+		  //these hitboxes are temporary for now
 		  "pounceDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
 		  "biteDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
-		  "runDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ]
+		  "runDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
+		  "slashDamageArea" : [ [2, -1], [2, -3.5], [-2, -3.5], [-2, -1] ],
+		  "flipDamageArea" : [ [-1, -1], [-1, 2], [-5, 2], [-5, -1] ]
 		},
 
         "partStates" : {

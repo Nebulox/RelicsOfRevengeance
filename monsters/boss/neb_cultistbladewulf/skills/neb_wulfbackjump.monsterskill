@@ -8,6 +8,9 @@
     "neb_wulfbackjump" : {
     	"minDistance" : 0,
 		"maxDistance" : 8,
+		
+		"slashTriggerDistance" : 5,
+		
 		"windupTime" : 0.3,
 		"skillTime" : 0.1,
 		"winddownTime" : 0.3,

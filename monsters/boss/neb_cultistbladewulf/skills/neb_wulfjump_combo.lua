@@ -63,6 +63,9 @@ end
 function neb_wulfjump_combo.update(dt, stateData)
   if not hasTarget() then return true end
   
+  stateData.phase = self.phase
+  --sb.logInfo("phase :" ..stateData.phase)
+  
   neb_wulfjump_combo.toTarget = world.distance(self.targetPosition, mcontroller.position())
   local targetDir = util.toDirection(neb_wulfjump_combo.toTarget[1])
   local xDir = 0
@@ -90,33 +93,38 @@ function neb_wulfjump_combo.update(dt, stateData)
     stateData.timer = stateData.timer - dt
 	
 	if stateData.comboCount > 0 then
-    if stateData.timer <= 0 then
-	  animator.setAnimationState("body", "jump")
-	  
-	  local aimVector = world.distance(self.targetPosition, mcontroller.position())
-	  local aimDir = math.atan(aimVector[2],aimVector[1])
-	  
-	  
-	  local vel = config.getParameter("neb_wulfjump_combo.jumpVelocity")
-	  mcontroller.setVelocity({vel[1] * xDir,vel[2]})
-      animator.playSound("spawnAdd")
-	  
-	  stateData.countered = false
-	  stateData.counterTriggered = false
-	  
-	  --ex {"hitType":"ShieldHit","damageSourceKind":"shield","sourceEntityId":629,"healthLost":0,"damageDealt":0,"targetMaterialKind":"organic","targetEntityId":-65536,"position":[334.153,1117.5]}
-	  stateData.damageListener = damageListener("inflictedHits", function(notifications)
-		for _, notification in pairs(notifications) do
-			--sb.logInfo(sb.printJson(notification))
-			if notification.hitType == "ShieldHit" then
-				--animator.playSound("hiltSmashHit")
-				--sb.logInfo("counter plz")
-				stateData.countered = true
-			return
-			end
+		if stateData.timer <= 0 then
+		  animator.setAnimationState("body", "jump")
+		  
+		  local aimVector = world.distance(self.targetPosition, mcontroller.position())
+		  local aimDir = math.atan(aimVector[2],aimVector[1])
+		  
+		  
+		  local vel = config.getParameter("neb_wulfjump_combo.jumpVelocity")
+		  if stateData.phase == 2 then
+			mcontroller.setVelocity({vel[1] * xDir * 1.2,vel[2] * 1.5}) -- increased jump height if doing the spinny
+		  else
+			mcontroller.setVelocity({vel[1] * xDir,vel[2]})
+		  end
+		  
+		  animator.playSound("spawnAdd")
+		  
+		  -- stateData.countered = false
+		  -- stateData.counterTriggered = false
+		  
+		  -- --ex {"hitType":"ShieldHit","damageSourceKind":"shield","sourceEntityId":629,"healthLost":0,"damageDealt":0,"targetMaterialKind":"organic","targetEntityId":-65536,"position":[334.153,1117.5]}
+		  -- stateData.damageListener = damageListener("inflictedHits", function(notifications)
+			-- for _, notification in pairs(notifications) do
+				-- --sb.logInfo(sb.printJson(notification))
+				-- if notification.hitType == "ShieldHit" then
+					-- --animator.playSound("hiltSmashHit")
+					-- --sb.logInfo("counter plz")
+					-- stateData.countered = true
+				-- return
+				-- end
+			-- end
+		  -- end)
 		end
-	  end)
-    end
 	
 	else
 		mcontroller.setXVelocity(stateData.chargeVel*stateData.chargeDir)
@@ -127,6 +135,7 @@ function neb_wulfjump_combo.update(dt, stateData)
 			stateData.counterTriggered = true
 			stateData.timer = 0
 			stateData.winddownTimer = 2.0
+			status.setResource("poise",100)
 			animator.playSound("shatter")
 		end
 	end
@@ -136,40 +145,16 @@ function neb_wulfjump_combo.update(dt, stateData)
   
   --monster.setDamageParts({})
 
-  if stateData.comboCount > 0 and stateData.winddownTimer > 0 then
+  if stateData.comboCount > 0 and stateData.winddownTimer > 0 and not mcontroller.onGround() then
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
 	
-	if stateData.winddownTimer <= 0.3 and stateData.counterTriggered then
-		animator.setAnimationState("body", "outOfStagger",true)
-		stateData.cancelListener = true
-		stateData.counterTriggered = false
-		stateData.countered = false
+	if stateData.phase == 2 then
+		animator.setAnimationState("body", "flip")
+		
+		animator.rotateTransformationGroup("all", 35/180*math.pi)
 	end
 	
-	if stateData.countered then --mimics behavior from the actual source game - that being if Blade Wolf is parried, he'll bounce backwards from his jump attack.
-		if not stateData.counterTriggered then
-			local vel = config.getParameter("neb_wulfjump_combo.jumpVelocity")
-			mcontroller.setVelocity({vel[1] * -xDir * 0.5,vel[2] * 0.5})
-			stateData.counterTriggered = true
-			stateData.damageListener = nil
-			animator.playSound("shatter")
-			
-			animator.setAnimationState("body", "intoStagger",true)
-			--monster.setDamageOnTouch(false)
-			
-			stateData.winddownTimer = 2.0
-			
-			status.setResource("poise",100)
-		end
-	else
-		--sb.logInfo("ticking damage listener")
-		if not stateData.cancelListener then
-			stateData.damageListener:update()
-		else
-			status.setResource("poise",100)
-		end
-	end
     stateData.winddownTimer = stateData.winddownTimer - dt
     return false
   end
@@ -177,6 +162,8 @@ function neb_wulfjump_combo.update(dt, stateData)
   if stateData.comboCount > 0 then 
   
 	if not mcontroller.onGround() then return false end
+	
+	if stateData.phase == 2 then animator.resetTransformationGroup("all") end
 	
 	stateData.comboCount = stateData.comboCount - 1
 	stateData.windupTimer = config.getParameter("neb_wulfjump_combo.comboWindupTime", 1.0)
@@ -191,7 +178,7 @@ function neb_wulfjump_combo.update(dt, stateData)
 		--monster.setDamageOnTouch(false)
 		animator.setAnimationState("body", "jumpWindup",true)
 		
-		stateData.windupTimer = config.getParameter("neb_wulfjump_combo.windupTimer", 1.0)/2
+		stateData.windupTimer = config.getParameter("neb_wulfjump_combo.windupTimer", 1.0) * 2
 		stateData.timer = config.getParameter("neb_wulfjump_combo.chargeTime", 0.3)
 		
 		stateData.comboCount = 0

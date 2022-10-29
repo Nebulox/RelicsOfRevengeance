@@ -246,7 +246,7 @@ function NebMurasamaCombo:wait(overWrite, wasCharged, shortenDuration)
   self.wasAlt = nil
   
   self.cooldownTimer = math.max(0, self.cooldowns[self.comboStep - 1] - stance.duration)
-  if shortenDuration then self.cooldownTimer = self.cooldownTimer * 0.5 end
+  if shortenDuration then self.cooldownTimer = self.cooldownTimer * 0.25 end
   
   animator.setGlobalTag("stanceDirectives", "")
   self.comboStep = 1
@@ -388,7 +388,7 @@ function NebMurasamaCombo:fire(overWrite, charged)
     self:setState(self.wait, overWrite, isCharged, self.hasBlocked)
   else
     self.cooldownTimer = self.cooldowns[self.comboStep]
-	if shortenDuration then self.cooldownTimer = self.cooldownTimer * 0.5 end
+	if shortenDuration then self.cooldownTimer = self.cooldownTimer * 0.25 end
 	
     animator.setGlobalTag("stanceDirectives", "")
     self.comboStep = 1

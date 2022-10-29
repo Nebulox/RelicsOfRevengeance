@@ -23,16 +23,27 @@ function neb_wulfbackjump.enter()
   --if not self.moontants then self.moontants = 6 end
 
   --if self.moontants <= 1 then return nil end
+  
+  local triggerSlash = false
+  if distance < config.getParameter("neb_wulfbackjump.slashTriggerDistance") then
+	triggerSlash = true
+  end
 
   return {
     windupTimer = config.getParameter("neb_wulfbackjump.windupTime", 1.0),
     timer = config.getParameter("neb_wulfbackjump.skillTime", 0.3),
-    winddownTimer = config.getParameter("neb_wulfbackjump.winddownTime", 1.0)
+    winddownTimer = config.getParameter("neb_wulfbackjump.winddownTime", 1.0),
+	triggerSlash = triggerSlash,
+	slashTimer = 0.3
   }
 end
 
 function neb_wulfbackjump.enteringState(stateData)
-  animator.setAnimationState("body", "jumpWindup")
+  if not stateData.triggerSlash then
+	animator.setAnimationState("body", "jumpWindup")
+  else
+	animator.setAnimationState("body", "flipWindup")
+  end
   animator.playSound("spawnCharge")
 end
 
@@ -52,7 +63,21 @@ function neb_wulfbackjump.update(dt, stateData)
   if stateData.windupTimer > 0 then
     mcontroller.controlFace(targetDir)
     stateData.windupTimer = stateData.windupTimer - dt
+	
+	if stateData.windupTimer <= 0 and stateData.triggerSlash then
+		animator.setAnimationState("body", "slash")
+		animator.playSound("spawnAdd")
+	end
     return false
+  end
+  
+  if stateData.triggerSlash and stateData.slashTimer > 0 then
+	stateData.slashTimer = stateData.slashTimer - dt
+	
+	if stateData.slashTimer <= 0 then
+		mcontroller.controlFace(targetDir)
+	end
+	return false
   end
 
   if stateData.timer > 0 then

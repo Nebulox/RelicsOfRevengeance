@@ -10,13 +10,13 @@
 		"maxDistance" : 13,
 		
 		"windupTime" : 0.25,
-		"skillTime" : 0.1,
-		"winddownTime" : 0.1,
+		"skillTime" : 0.01,
+		"winddownTime" : 0.6,
 		
 		"jumpVelocity" : [27,40],
 		
 		"comboWindupTime" : 0.1,
-		"comboWinddownTime" : 0.2,
+		"comboWinddownTime" : 0.6,
 		
 		"chargeTime" : 0.5,
 		"chargeVelocity" : 60,
