@@ -90,7 +90,9 @@ function NebMurasamaCombo:windup(overWrite)
 	
 	animator.playSound("chargeSheath", -1)
 	local targetGrav = world.gravity(mcontroller.position()) * -0.005
-    while timer < stance.holdTime and self.fireMode ~= "none" do
+	
+	local bufferTimer = 1.0 --can hold for this long after being fully charged
+    while timer < stance.holdTime + bufferTimer and self.fireMode ~= "none" do
 	  --Count down timer
 	  timer = timer + self.dt
 	  
@@ -107,7 +109,7 @@ function NebMurasamaCombo:windup(overWrite)
 	  --If the charge has made a enough progress to be considered a charge attack, trigger the visual effects
 	  if timer > stance.duration then
 	    --The factor (0-1) of the charge, 1 being full
-	    ringFactor = timer / (stance.holdTime - stance.duration)
+	    ringFactor = math.min((timer / (stance.holdTime - stance.duration)),1.15) -- find mathmatical reason for this constant value?
 		
 	    --Fake time slow effect, where the player slows down while charging
 	    mcontroller.controlApproachVelocity({0, targetGrav}, 350 * ringFactor)
@@ -127,6 +129,8 @@ function NebMurasamaCombo:windup(overWrite)
         }
         activeItem.setScriptedAnimationParameter("ringProperties", ring)
 	  end
+	  
+	  if timer > stance.holdTime then animator.stopAllSounds("chargeSheath") end
 
       coroutine.yield()
     end
@@ -223,7 +227,7 @@ function NebMurasamaCombo:bladeStorm()
   end
 end
 
-function NebMurasamaCombo:wait(overWrite, wasCharged)
+function NebMurasamaCombo:wait(overWrite, wasCharged, shortenDuration)
   local stanceSuffix = (overWrite or (self.comboStep - 1))
   local stance = self.stances["wait" .. stanceSuffix]
 
@@ -240,7 +244,10 @@ function NebMurasamaCombo:wait(overWrite, wasCharged)
   end)
 
   self.wasAlt = nil
+  
   self.cooldownTimer = math.max(0, self.cooldowns[self.comboStep - 1] - stance.duration)
+  if shortenDuration then self.cooldownTimer = self.cooldownTimer * 0.5 end
+  
   animator.setGlobalTag("stanceDirectives", "")
   self.comboStep = 1
 end
@@ -296,10 +303,15 @@ function NebMurasamaCombo:fire(overWrite, charged)
     end
   
     --Seting up the damage listener for actions on shield hit
+	self.hasBlocked = false --Yes, I could've retooled the "hit" var for this purpose, but I thought it would be better to use a seperate variable regardless - Echo
     shieldDamageListener = damageListener("damageTaken", function(notifications)
 	  --Optionally spawn a parry projectile when the shield is hit
 	  for _, notification in pairs(notifications) do
 	    if notification.hitType == "ShieldHit" then
+		  if not self.hasBlocked then
+			self.hasBlocked = true
+		  end
+		  
 		  --Fire a projectile when the shield is hit
 		  if #self.reflectedProjectiles > 0 and not hit then
 		    animator.playSound("parry")
@@ -373,9 +385,11 @@ function NebMurasamaCombo:fire(overWrite, charged)
   
   if self.comboStep < self.comboSteps then
     self.comboStep = self.comboStep + 1
-    self:setState(self.wait, overWrite, isCharged)
+    self:setState(self.wait, overWrite, isCharged, self.hasBlocked)
   else
     self.cooldownTimer = self.cooldowns[self.comboStep]
+	if shortenDuration then self.cooldownTimer = self.cooldownTimer * 0.5 end
+	
     animator.setGlobalTag("stanceDirectives", "")
     self.comboStep = 1
   end
