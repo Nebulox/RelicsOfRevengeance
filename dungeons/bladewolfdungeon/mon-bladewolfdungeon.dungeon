@@ -1,0 +1,23 @@
+{
+  "metadata" : {
+    "name" : "mon-bladewolfdungeon",
+    "species" : "human",
+    "rules" : [
+    ],
+    "anchor" : [ "mon-bladewolfdungeon" ],
+    "gravity" : 80,
+    "maxRadius" : 1000000,
+    "maxParts" : 100,
+    "protected" : true
+  },
+
+  "parts" : [
+    {
+      "name" : "mon-bladewolfdungeon",
+      "rules" : [
+        [ "maxSpawnCount", [1] ]
+      ],
+      "def" : [ "tmx", "mon-bladewolfdungeon.json" ]
+    }
+  ]
+}

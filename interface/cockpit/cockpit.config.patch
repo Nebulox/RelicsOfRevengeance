@@ -1,0 +1,47 @@
+[
+  [
+    {
+      "inverse": true,
+      "op": "test",
+      "path": "/mods_present"
+    },
+    {
+      "op": "add",
+      "path": "/mods_present",
+      "value": {}
+    }
+  ],
+
+  [
+    {
+      "op": "add",
+      "path": "/mods_present/RelicsOfRevengeance",
+      "value": true
+    }
+  ],
+
+  [
+    {
+      "inverse": false,
+      "op": "test",
+      "path": "/displayDungeons"
+    },
+    {
+      "op": "add",
+      "path": "/mods_present/MorePlanetInfo",
+      "value": true
+    }
+  ],
+
+ [
+    {
+      "op": "test",
+      "path": "/mods_present/MorePlanetInfo",
+      "inverse": false
+    },
+	
+    { "op": "add", "path": "/displayDungeons/mon-bladewolfdungeon", "value": 
+      { "description" : "A cultist base detected. Traces of experimental robotic tech detected. Exercise caution.", "icon" : "/interface/cockpit/dungeons/mon-bladewolfdungeonicon.png" }
+    }
+  ]
+]
