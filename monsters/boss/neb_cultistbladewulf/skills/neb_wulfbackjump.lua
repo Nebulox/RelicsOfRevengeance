@@ -3,11 +3,17 @@ neb_wulfbackjump = {}
 function neb_wulfbackjump.enter()
   neb_wulfbackjump.cooldownCategory = config.getParameter("neb_wulfbackjump.cooldownCategory")
   
+  if animator.animationState("body") == "outOfStagger" then return nil end
+  if animator.animationState("body") == "holdStagger" then
+	animator.setAnimationState("body","outOfStagger")
+	return nil
+  end
+  
   if not (self.state.stateCooldown(neb_wulfbackjump.cooldownCategory) == 0) then
 	return nil 
   end
   
-  if (not hasTarget() and mcontroller.onGround()) then return nil end
+  if not (hasTarget() and mcontroller.onGround()) then return nil end
   
   neb_wulfbackjump.toTarget = world.distance(self.targetPosition, mcontroller.position())
   

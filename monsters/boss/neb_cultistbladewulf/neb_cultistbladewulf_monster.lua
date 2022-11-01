@@ -66,8 +66,8 @@ function init()
   self.poiseDamageListener = damageListener("damageTaken", function(notifications)
     for _,notification in pairs(notifications) do
       --if notification.healthLost == 0 then
-	  if not self.stunned then
-		status.modifyResource("poise", -notification.healthLost * 0.2)
+	  if not (self.stunned or animator.animationState("body") == "holdStagger" or animator.animationState("body") == "outOfStagger") then
+		status.modifyResource("poise", math.max(-notification.healthLost * 0.2),-20)
         return
 	  end
       --end
@@ -75,7 +75,7 @@ function init()
   end)
   
   self.poiseStunTicks = 0
-  self.poiseMaxStunTicks = 20 --when poise broken, set poiseStunTicks to this value; will keep bladewolf stunned until poiseStunTicks reaches zero
+  self.poiseMaxStunTicks = 30 --when poise broken, set poiseStunTicks to this value; will keep bladewolf stunned until poiseStunTicks reaches zero
   
 end
 

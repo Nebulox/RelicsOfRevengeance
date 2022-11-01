@@ -4,6 +4,12 @@ function neb_wulfjump.checkDistance()
   local minDistance = config.getParameter("neb_wulfjump.minDistance", 5)
   local maxDistance = config.getParameter("neb_wulfjump.maxDistance", 20)
   
+  if animator.animationState("body") == "outOfStagger" then return nil end
+  if animator.animationState("body") == "holdStagger" then
+	animator.setAnimationState("body","outOfStagger")
+	return nil
+  end
+  
   neb_wulfjump.toTarget = world.distance(self.targetPosition, mcontroller.position())
   local distance = math.abs(vec2.mag(neb_wulfjump.toTarget))
   
@@ -35,7 +41,7 @@ function neb_wulfjump.enter()
 	return nil 
   end
   
-  if (not hasTarget() and mcontroller.onGround()) then return nil end
+  if not (hasTarget() and mcontroller.onGround()) then return nil end
   
   neb_wulfjump.toTarget = world.distance(self.targetPosition, mcontroller.position())
   

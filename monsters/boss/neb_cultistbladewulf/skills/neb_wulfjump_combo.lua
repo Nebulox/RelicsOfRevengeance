@@ -1,6 +1,12 @@
 neb_wulfjump_combo = {}
 
 function neb_wulfjump_combo.checkDistance()
+  if animator.animationState("body") == "outOfStagger" then return nil end
+  if animator.animationState("body") == "holdStagger" then
+	animator.setAnimationState("body","outOfStagger")
+	return nil
+  end
+
   local minDistance = config.getParameter("neb_wulfjump_combo.minDistance", 5)
   local maxDistance = config.getParameter("neb_wulfjump_combo.maxDistance", 20)
   
@@ -34,7 +40,7 @@ function neb_wulfjump_combo.enter()
 	return nil 
   end
   
-  if (not hasTarget() and mcontroller.onGround()) then return nil end
+  if not (hasTarget() and mcontroller.onGround()) then return nil end
   
   neb_wulfjump_combo.toTarget = world.distance(self.targetPosition, mcontroller.position())
   
@@ -102,7 +108,7 @@ function neb_wulfjump_combo.update(dt, stateData)
 		  
 		  local vel = config.getParameter("neb_wulfjump_combo.jumpVelocity")
 		  if stateData.phase == 2 then
-			mcontroller.setVelocity({vel[1] * xDir * 1.2,vel[2] * 1.5}) -- increased jump height if doing the spinny
+			mcontroller.setVelocity({vel[1] * xDir * 1.25,vel[2] * 1.25}) -- increased jump height if doing the spinny
 		  else
 			mcontroller.setVelocity({vel[1] * xDir,vel[2]})
 		  end
@@ -130,13 +136,14 @@ function neb_wulfjump_combo.update(dt, stateData)
 		mcontroller.setXVelocity(stateData.chargeVel*stateData.chargeDir)
 		local wallBlock = checkWalls(stateData.chargeDir)
 		
-		if wallBlock then --if hit wall, then stun
+		if wallBlock then --if hit wall, then poise break
 			animator.setAnimationState("body", "intoStagger",true)
 			stateData.counterTriggered = true
 			stateData.timer = 0
-			stateData.winddownTimer = 2.0
-			status.setResource("poise",100)
-			animator.playSound("shatter")
+			stateData.winddownTimer = 0.0
+			status.setResource("poise",0)
+			
+			--animator.playSound("shatter")
 		end
 	end
 
@@ -192,7 +199,6 @@ function neb_wulfjump_combo.update(dt, stateData)
   end
   
   if stateData.comboCount == 0 and stateData.winddownTimer > 0 then
-    animator.setAnimationState("body", "idle")
     stateData.winddownTimer = stateData.winddownTimer - dt
     return false
   end

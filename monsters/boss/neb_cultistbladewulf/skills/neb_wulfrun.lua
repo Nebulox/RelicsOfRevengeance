@@ -1,6 +1,12 @@
 neb_wulfrun = {}
 
 function neb_wulfrun.checkDistance()
+  if animator.animationState("body") == "outOfStagger" then return nil end
+  if animator.animationState("body") == "holdStagger" then
+	animator.setAnimationState("body","outOfStagger")
+	return nil
+  end
+  
   local minDistance = config.getParameter("neb_wulfrun.minDistance", 5)
   local maxDistance = config.getParameter("neb_wulfrun.maxDistance", 20)
   
@@ -20,7 +26,7 @@ function neb_wulfrun.enter()
 	return nil 
   end
   
-  if (not hasTarget() and mcontroller.onGround()) then return nil end
+  if not (hasTarget() and mcontroller.onGround()) then return nil end
   
   neb_wulfrun.toTarget = world.distance(self.targetPosition, mcontroller.position())
   

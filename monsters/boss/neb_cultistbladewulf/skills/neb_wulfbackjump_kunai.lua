@@ -3,11 +3,17 @@ neb_wulfbackjump_kunai = {}
 function neb_wulfbackjump_kunai.enter()
   neb_wulfbackjump_kunai.cooldownCategory = config.getParameter("neb_wulfbackjump_kunai.cooldownCategory")
   
+  if animator.animationState("body") == "outOfStagger" then return nil end
+  if animator.animationState("body") == "holdStagger" then
+	animator.setAnimationState("body","outOfStagger")
+	return nil
+  end
+  
   if not (self.state.stateCooldown(neb_wulfbackjump_kunai.cooldownCategory) == 0) then
 	return nil 
   end
   
-  if (not hasTarget() and mcontroller.onGround()) then return nil end
+  if not (hasTarget() and mcontroller.onGround()) then return nil end
   
   neb_wulfbackjump_kunai.toTarget = world.distance(self.targetPosition, mcontroller.position())
   
@@ -84,8 +90,8 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
 	  mcontroller.controlFace(targetDir)
 	  
 	  local params = {}
-	  params.power = root.evalFunction("monsterLevelPowerMultiplier", monster.level()) * 5 --5 damage at base, technically 10 because of the kunai explosion
-	  params.speed = 75
+	  params.power = root.evalFunction("monsterLevelPowerMultiplier", monster.level()) * 4 --4 damage at base, technically 8 because of the kunai explosion
+	  params.speed = 60
 	  params.timeToLive = 1.0
 	  
 	  world.spawnProjectile("energyshard", mcontroller.position(), entity.id(), {math.cos(aimDir),math.sin(aimDir)}, false, params)

@@ -13,7 +13,7 @@
 		"skillTime" : 0.01,
 		"winddownTime" : 0.1,
 		
-		"jumpVelocity" : [27,40],
+		"jumpVelocity" : [30,43],
 		
 		"comboWindupTime" : 0.1,
 		"comboWinddownTime" : 0.1,
