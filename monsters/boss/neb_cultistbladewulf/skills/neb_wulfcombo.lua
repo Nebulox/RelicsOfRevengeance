@@ -126,24 +126,21 @@ function neb_wulfcombo.update(dt, stateData)
 				mcontroller.setVelocity({vel[1] * -xDir * 0.5,vel[2] * 0.5})
 				stateData.counterTriggered = true
 				stateData.damageListener = nil
-				animator.playSound("shatter")
+				--animator.playSound("shatter")
 				
 				stateData.comboCount = 0
 				
 				animator.setAnimationState("body", "intoStagger",true)
 				--monster.setDamageOnTouch(false)
 			
-				stateData.winddownTimer = 2.0
+				stateData.winddownTimer = 0.75
 				
-				status.setResource("poise",100)
+				status.modifyResource("poise", -20)
 			end
-			status.setResource("poise",100)
 		else
 			--sb.logInfo("ticking damage listener")
 			if not stateData.cancelListener then
 				stateData.damageListener:update()
-			else
-				status.setResource("poise",100)
 			end
 		end
 	--end

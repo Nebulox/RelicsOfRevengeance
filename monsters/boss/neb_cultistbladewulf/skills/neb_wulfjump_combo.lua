@@ -145,23 +145,26 @@ function neb_wulfjump_combo.update(dt, stateData)
   
   --monster.setDamageParts({})
 
-  if stateData.comboCount > 0 and stateData.winddownTimer > 0 and not mcontroller.onGround() then
+  if stateData.comboCount > 0 and stateData.winddownTimer > 0 then
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
 	
-	if stateData.phase == 2 then
+	if stateData.phase == 2 and not mcontroller.onGround() then
 		animator.setAnimationState("body", "flip")
 		
 		animator.rotateTransformationGroup("all", 35/180*math.pi)
 	end
 	
+	if not mcontroller.onGround() then return false end
+	if stateData.phase == 2 then animator.resetTransformationGroup("all") end
+	
+	if animator.animationState("body") == "flip" then animator.setAnimationState("body", "idle") end
+	
     stateData.winddownTimer = stateData.winddownTimer - dt
     return false
   end
   
-  if stateData.comboCount > 0 then 
-  
-	if not mcontroller.onGround() then return false end
+  if stateData.comboCount > 0 then
 	
 	if stateData.phase == 2 then animator.resetTransformationGroup("all") end
 	
@@ -174,16 +177,16 @@ function neb_wulfjump_combo.update(dt, stateData)
 	animator.playSound("spawnCharge")
 	mcontroller.controlFace(targetDir)
 	
-	if stateData.comboCount == 0 or neb_wulfjump_combo.checkOverDistance() then --transition to a dash attack
+	if stateData.comboCount == 0 or (not stateData.phase == 2 and neb_wulfjump_combo.checkOverDistance()) then --transition to a dash attack
 		--monster.setDamageOnTouch(false)
 		animator.setAnimationState("body", "jumpWindup",true)
 		animator.setAnimationState("flash", "on")
 		
-		stateData.windupTimer = 0.6--config.getParameter("neb_wulfjump_combo.windupTimer", 1.0)
+		stateData.windupTimer = 0.75--config.getParameter("neb_wulfjump_combo.windupTimer", 1.0)
 		stateData.timer = config.getParameter("neb_wulfjump_combo.chargeTime", 0.3)
 		
 		stateData.comboCount = 0
-		stateData.winddownTimer = 0.6
+		stateData.winddownTimer = 0.75
 	end
 	return false
   end

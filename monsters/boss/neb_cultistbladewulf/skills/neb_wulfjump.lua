@@ -138,22 +138,25 @@ function neb_wulfjump.update(dt, stateData)
 			mcontroller.setVelocity({vel[1] * -xDir * 0.5,vel[2] * 0.5})
 			stateData.counterTriggered = true
 			stateData.damageListener = nil
-			animator.playSound("shatter")
+			--animator.playSound("shatter")
 			
 			animator.setAnimationState("body", "intoStagger",true)
 			--monster.setDamageOnTouch(false)
 			
-			stateData.winddownTimer = 2.0
-			
-			status.setResource("poise",100)
+			stateData.winddownTimer = 0.75
+				
+			status.modifyResource("poise", -20)
 		end
-		status.setResource("poise",100)
 	else
 		--sb.logInfo("ticking damage listener")
 		if not stateData.cancelListener then
 			stateData.damageListener:update()
 		end
 	end
+	
+	if not mcontroller.onGround() then return false end
+	--if animator.animationState("body") == "pounce" then animator.setAnimationState("body", "idle") end
+	
     stateData.winddownTimer = stateData.winddownTimer - dt
     return false
   end

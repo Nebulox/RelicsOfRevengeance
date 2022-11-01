@@ -9,17 +9,17 @@
     	"minDistance" : 10,
 		"maxDistance" : 15,
 		
-		"windupTime" : 0.25,
+		"windupTime" : 0.5,
 		"skillTime" : 0.01,
-		"winddownTime" : 0.6,
+		"winddownTime" : 0.1,
 		
 		"jumpVelocity" : [27,40],
 		
 		"comboWindupTime" : 0.1,
-		"comboWinddownTime" : 0.6,
+		"comboWinddownTime" : 0.1,
 		
 		"chargeTime" : 0.5,
-		"chargeVelocity" : 60,
+		"chargeVelocity" : 65,
 		
 		"cooldownTime" : 5.0,
 		"cooldownCategory" : "neb_wulfjump_combo"

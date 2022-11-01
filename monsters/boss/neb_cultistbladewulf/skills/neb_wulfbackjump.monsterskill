@@ -11,9 +11,9 @@
 		
 		"slashTriggerDistance" : 5,
 		
-		"windupTime" : 0.3,
+		"windupTime" : 0.4,
 		"skillTime" : 0.1,
-		"winddownTime" : 0.3,
+		"winddownTime" : 0.5,
 		
 		"jumpVelocity" : [-30,20],
 		

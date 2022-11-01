@@ -10,7 +10,7 @@
 		"maxDistance" : 15,
 		"windupTime" : 0.5,
 		"skillTime" : 0.1,
-		"winddownTime" : 0.66,
+		"winddownTime" : 0.75,
 		
 		"jumpVelocity" : [-10,45],
 		"bufferTime" : 0.5,

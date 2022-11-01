@@ -96,13 +96,16 @@ function neb_wulfbackjump.update(dt, stateData)
 
   if stateData.winddownTimer > 0 then
 	if not mcontroller.onGround() then return false end
+	animator.setAnimationState("body", "idle")
 	
-	if animator.animationState("body") == "inAirBack" then animator.setAnimationState("body", "intoStagger") end
+	--if animator.animationState("body") == "inAirBack" then animator.setAnimationState("body", "intoStagger") end
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
     stateData.winddownTimer = stateData.winddownTimer - dt
     return false
   end
+  
+  animator.setAnimationState("body", "idle")
   
   self.state.stateCooldown(neb_wulfbackjump.cooldownCategory,config.getParameter("neb_wulfbackjump.cooldownTime"))
   return true

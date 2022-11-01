@@ -109,7 +109,7 @@ function NebMurasamaCombo:windup(overWrite)
 	  --If the charge has made a enough progress to be considered a charge attack, trigger the visual effects
 	  if timer > stance.duration then
 	    --The factor (0-1) of the charge, 1 being full
-	    ringFactor = math.min((timer / (stance.holdTime - stance.duration)),1.125) -- find mathmatical reason for this constant value?
+	    ringFactor = (timer / (stance.holdTime - stance.duration))
 		
 	    --Fake time slow effect, where the player slows down while charging
 	    mcontroller.controlApproachVelocity({0, targetGrav}, 350 * ringFactor)
@@ -120,7 +120,7 @@ function NebMurasamaCombo:windup(overWrite)
 		  fullbright = self.chargeRingConfig.fullbright,
 		  image = self.chargeRingConfig.image,
 	      color = {255, 255, 255, math.min(255, 255 * ringFactor)},
-	      scale = (ringFactor * (self.chargeRingConfig.startEndScale[2] - self.chargeRingConfig.startEndScale[1]) + self.chargeRingConfig.startEndScale[1]),
+	      scale = math.max((ringFactor * (self.chargeRingConfig.startEndScale[2] - self.chargeRingConfig.startEndScale[1]) + self.chargeRingConfig.startEndScale[1]),0),
 	      centered = true,
 		  rotation = ringRotation,
           position = vec2.add(mcontroller.position(), activeItem.handPosition()),

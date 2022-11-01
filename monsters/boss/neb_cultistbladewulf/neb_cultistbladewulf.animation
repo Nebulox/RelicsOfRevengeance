@@ -39,9 +39,7 @@
 		//FLIP WINDUP + FLIP
 		  "flipWindup" : {
 			"frames" : 4,
-            "cycle" : 0.3,
-            "mode" : "transition",
-            "transition" : "idle"
+            "cycle" : 0.3
 		  },
 		  "flip" : {
 			"frames" : 1,

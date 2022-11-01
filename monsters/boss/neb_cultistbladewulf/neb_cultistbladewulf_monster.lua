@@ -94,8 +94,17 @@ function update(dt)
 	self.phaseStates[currentPhase()].endState()
 	
 	animator.resetTransformationGroup("all")
+	if not (animator.animationState("body") == "intoStagger" 
+	or animator.animationState("body") == "holdStagger"
+	or animator.animationState("body") == "outOfStagger") then 
+		animator.setAnimationState("body", "intoStagger") 
+	end
 	
-	monster.setDamageParts({})
+	self.damageSources:clear()
+	self.damageParts = {}
+		
+	setDamageSources()
+	monster.setDamageParts(self.damageParts)
 	--status.setResource("poise",100)
   else
 	self.stunned = false
@@ -113,6 +122,13 @@ function update(dt)
     if inState ~= "dieState" and not self.state.pickState({ die = true }) then
       self.state.endState()
       self.dead = true
+	  
+	  animator.setAnimationState("body", "intoStagger")
+	  self.damageSources:clear()
+		self.damageParts = {}
+		
+		setDamageSources()
+		monster.setDamageParts(self.damageParts)
     end
 
     self.state.update(dt)

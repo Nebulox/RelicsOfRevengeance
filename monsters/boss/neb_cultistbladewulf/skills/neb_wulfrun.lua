@@ -149,24 +149,24 @@ function neb_wulfrun.update(dt, stateData)
 			mcontroller.setVelocity({vel[1] * -xDir * 0.5,vel[2] * 0.5})
 			stateData.counterTriggered = true
 			stateData.damageListener = nil
-			animator.playSound("shatter")
+			--animator.playSound("shatter")
 			
 			animator.setAnimationState("body", "intoStagger",true)
 			--monster.setDamageOnTouch(false)
 			
-			stateData.jumpWinddownTimer = 2.0
+			stateData.jumpWinddownTimer = 0.75
 			
-			status.setResource("poise",100)
+			status.modifyResource("poise", -20)
 		end
-		status.setResource("poise",100)
 	else
 		--sb.logInfo("ticking damage listener")
 		if not stateData.cancelListener then
 			stateData.damageListener:update()
-		else
-			status.setResource("poise",100)
 		end
 	end
+	
+	if not mcontroller.onGround() then return false end
+	--if animator.animationState("body") == "pounce" then animator.setAnimationState("body", "idle") end
 	
     stateData.jumpWinddownTimer = stateData.jumpWinddownTimer - dt
     return false
