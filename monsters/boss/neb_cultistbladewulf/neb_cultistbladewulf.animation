@@ -140,6 +140,13 @@
             "mode" : "transition",
             "transition" : "inAirNeutral"
 		  },
+		//TELEPORT IN, TRANSITION TO IDLE
+		  "teleportInNeutral" : {
+			"frames" : 5,
+            "cycle" : 0.3,
+            "mode" : "transition",
+            "transition" : "idle"
+		  },
 		//TRIGGER PHASE 2
 		  "enterPhase" : {
 			"frames" : 6,
@@ -304,6 +311,11 @@
                 "image" : "<partImage>:teleportIn.<frame>"
               }
 			},
+	    "teleportInNeutral" : {
+              "properties" : {
+                "image" : "<partImage>:teleportIn.<frame>"
+              }
+			},
 		  //TRIGGER PHASE 2
             "enterPhase" : {
               "properties" : {
@@ -429,6 +441,11 @@
 			},
 		  //TELEPORT IN
             "teleportIn" : {
+              "properties" : {
+                "image" : "<fullbrightImage>:teleportIn.<frame>"
+              }
+			},
+	    "teleportInNeutral" : {
               "properties" : {
                 "image" : "<fullbrightImage>:teleportIn.<frame>"
               }
