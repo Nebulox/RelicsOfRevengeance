@@ -39,7 +39,7 @@
         "trigger" : "healthPercentage",
         "healthPercentage" : 0.5,
         "enterPhase" : "neb_wulfspawnads",
-        "skills" : [ "neb_wulfcombo","neb_wulfjump_combo","neb_wulfbackjump_kunai","neb_wulfjump","neb_wulfbackjump","neb_wulfrun" ]
+        "skills" : [ neb_wulfbackjump_kunai,"neb_wulfcombo","neb_wulfjump_combo","neb_wulfjump","neb_wulfbackjump","neb_wulfrun" ]
 		//"skills" : ["neb_wulfjump_combo"]
       }//,
       //{
