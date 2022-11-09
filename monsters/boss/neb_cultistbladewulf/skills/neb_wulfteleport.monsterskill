@@ -15,7 +15,7 @@
 		
 		"jumpVelocity" : [-30,20],
 		
-		"cooldownTime" : 0.5,
+		"cooldownTime" : 3.0,
 		"cooldownCategory" : "neb_wulfteleport"
     }
   }
