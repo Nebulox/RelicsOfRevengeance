@@ -33,16 +33,13 @@ function neb_wulfrun.enter()
   if not neb_wulfrun.checkDistance() then
 	return nil
   end
-  
 
-  --if not self.moontants then self.moontants = 6 end
-
-  --if self.moontants <= 1 then return nil end
 
   return {
     windupTimer = config.getParameter("neb_wulfrun.windupTime", 1.0),
     timer = config.getParameter("neb_wulfrun.skillTime", 0.3),
     winddownTimer = config.getParameter("neb_wulfrun.winddownTime", 1.0),
+    initialPosition = mcontroller.position(),
 	runSpeed = config.getParameter("neb_wulfrun.runSpeed",40.0),
 	jumpWindupTimer = 0,
 	jumpWinddownTimer = 0,
@@ -177,6 +174,22 @@ function neb_wulfrun.update(dt, stateData)
     stateData.jumpWinddownTimer = stateData.jumpWinddownTimer - dt
     return false
   end
+ 
+  -- teleport back to initial position, will probably trigger a kunai through if ranges are configured correctly
+  if self.phase == 2 and not stateData.teleported then
+	stateData.teleported = true
+	animator.setAnimationState("body","teleportOut")
+  end
+
+  if animator.animationState("body") == "teleportOut" then return false end
+  
+  if animator.animationState("body") == "hidden" then
+	animator.setAnimationState("body","teleportInNeutral")
+	mcontroller.setPosition(stateData.initialPosition)
+  end
+
+  if animator.animationState("body") == "teleportInNeutral" then return false end
+  -- end teleport scripts
   
   animator.setAnimationState("body", "idle")
   
