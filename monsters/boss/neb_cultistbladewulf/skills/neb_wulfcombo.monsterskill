@@ -11,7 +11,7 @@
 		
 		"windupTime" : 0.5,
 		"skillTime" : 0.1,
-		"winddownTime" : 1.0,
+		"winddownTime" : 0.75,
 		
 		"comboWindupTime" : 0.2,
 		"comboWinddownTime" : 0.3,
