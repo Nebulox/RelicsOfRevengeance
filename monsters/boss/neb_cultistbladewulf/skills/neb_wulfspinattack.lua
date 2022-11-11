@@ -28,7 +28,7 @@ function neb_wulfspinattack.enter()
   
   local minVerticalDistance = config.getParameter("neb_wulfspinattack.minVerticalDistance", 5)
   local maxVerticalDistance = config.getParameter("neb_wulfspinattack.maxVerticalDistance", 20)
-  local verticalDistance = math.abs(neb_wulfspinattack.toTarget[1])
+  local verticalDistance = math.abs(neb_wulfspinattack.toTarget[2])
   
   if not (verticalDistance > minVerticalDistance and verticalDistance < maxVerticalDistance ) then --vertical distance check
 	return nil
@@ -38,9 +38,7 @@ function neb_wulfspinattack.enter()
   return {
     windupTimer = config.getParameter("neb_wulfspinattack.windupTime", 1.0),
     timer = config.getParameter("neb_wulfspinattack.skillTime", 0.3),
-    winddownTimer = config.getParameter("neb_wulfspinattack.winddownTime", 1.0),
-	stateData.slashTimer = 0.3,
-	desiredPosition = desiredPosition
+    winddownTimer = config.getParameter("neb_wulfspinattack.winddownTime", 1.0)
   }
 end
 
@@ -71,6 +69,18 @@ function neb_wulfspinattack.update(dt, stateData)
 	if stateData.windupTimer <= 0 then
 		animator.setAnimationState("body", "flip")
 		animator.playSound("spawnAdd")
+		
+		local targetPosition = self.targetPosition
+		targetPosition[2] = targetPosition[2] + 5 --aim a little bit above the player
+		
+		local aimVector = world.distance(targetPosition, mcontroller.position())
+		local aimDir = math.atan(aimVector[2],aimVector[1])
+		
+		  
+		mcontroller.setVelocity({math.cos(aimDir)*70,math.sin(aimDir)*70}) -- aims directly at target, jumps towards them.
+		-- may look to calculate an actual formula to have better intercepts (i.e. considering gravity; target entity will be assumed to be stationary because I can't be bother to do *that* much math :) )
+		  
+		animator.playSound("spawnAdd")
 	end
     return false
   end
@@ -80,14 +90,7 @@ function neb_wulfspinattack.update(dt, stateData)
 	
 		if stateData.timer <= 0 then
 		  
-		  local aimVector = world.distance(self.targetPosition, mcontroller.position())
-		  local aimDir = math.atan(aimVector[2],aimVector[1])
 		  
-		  
-		  mcontroller.setVelocity({aimVector[1]*0.5,aimVector[2]*0.5}) -- aims directly at target, jumps towards them.
-		  -- may look to calculate an actual formula to have better intercepts (i.e. considering gravity; target entity will be assumed to be stationary because I can't be bother to do *that* much math :) )
-		  
-		  animator.playSound("spawnAdd")
 		end
 
     return false

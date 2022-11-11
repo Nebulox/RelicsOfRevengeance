@@ -25,10 +25,6 @@ function neb_wulfteleport.enter()
   if not (distance > minDistance and distance < maxDistance ) then --distance check
 	return nil
   end
-
-  -- note to self - add a check for whether the teleport position is valid; unsure if this works, will have to re-check SB documentation when I can
-  local invalidPosition = world.rectTileCollision(mcontroller.boundingBox(), {"Null", "Block", "Dynamic", "Slippery"})
-  if invalidPosition then return nil end
   
   -- desired position calculations
   local toTarget = world.distance(self.targetPosition, mcontroller.position())
@@ -37,13 +33,19 @@ function neb_wulfteleport.enter()
   if neb_wulfteleport.toTarget[1] > 0 then xDir = 1 else xDir = -1 end
   
   local desiredPosition = {self.targetPosition[1] - (xDir * 3),self.targetPosition[2]}
+  
+  -- note to self - add a check for whether the teleport position is valid; unsure if this works, will have to re-check SB documentation when I can
+  local boundingBox = mcontroller.boundBox()
+  local endBox = {boundingBox[1]+desiredPosition[1],boundingBox[2]+desiredPosition[2],boundingBox[3]+desiredPosition[1],boundingBox[4]+desiredPosition[2]}
+  local invalidPosition = world.rectTileCollision(endBox, {"Null", "Block", "Dynamic", "Slippery"})
+  if invalidPosition then return nil end
 
   return {
     windupTimer = config.getParameter("neb_wulfteleport.windupTime", 1.0),
     timer = config.getParameter("neb_wulfteleport.skillTime", 0.3),
     winddownTimer = config.getParameter("neb_wulfteleport.winddownTime", 1.0),
-	stateData.slashTimer = 0.3,
-	desiredPosition = desiredPosition
+	slashTimer = 0.3,
+	desiredPos = desiredPosition
   }
 end
 
@@ -67,10 +69,10 @@ function neb_wulfteleport.update(dt, stateData)
   end
   
   if animator.animationState("body") == "teleportOut" then return false end
-  if animator.animationState("body") == "hidden" then animator.setAnimationState("body","teleportInNeutral"); mcontroller.setPosition(stateData.desiredPosition); return false end
+  if animator.animationState("body") == "hidden" then animator.setAnimationState("body","teleportInNeutral"); mcontroller.setPosition(stateData.desiredPos); return false end
   if animator.animationState("body") == "teleportInNeutral" then return false end
   
-  if animator.animationState("body") == "idle" and not stateData.triggered then animator.setAnimationState("flipWindup"); stateData.triggered = true; return false end
+  if animator.animationState("body") == "idle" and not stateData.triggered then animator.setAnimationState("body","flipWindup"); stateData.triggered = true; return false end
   
 
   if stateData.windupTimer > 0 then
@@ -84,7 +86,7 @@ function neb_wulfteleport.update(dt, stateData)
     return false
   end
   
-  if stateData.triggerSlash and stateData.slashTimer > 0 then
+  if stateData.slashTimer > 0 then
 	stateData.slashTimer = stateData.slashTimer - dt
 	
 	if stateData.slashTimer <= 0 then
@@ -115,6 +117,7 @@ function neb_wulfteleport.update(dt, stateData)
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")
     stateData.winddownTimer = stateData.winddownTimer - dt
+	
     return false
   end
   

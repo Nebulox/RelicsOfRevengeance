@@ -7,7 +7,7 @@
     "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfteleport.lua" ],
     "neb_wulfteleport" : {
     	"minDistance" : 10,
-		"maxDistance" : 20,
+		"maxDistance" : 30,
 		
 		"windupTime" : 0.3,
 		"skillTime" : 0.1,
@@ -15,7 +15,7 @@
 		
 		"jumpVelocity" : [-30,20],
 		
-		"cooldownTime" : 3.0,
+		"cooldownTime" : 0.5,
 		"cooldownCategory" : "neb_wulfteleport"
     }
   }

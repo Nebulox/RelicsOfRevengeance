@@ -7,10 +7,10 @@
     "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfspinattack.lua" ],
     "neb_wulfspinattack" : {
     	"minDistance" : 10,
-		"maxDistance" : 30,
+		"maxDistance" : 40,
 		
 		"minVerticalDistance" : 5,
-		"maxVerticalDistance" : 20,
+		"maxVerticalDistance" : 30,
 		
 		"windupTime" : 0.3,
 		"skillTime" : 0.01,
@@ -18,7 +18,7 @@
 		
 		"jumpVelocity" : [-30,20],
 		
-		"cooldownTime" : 5.0,
+		"cooldownTime" : 4.0,
 		"cooldownCategory" : "neb_wulfspinattack"
     }
   }
