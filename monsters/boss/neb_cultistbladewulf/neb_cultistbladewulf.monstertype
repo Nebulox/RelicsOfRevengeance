@@ -1,6 +1,6 @@
 {
   "type" : "neb_cultistbladewulf",
-  "shortdescription" : "[Cultist Bladewulf]",
+  "shortdescription" : "Cultist Prototype: BL4D3W0LF",
 
   "categories" : [ "neb_cultistbladewulf" ],
   "parts" : [ "body" ],
@@ -9,7 +9,7 @@
   "reversed" : false,
   "dropPools" : [
     {
-      "default" : "erchiushorrorTreasure"
+      "default" : "noMeatMonsterTreasure"
     }
   ],
 
