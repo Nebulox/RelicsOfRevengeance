@@ -42,7 +42,6 @@ function neb_wulfspawnads.enterWith(args) --this way, skills that function by tr
 end
 
 function neb_wulfspawnads.enteringState(stateData)
-  animator.playSound("spawnCharge")
 end
 
 function neb_wulfspawnads.update(dt, stateData)

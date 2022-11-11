@@ -7,6 +7,7 @@
   "power" : 50,
   "speed" : 50,
   "supportsProcessing" : true,
+  "fullbright" : true,
   "flippable" : false,
   "actionOnReap" : [],
   "damageType" : "nodamage",

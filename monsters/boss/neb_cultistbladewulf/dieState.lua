@@ -20,16 +20,17 @@ function dieState.enteringState(stateData)
   if math.random() < config.getParameter("swordDropChance", 0.05) then
     local aimVec = {math.random() * 2 - 1, math.random() * 3 + 2}
     world.spawnProjectile("neb-murasamadropprojectile", mcontroller.position(), entity.id(), aimVec)
+    animator.playSound("rareDrop")
   end
   
-  animator.playSound("death")
+  animator.playSound("hurt")
 end
 
 function dieState.update(dt, stateData)
   stateData.timer = stateData.timer - dt
 
   if stateData.timer < 0.2 and stateData.deathSound then
-    animator.playSound("shatter")
+    animator.playSound("death")
     stateData.deathSound = false
   end
 

@@ -48,8 +48,6 @@ function neb_wulfcombo.enteringState(stateData)
   animator.setAnimationState("body", "generalWindup")
   
   animator.setAnimationState("flash", "on")
-  
-  animator.playSound("spawnCharge")
 end
 
 function neb_wulfcombo.update(dt, stateData)
@@ -84,14 +82,15 @@ function neb_wulfcombo.update(dt, stateData)
 
     if stateData.timer <= 0 then
 	  if stateData.comboCount == 2 or stateData.comboCount == 0 then
-		animator.setAnimationState("body", "bite",true)
+		animator.setAnimationState("body", "bite", true)
+		animator.playSound("bite")
 	  else
-		animator.setAnimationState("body", "pounce",true)
+		animator.setAnimationState("body", "pounce", true)
+		animator.playSound("pounce")
 	  end
 	  
 	  local vel = config.getParameter("neb_wulfcombo.jumpVelocity")
 	  mcontroller.setVelocity({vel[1] * xDir,vel[2]})
-      animator.playSound("spawnAdd")
 	  
 	  stateData.countered = false
 	  stateData.counterTriggered = false
@@ -133,7 +132,6 @@ function neb_wulfcombo.update(dt, stateData)
 				mcontroller.setVelocity({vel[1] * -xDir * 0.5,vel[2] * 0.5})
 				stateData.counterTriggered = true
 				stateData.damageListener = nil
-				--animator.playSound("shatter")
 				
 				stateData.comboCount = 0
 				
@@ -160,7 +158,6 @@ function neb_wulfcombo.update(dt, stateData)
     stateData.timer = config.getParameter("neb_wulfcombo.skillTime", 0.3)
     stateData.winddownTimer = config.getParameter("neb_wulfcombo.comboWinddownTime", 1.0)
 	
-	animator.playSound("spawnCharge")
 	animator.setAnimationState("body", "generalWindup")
 	
 	if stateData.comboCount == 0 then

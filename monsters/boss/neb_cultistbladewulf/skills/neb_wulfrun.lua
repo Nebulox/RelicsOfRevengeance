@@ -52,7 +52,6 @@ end
 
 function neb_wulfrun.enteringState(stateData)
   animator.setAnimationState("body", "jumpWindup")
-  animator.playSound("spawnCharge")
 end
 
 function neb_wulfrun.update(dt, stateData)
@@ -104,6 +103,7 @@ function neb_wulfrun.update(dt, stateData)
 	
 	if stateData.jumpWindupTimer <= 0 then
 		animator.setAnimationState("body", "pounce")
+	    animator.playSound("pounce")
 		local aimVector = world.distance(self.targetPosition, mcontroller.position())
 		local aimDir = math.atan(aimVector[2],aimVector[1])
 	  
@@ -119,8 +119,7 @@ function neb_wulfrun.update(dt, stateData)
 		
 		local vel = config.getParameter("neb_wulfrun.jumpVelocity")
 		mcontroller.setVelocity({vel[1] * xDir,vel[2]})
-		animator.playSound("spawnAdd")
-	  
+		
 		stateData.countered = false
 		stateData.counterTriggered = false
 	  
@@ -155,7 +154,6 @@ function neb_wulfrun.update(dt, stateData)
 			mcontroller.setVelocity({vel[1] * -xDir * 0.5,vel[2] * 0.5})
 			stateData.counterTriggered = true
 			stateData.damageListener = nil
-			--animator.playSound("shatter")
 			
 			animator.setAnimationState("body", "intoStagger",true)
 			--monster.setDamageOnTouch(false)

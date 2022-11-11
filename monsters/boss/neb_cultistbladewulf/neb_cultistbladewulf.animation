@@ -15,7 +15,7 @@
 				"transition" : "off",
 				
 				"properties" : {
-					"immediateSound" : "/sfx/melee/mech_chainsaw_swing1.ogg"
+					"immediateSound" : "/sfx/npc/boss/cultistboss_beamwindup.ogg"
 				}
 			}
 		}
@@ -44,7 +44,10 @@
 		  "flip" : {
 			"frames" : 1,
             "cycle" : 1.0,
-            "mode" : "loop"
+            "mode" : "loop",
+            "properties" : {
+              "persistentSound" : "/sfx/melee/laser_flip_slash.ogg"
+            }
 		  },
 		//GENERAL WINDUP
 		  "generalWindup" : {
@@ -57,7 +60,11 @@
 		  "run" : {
 			"frames" : 4,
             "cycle" : 0.3,
-            "mode" : "loop"
+            "mode" : "loop",
+            "properties" : {
+			  "immediateSound" : "/sfx/npc/boss/cultistboss_sphere_attack.ogg",
+              "persistentSound" : "/sfx/npc/boss/cultistboss_dash_loop.ogg"
+            }
 		  },
 		//BITE
 		  "bite" : {
@@ -85,7 +92,10 @@
 			"frames" : 4,
             "cycle" : 0.3,
             "mode" : "transition",
-            "transition" : "holdStagger"
+            "transition" : "holdStagger",
+            "properties" : {
+              "immediateSound" : "/sfx/interface/energy_out1.ogg"
+            }
 		  },
 		  "holdStagger" : {
 			"frames" : 1,
@@ -96,7 +106,10 @@
 			"frames" : 4,
             "cycle" : 0.3,
             "mode" : "transition",
-            "transition" : "idle"
+            "transition" : "idle",
+            "frameProperties" : {
+              "immediateSound" : [ "", "", "/sfx/npc/boss/cultistboss_recharge.ogg", "" ]
+            }
 		  },
 		//JUMP WINDUP + JUMP
 		  "jumpWindup" : {
@@ -108,7 +121,11 @@
 		  "jump" : {
 			"frames" : 1,
             "cycle" : 1.0,
-            "mode" : "loop"
+            "mode" : "loop",
+            "properties" : {
+              "immediateSound" : "/sfx/tech/tech_rocketboots_thrust1.ogg",
+              "persistentSound" : "/sfx/tech/tech_rocketboots.ogg"
+            }
 		  },
 		//FALL STATES
 		  "inAirNeutral" : {
@@ -131,21 +148,30 @@
 			"frames" : 6,
             "cycle" : 0.3,
             "mode" : "transition",
-            "transition" : "hidden"
+            "transition" : "hidden",
+            "frameProperties" : {
+              "immediateSound" : [ "", "", "/sfx/npc/boss/cultistboss_blink.ogg", "", "", "" ]
+            }
 		  },
 		//TELEPORT IN
 		  "teleportIn" : {
 			"frames" : 5,
             "cycle" : 0.3,
             "mode" : "transition",
-            "transition" : "inAirNeutral"
+            "transition" : "inAirNeutral",
+            "properties" : {
+              "immediateSound" : "/sfx/npc/boss/cultistboss_blink.ogg"
+            }
 		  },
 		//TRIGGER PHASE 2
 		  "enterPhase" : {
 			"frames" : 6,
             "cycle" : 0.6,
             "mode" : "transition",
-            "transition" : "idle"
+            "transition" : "idle",
+            "frameProperties" : {
+              "immediateSound" : [ "", "", "", "/sfx/npc/boss/cultistboss_recharge.ogg", "", "" ]
+            }
 		  }
         }
       }
@@ -498,30 +524,21 @@
 
   "sounds" : {
     "turnHostile" : [  ],
-    "deathPuff" : {
-      "pool" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+	"rareDrop" : {
+      "pool" : [ "/sfx/npc/boss/cultistboss_recharge.ogg" ],
       "rangeMultiplier" : 1.5
     },
-    "shatter" : {
-      "pool" : [ "/sfx/objects/vase_break_large1.ogg" ],
-      "rangeMultiplier" : 1.5
-    },
-    "hurt" : {
-      "pool" : [ "/sfx/npc/boss/crystalboss_pain1.ogg", "/sfx/npc/boss/crystalboss_pain2.ogg" ],
-      "rangeMultiplier" : 1.5
-    },
-    "death" : {
-      "pool" : [ "/sfx/npc/boss/crystalboss_death.ogg" ],
-      "rangeMultiplier" : 1.5
-    },
-    "spawnCharge" : {
-      "pool" : [ "/sfx/npc/boss/crystalboss_spawncharge.ogg" ],
-      "rangeMultiplier" : 1.5
-    },
-    "spawnAdd" : {
-      "pool" : [ "/sfx/npc/boss/crystalboss_spawnmonster.ogg" ],
-      "rangeMultiplier" : 1.5
-    }
+    "deathPuff" : [ "/sfx/npc/enemydeathpuff.ogg" ],
+	
+    "hurt" : [ "/sfx/npc/boss/cultistboss_shield.ogg" ],
+    "death" : [ "/sfx/npc/boss/kluexboss_death.ogg" ],
+	
+    "spawnAdd" : [ "/sfx/objects/vase_break_large1.ogg" ],
+	
+    "slash" : [ "/sfx/melee/swing_broadsword_fire1.ogg", "/sfx/melee/swing_broadsword_fire2.ogg", "/sfx/melee/swing_broadsword_fire3.ogg" ],
+    "pounce" : [ "/sfx/npc/boss/cultistboss_sphere_attack.ogg" ],
+    "bite" : [ "/sfx/npc/monsters/monster_bite1.ogg", "/sfx/npc/monsters/monster_bite2.ogg", "/sfx/npc/monsters/monster_bite3.ogg" ],
+    "fire" : [ "/sfx/gun/plasma_pistol1.ogg" ]
   },
 
   "lights" : {

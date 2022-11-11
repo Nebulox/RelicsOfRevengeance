@@ -42,7 +42,6 @@ end
 
 function neb_wulfbackjump_kunai.enteringState(stateData)
   animator.setAnimationState("body", "jumpWindup")
-  animator.playSound("spawnCharge")
 end
 
 function neb_wulfbackjump_kunai.update(dt, stateData)
@@ -72,7 +71,6 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
 	  mcontroller.controlFace(targetDir)
 	  local vel = config.getParameter("neb_wulfbackjump_kunai.jumpVelocity")
 	  mcontroller.setVelocity({vel[1] * xDir,vel[2]})
-      animator.playSound("spawnAdd")
     end
 
     return false
@@ -96,15 +94,15 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
 	  
 	  world.spawnProjectile("energyshard", mcontroller.position(), entity.id(), {math.cos(aimDir),math.sin(aimDir)}, false, params)
 	  
-	  aimDir = math.atan(aimVector[2],aimVector[1]) + math.pi/180 * 10
+	  aimDir = math.atan(aimVector[2], aimVector[1]) + math.pi/180 * 10
 	  world.spawnProjectile("energyshard", mcontroller.position(), entity.id(), {math.cos(aimDir),math.sin(aimDir)}, false, params)
 	  
-	  aimDir = math.atan(aimVector[2],aimVector[1]) - math.pi/180 * 10
+	  aimDir = math.atan(aimVector[2], aimVector[1]) - math.pi/180 * 10
 	  world.spawnProjectile("energyshard", mcontroller.position(), entity.id(), {math.cos(aimDir),math.sin(aimDir)}, false, params)
 	  
 	  local vel = config.getParameter("neb_wulfbackjump_kunai.hopVelocity")
 	  mcontroller.setVelocity({vel[1] * xDir,vel[2]})
-      animator.playSound("spawnAdd")
+      animator.playSound("fire")
     end
 
     return false

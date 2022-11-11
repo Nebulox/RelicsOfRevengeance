@@ -63,7 +63,6 @@ end
 function neb_wulfjump_combo.enteringState(stateData)
   --animator.setAnimationState("eye", "windup")
   animator.setAnimationState("body", "jumpWindup")
-  animator.playSound("spawnCharge")
 end
 
 function neb_wulfjump_combo.update(dt, stateData)
@@ -113,8 +112,6 @@ function neb_wulfjump_combo.update(dt, stateData)
 			mcontroller.setVelocity({vel[1] * xDir,vel[2]})
 		  end
 		  
-		  animator.playSound("spawnAdd")
-		  
 		  -- stateData.countered = false
 		  -- stateData.counterTriggered = false
 		  
@@ -141,9 +138,7 @@ function neb_wulfjump_combo.update(dt, stateData)
 			stateData.counterTriggered = true
 			stateData.timer = 0
 			stateData.winddownTimer = 0.0
-			status.setResource("poise",0)
-			
-			--animator.playSound("shatter")
+			status.setResource("poise", 0)
 		end
 	end
 
@@ -181,7 +176,6 @@ function neb_wulfjump_combo.update(dt, stateData)
     stateData.winddownTimer = config.getParameter("neb_wulfjump_combo.comboWinddownTime", 1.0)
 	
 	animator.setAnimationState("body", "jumpWindup")
-	animator.playSound("spawnCharge")
 	mcontroller.controlFace(targetDir)
 	
 	if stateData.comboCount == 0 or (not stateData.phase == 2 and neb_wulfjump_combo.checkOverDistance()) then --transition to a dash attack

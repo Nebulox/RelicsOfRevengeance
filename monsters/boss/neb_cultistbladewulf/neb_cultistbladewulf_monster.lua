@@ -152,9 +152,7 @@ function update(dt)
 		status.setResource("poise",100)
 		animator.setAnimationState("body", "intoStagger",true)
 		
-		status.setResource("stunned",1.0)
-		
-		animator.playSound("shatter")
+		status.setResource("stunned", 1.0)
 	end
 	
 	if self.behaviorTick >= self.behaviorTickRate and not self.stunned then

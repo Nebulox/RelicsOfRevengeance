@@ -50,7 +50,6 @@ function neb_wulfbackjump.enteringState(stateData)
   else
 	animator.setAnimationState("body", "flipWindup")
   end
-  animator.playSound("spawnCharge")
 end
 
 function neb_wulfbackjump.update(dt, stateData)
@@ -72,7 +71,7 @@ function neb_wulfbackjump.update(dt, stateData)
 	
 	if stateData.windupTimer <= 0 and stateData.triggerSlash then
 		animator.setAnimationState("body", "slash")
-		animator.playSound("spawnAdd")
+		animator.playSound("slash")
 	end
     return false
   end
@@ -94,7 +93,6 @@ function neb_wulfbackjump.update(dt, stateData)
 	  animator.setAnimationState("body", "inAirBack")
 	  local vel = config.getParameter("neb_wulfbackjump.jumpVelocity")
 	  mcontroller.setVelocity({vel[1] * xDir,vel[2]})
-      animator.playSound("spawnAdd")
     end
 
     return false
