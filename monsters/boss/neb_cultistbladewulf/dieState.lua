@@ -15,7 +15,8 @@ function dieState.enterWith(params)
 end
 
 function dieState.enteringState(stateData)
-  --world.objectQuery(mcontroller.position(), 50, { name = "lunarbaselaser", callScript = "openLunarBaseDoor" })
+  --Open generator door
+  world.objectQuery(mcontroller.position(), 80, { name = "cultistdoor", callScript = "openDoor" })
 
   --animator.setAnimationState("crystalhum", "off")
   
