@@ -9,7 +9,7 @@
   "tooltipKind" : "base",
   "category" : "broadsword",
   "twoHanded" : true,
-  "itemTags" : ["weapon","melee","broadsword","katana"],
+  "itemTags" : ["weapon","melee","broadsword","katana","upgradeableWeapon"],
 
   "inventoryIcon" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathed",
   

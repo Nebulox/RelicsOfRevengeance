@@ -1,0 +1,20 @@
+{
+  "projectileName" : "neb-murasamadropprojectile",
+  "physics" : "shrapnel",
+  "image" : "murasamadropprojectile.png",
+  "animationCycle" : 0.5,
+  "frameNumber" : 1,
+  "power" : 50,
+  "speed" : 50,
+  "supportsProcessing" : true,
+  "flippable" : false,
+  "actionOnReap" : [],
+  "damageType" : "nodamage",
+
+  "scripts" : ["murasamadropprojectile.lua"],
+  "orientationLocked" : true,
+  "pointToLight" : true,
+  "spinRate" : 2,
+  "minSpinSpeed": 5,
+  "spinDirection" : -1
+}
