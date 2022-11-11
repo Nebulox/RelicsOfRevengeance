@@ -7,10 +7,10 @@
     "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfbackjump_kunai.lua" ],
     "neb_wulfbackjump_kunai" : {
     	"minDistance" : 0,
-		"maxDistance" : 15,
+		"maxDistance" : 20,
 		"windupTime" : 0.5,
 		"skillTime" : 0.1,
-		"winddownTime" : 0.75,
+		"winddownTime" : 0.5,
 		
 		"jumpVelocity" : [-10,45],
 		"bufferTime" : 0.5,

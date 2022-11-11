@@ -193,6 +193,8 @@ function neb_wulfjump_combo.update(dt, stateData)
   end
   
   if stateData.comboCount == 0 and stateData.winddownTimer > 0 then
+	if not animator.animationState("body") == "idle" then animator.setAnimationState("body", "idle") end
+	
     stateData.winddownTimer = stateData.winddownTimer - dt
     return false
   end
