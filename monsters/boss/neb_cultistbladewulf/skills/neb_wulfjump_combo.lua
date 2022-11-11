@@ -140,6 +140,10 @@ function neb_wulfjump_combo.update(dt, stateData)
 			stateData.winddownTimer = 0.0
 			status.setResource("poise", 0)
 		end
+		
+		if stateData.timer <= 0 then
+			animator.setAnimationState("body", "idle")
+		end
 	end
 
     return false
@@ -187,7 +191,7 @@ function neb_wulfjump_combo.update(dt, stateData)
 		stateData.timer = config.getParameter("neb_wulfjump_combo.chargeTime", 0.3)
 		
 		stateData.comboCount = 0
-		stateData.winddownTimer = 0.75
+		stateData.winddownTimer = 0.25
 	end
 	return false
   end

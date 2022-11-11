@@ -6,12 +6,12 @@
   "parameters" : {
     "scripts" : [ "/monsters/boss/neb_cultistbladewulf/skills/neb_wulfcombo.lua" ],
     "neb_wulfcombo" : {
-    	"minDistance" : 10,
+    	"minDistance" : 8,
 		"maxDistance" : 20,
 		
 		"windupTime" : 0.5,
 		"skillTime" : 0.1,
-		"winddownTime" : 0.75,
+		"winddownTime" : 0.25,
 		
 		"comboWindupTime" : 0.2,
 		"comboWinddownTime" : 0.3,

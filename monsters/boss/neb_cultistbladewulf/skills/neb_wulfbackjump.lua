@@ -71,7 +71,11 @@ function neb_wulfbackjump.update(dt, stateData)
 	
 	if stateData.windupTimer <= 0 and stateData.triggerSlash then
 		animator.setAnimationState("body", "slash")
-		animator.playSound("slash")
+		if self.phase == 2 then
+			animator.playSound("phase2attack")
+		else 
+			animator.playSound("slash")
+		end
 	end
     return false
   end

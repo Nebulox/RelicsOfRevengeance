@@ -94,7 +94,12 @@ function neb_wulfjump.update(dt, stateData)
 
     if stateData.timer <= 0 then
 	  animator.setAnimationState("body", "pounce")
-	  animator.playSound("pounce")
+	  
+	  if self.phase == 2 then
+		animator.playSound("phase2attack")
+	  else 
+		animator.playSound("pounce")
+	  end
 	  
 	  --monster.setDamageParts({"jumpbite"})
 	  local aimVector = world.distance(self.targetPosition, mcontroller.position())

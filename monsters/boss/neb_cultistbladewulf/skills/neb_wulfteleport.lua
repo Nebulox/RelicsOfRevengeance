@@ -34,7 +34,6 @@ function neb_wulfteleport.enter()
   
   local desiredPosition = {self.targetPosition[1] - (xDir * 3),self.targetPosition[2]}
   
-  -- note to self - add a check for whether the teleport position is valid; unsure if this works, will have to re-check SB documentation when I can
   local boundingBox = mcontroller.boundBox()
   local endBox = {boundingBox[1]+desiredPosition[1],boundingBox[2]+desiredPosition[2],boundingBox[3]+desiredPosition[1],boundingBox[4]+desiredPosition[2]}
   local invalidPosition = world.rectTileCollision(endBox, {"Null", "Block", "Dynamic", "Slippery"})
@@ -52,7 +51,7 @@ end
 function neb_wulfteleport.enteringState(stateData)
   --animator.setAnimationState("body", "flipWindup")
   animator.setAnimationState("body", "teleportOut")
-  animator.playSound("spawnCharge")
+  --animator.playSound("spawnCharge")
 end
 
 function neb_wulfteleport.update(dt, stateData)
@@ -81,7 +80,12 @@ function neb_wulfteleport.update(dt, stateData)
 	
 	if stateData.windupTimer <= 0 then
 		animator.setAnimationState("body", "slash")
-		animator.playSound("spawnAdd")
+		
+		if self.phase == 2 then
+			animator.playSound("phase2attack")
+		else 
+			animator.playSound("slash")
+		end
 	end
     return false
   end
@@ -103,7 +107,7 @@ function neb_wulfteleport.update(dt, stateData)
 	  animator.setAnimationState("body", "inAirBack")
 	  local vel = config.getParameter("neb_wulfteleport.jumpVelocity")
 	  mcontroller.setVelocity({vel[1] * xDir,vel[2]})
-      animator.playSound("spawnAdd")
+      --animator.playSound("spawnAdd")
     end
 
     return false

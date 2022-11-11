@@ -67,7 +67,7 @@ function init()
     for _,notification in pairs(notifications) do
       --if notification.healthLost == 0 then
 	  if not (self.stunned or animator.animationState("body") == "holdStagger" or animator.animationState("body") == "outOfStagger") then
-		status.modifyResource("poise", math.max(-notification.healthLost * 0.2),-20)
+		status.modifyResource("poise", math.max(-notification.healthLost * 0.5,-50))
         return
 	  end
       --end
@@ -75,7 +75,7 @@ function init()
   end)
   
   self.poiseStunTicks = 0
-  self.poiseMaxStunTicks = 30 --when poise broken, set poiseStunTicks to this value; will keep bladewolf stunned until poiseStunTicks reaches zero
+  self.poiseMaxStunTicks = 90 --when poise broken, set poiseStunTicks to this value; will keep bladewolf stunned until poiseStunTicks reaches zero
   
 end
 
@@ -97,7 +97,7 @@ function update(dt)
 	if not (animator.animationState("body") == "intoStagger" 
 	or animator.animationState("body") == "holdStagger"
 	or animator.animationState("body") == "outOfStagger") then 
-		animator.setAnimationState("body", "intoStagger") 
+		animator.setAnimationState("body", "intoStagger")
 	end
 	
 	self.damageSources:clear()
@@ -124,6 +124,7 @@ function update(dt)
       self.dead = true
 	  
 	  animator.setAnimationState("body", "intoStagger")
+	  
 	  self.damageSources:clear()
 		self.damageParts = {}
 		
@@ -151,6 +152,9 @@ function update(dt)
 		self.poiseStunTicks = self.poiseMaxStunTicks
 		status.setResource("poise",100)
 		animator.setAnimationState("body", "intoStagger",true)
+		animator.playSound("poiseBroken")
+		
+		status.addEphemeralEffect("vulnerability", self.poiseMaxStunTicks * dt * 2)
 		
 		status.setResource("stunned", 1.0)
 	end
@@ -340,6 +344,8 @@ function updatePhase(dt)
     if nextPhase.trigger and nextPhase.trigger == "healthPercentage" then
       if status.resourcePercentage("health") < nextPhase.healthPercentage then
         self.phase = self.phase + 1
+		status.setResource("stunned",0)
+		status.setResource("poise",100)
       end
     end
   end

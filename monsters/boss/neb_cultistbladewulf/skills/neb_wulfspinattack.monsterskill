@@ -12,9 +12,9 @@
 		"minVerticalDistance" : 5,
 		"maxVerticalDistance" : 30,
 		
-		"windupTime" : 0.3,
+		"windupTime" : 0.75,
 		"skillTime" : 0.01,
-		"winddownTime" : 0.25,
+		"winddownTime" : 0.5,
 		
 		"jumpVelocity" : [-30,20],
 		

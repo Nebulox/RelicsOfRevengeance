@@ -550,11 +550,14 @@
     "hurt" : [ "/sfx/npc/boss/cultistboss_shield.ogg" ],
     "death" : [ "/sfx/npc/boss/kluexboss_death.ogg" ],
 	
+	"poiseBroken" : ["/sfx/objects/vase_break_large1.ogg"],
+	
     "spawnAdd" : [ "/sfx/objects/vase_break_large1.ogg" ],
 	
     "slash" : [ "/sfx/melee/swing_broadsword_fire1.ogg", "/sfx/melee/swing_broadsword_fire2.ogg", "/sfx/melee/swing_broadsword_fire3.ogg" ],
     "pounce" : [ "/sfx/npc/boss/cultistboss_sphere_attack.ogg" ],
-    "bite" : [ "/sfx/npc/monsters/monster_bite1.ogg", "/sfx/npc/monsters/monster_bite2.ogg", "/sfx/npc/monsters/monster_bite3.ogg" ],
+    "bite" : [ "/sfx/npc/monsters/monster_bite1.ogg", "/sfx/npc/monsters/monster_bite2.ogg" ],
+	"phase2attack" : [ "/sfx/melee/mech_energychainsaw_swing1.ogg", "/sfx/melee/mech_energychainsaw_swing2.ogg", "/sfx/melee/mech_energychainsaw_swing3.ogg", "/sfx/melee/mech_energychainsaw_swing4.ogg" ],
     "fire" : [ "/sfx/gun/plasma_pistol1.ogg" ]
   },
 

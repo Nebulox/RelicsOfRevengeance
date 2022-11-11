@@ -25,10 +25,23 @@ function neb_wulfbackjump_kunai.enter()
   if not (distance > minDistance and distance < maxDistance ) then --distance check
 	return nil
   end
-
-  --if not self.moontants then self.moontants = 6 end
-
-  --if self.moontants <= 1 then return nil end
+  
+  
+  neb_wulfbackjump_kunai.toTarget = world.distance(self.targetPosition, mcontroller.position())
+  local targetDir = util.toDirection(neb_wulfbackjump_kunai.toTarget[1])
+  local xDir = 0
+  
+  if neb_wulfbackjump_kunai.toTarget[1] > 0 then
+	xDir = 1
+  else
+	xDir = -1
+  end
+  
+  --check if mob can reasonable jump behind to mitigate some awkward stuckness that can occur
+  local boundingBox = mcontroller.boundBox()
+  local endBox = {boundingBox[1]-(xDir * 3),boundingBox[2]+3,boundingBox[3]-(xDir * 3),boundingBox[4]+3}
+  local invalidPosition = world.rectTileCollision(endBox, {"Null", "Block", "Dynamic", "Slippery"})
+  if invalidPosition then return nil end
 
   return {
     windupTimer = config.getParameter("neb_wulfbackjump_kunai.windupTime", 1.0),
@@ -119,7 +132,8 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
 	if not stateData.finishedTurn then 
 		animator.rotateTransformationGroup("all", -stateData.degreesTurned)
 		stateData.finishedTurn = true
-		animator.setAnimationState("body", "intoStagger")
+		--animator.setAnimationState("body", "intoStagger")
+		animator.setAnimationState("body", "idle")
 	end
     --animator.rotateGroup("all", 0, true)
     --animator.setAnimationState("eye", "winddown")

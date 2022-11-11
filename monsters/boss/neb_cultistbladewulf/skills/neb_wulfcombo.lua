@@ -83,10 +83,20 @@ function neb_wulfcombo.update(dt, stateData)
     if stateData.timer <= 0 then
 	  if stateData.comboCount == 2 or stateData.comboCount == 0 then
 		animator.setAnimationState("body", "bite", true)
-		animator.playSound("bite")
+		
+		if self.phase == 2 then
+			animator.playSound("phase2attack")
+		else 
+			animator.playSound("bite")
+		end
 	  else
 		animator.setAnimationState("body", "pounce", true)
-		animator.playSound("pounce")
+		
+		if self.phase == 2 then
+			animator.playSound("phase2attack")
+		else 
+			animator.playSound("pounce")
+		end
 	  end
 	  
 	  local vel = config.getParameter("neb_wulfcombo.jumpVelocity")

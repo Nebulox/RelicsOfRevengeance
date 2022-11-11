@@ -63,7 +63,7 @@ function neb_wulfspawnads.update(dt, stateData)
       world.spawnProjectile("moontantspawn", mcontroller.position(), entity.id(), {0,-1}, false, {power = 0, level = monster.level()} )
 
 
-      animator.playSound("spawnAdd")
+      --animator.playSound("spawnAdd")
     end
 
     return false

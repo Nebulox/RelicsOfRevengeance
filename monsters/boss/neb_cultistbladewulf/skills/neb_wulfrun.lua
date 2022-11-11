@@ -82,7 +82,7 @@ function neb_wulfrun.update(dt, stateData)
 
 	if not neb_wulfrun.checkDistance() then
 		stateData.jumpWindupTimer = 0.01
-		stateData.jumpWinddownTimer = 0.5
+		stateData.jumpWinddownTimer = 0.1
 		--sb.logInfo("run into jump!")
 		
 		stateData.jumpTriggered = true
@@ -100,7 +100,12 @@ function neb_wulfrun.update(dt, stateData)
 	
 	if stateData.jumpWindupTimer <= 0 then
 		animator.setAnimationState("body", "pounce")
-	    animator.playSound("pounce")
+		if self.phase == 2 then
+			animator.playSound("phase2attack")
+		else 
+			animator.playSound("pounce")
+		end
+		
 		local aimVector = world.distance(self.targetPosition, mcontroller.position())
 		local aimDir = math.atan(aimVector[2],aimVector[1])
 	  
@@ -155,7 +160,7 @@ function neb_wulfrun.update(dt, stateData)
 			animator.setAnimationState("body", "intoStagger",true)
 			--monster.setDamageOnTouch(false)
 			
-			stateData.jumpWinddownTimer = 0.75
+			stateData.jumpWinddownTimer = 0.5
 			
 			status.modifyResource("poise", -20)
 		end

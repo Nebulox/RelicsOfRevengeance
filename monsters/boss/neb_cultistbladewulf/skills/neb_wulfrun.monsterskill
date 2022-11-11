@@ -13,7 +13,7 @@
 		
 		"jumpVelocity" : [40,27],
 		
-		"cooldownTime" : 1.0,
+		"cooldownTime" : 0.5,
 		"cooldownCategory" : "neb_wulfrun"
     }
   }
