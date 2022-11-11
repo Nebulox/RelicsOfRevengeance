@@ -53,7 +53,7 @@
     "projectileSourcePosition" : [-2.5, -1.25],
     "projectileSourceOffset" : [7, 0],
 
-    "trackTargetDistance" : 50.0,
+    "trackTargetDistance" : 80.0,
     "switchTargetDistance" : 0,
     "keepTargetInSight" : false,
 
