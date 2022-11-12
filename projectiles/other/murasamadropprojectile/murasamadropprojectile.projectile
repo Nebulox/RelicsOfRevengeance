@@ -15,7 +15,7 @@
   "scripts" : ["murasamadropprojectile.lua"],
   "orientationLocked" : true,
   "pointToLight" : true,
-  "spinRate" : 2,
+  "spinRate" : 1.5,
   "minSpinSpeed": 5,
   "spinDirection" : -1
 }
