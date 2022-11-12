@@ -26,6 +26,9 @@
       "/monsters/boss/neb_cultistbladewulf/dieState.lua",
       "/monsters/boss/neb_cultistbladewulf/idleState.lua"
     ],
+	
+	"spinRate" : 12,
+	"poise" : 200,
 
     "skillCount" : 10,
     "skills" : [ "neb_wulfcombo", "neb_wulfjump_combo","neb_wulfspawnads","neb_wulfbackjump_kunai","neb_wulfbackjump","neb_wulfjump","neb_wulfrun","neb_wulfteleport","neb_wulfspinattack"],
@@ -169,7 +172,7 @@
           "baseValue" : 800
         },
         "protection" : {
-          "baseValue" : 70
+          "baseValue" : 120
         },
         "healthRegen" : {
           "baseValue" : 0.0

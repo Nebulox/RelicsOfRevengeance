@@ -122,7 +122,7 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
   end
   
   if not stateData.finishedTurn then
-	stateData.degreesTurned = stateData.degreesTurned + 35/180*math.pi
+	--stateData.degreesTurned = stateData.degreesTurned + (35 / 180 * math.pi * dt)
 	animator.rotateTransformationGroup("all", 35/180*math.pi)
   end
 
@@ -130,7 +130,7 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
 	if not mcontroller.onGround() then return false end
 	
 	if not stateData.finishedTurn then 
-		animator.rotateTransformationGroup("all", -stateData.degreesTurned)
+		--animator.rotateTransformationGroup("all", -stateData.degreesTurned)
 		stateData.finishedTurn = true
 		--animator.setAnimationState("body", "intoStagger")
 		animator.setAnimationState("body", "idle")
@@ -141,6 +141,6 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
     return false
   end
   
-  self.state.stateCooldown(neb_wulfbackjump_kunai.cooldownCategory,config.getParameter("neb_wulfbackjump_kunai.cooldownTime"))
+  self.state.stateCooldown(neb_wulfbackjump_kunai.cooldownCategory, config.getParameter("neb_wulfbackjump_kunai.cooldownTime"))
   return true
 end

@@ -158,7 +158,7 @@ function neb_wulfjump_combo.update(dt, stateData)
 	if stateData.phase == 2 and not mcontroller.onGround() then
 		animator.setAnimationState("body", "flip")
 		
-		animator.rotateTransformationGroup("all", 35/180*math.pi)
+		--animator.rotateTransformationGroup("all", 35 / 180 * math.pi * dt)
 	end
 	
 	if not mcontroller.onGround() then return false end

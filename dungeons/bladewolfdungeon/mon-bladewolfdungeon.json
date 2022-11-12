@@ -32,6 +32,38 @@
          "y":0
         }, 
         {
+         "draworder":"topdown",
+         "id":11,
+         "name":"stagehands",
+         "objects":[
+                {
+                 "class":"",
+                 "height":275,
+                 "id":1381,
+                 "name":"",
+                 "properties":
+                    {
+                     "parameters":"{\"music\": [\"\/music\/housecleaning.ogg\"] }",
+                     "stagehand":"bossmusic"
+                    },
+                 "propertytypes":
+                    {
+                     "parameters":"string",
+                     "stagehand":"string"
+                    },
+                 "rotation":0,
+                 "visible":true,
+                 "width":632,
+                 "x":800,
+                 "y":865.454545454545
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
          "color":"#5555ff",
          "draworder":"topdown",
          "id":3,
@@ -2402,11 +2434,13 @@
                  "name":"neb_cultistbladewulf",
                  "properties":
                     {
-                     "monster":"neb_cultistbladewulf"
+                     "monster":"neb_cultistbladewulf",
+                     "parameters":"{\"musicStagehands\" : [\"bossmusic\"] }"
                     },
                  "propertytypes":
                     {
-                     "monster":"string"
+                     "monster":"string",
+                     "parameters":"string"
                     },
                  "rotation":0,
                  "visible":true,
@@ -2904,8 +2938,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":11,
- "nextobjectid":1379,
+ "nextlayerid":12,
+ "nextobjectid":1382,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.2",

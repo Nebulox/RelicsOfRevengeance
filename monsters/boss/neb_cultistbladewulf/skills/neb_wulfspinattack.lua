@@ -78,7 +78,7 @@ function neb_wulfspinattack.update(dt, stateData)
 		local aimDir = math.atan(aimVector[2],aimVector[1])
 		
 		  
-		mcontroller.setVelocity({math.cos(aimDir)*70,math.max(math.sin(aimDir)*70,45)}) -- aims directly at target, jumps towards them.
+		mcontroller.setVelocity({math.cos(aimDir) * 70, math.max(math.sin(aimDir) * 70,45)}) -- aims directly at target, jumps towards them.
 		-- may look to calculate an actual formula to have better intercepts (i.e. considering gravity; target entity will be assumed to be stationary because I can't be bother to do *that* much math :) )
 		  
 		--animator.playSound("spawnAdd")
@@ -99,12 +99,11 @@ function neb_wulfspinattack.update(dt, stateData)
 
   if stateData.winddownTimer > 0 then
 	if not mcontroller.onGround() then
-		animator.rotateTransformationGroup("all", 35/180*math.pi)
+		--animator.rotateTransformationGroup("all", 35 / 180 * math.pi * dt)
 		return false 
 	end
 	
 	if not stateData.touchedGround then
-		animator.resetTransformationGroup("all")
 		animator.setAnimationState("body", "idle")
 		
 		if stateData.timesSpun == 2 then animator.setAnimationState("body", "intoStagger") end

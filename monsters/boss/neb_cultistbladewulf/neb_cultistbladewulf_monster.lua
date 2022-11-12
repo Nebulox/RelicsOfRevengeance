@@ -19,7 +19,7 @@ function init()
   self.isBlocked = false
   self.willFall = false
 
-  self.queryTargetDistance = config.getParameter("queryTargetDistance", 30)
+  self.queryTargetDistance = config.getParameter("queryTargetDistance", 45)
   self.trackTargetDistance = config.getParameter("trackTargetDistance")
   self.switchTargetDistance = config.getParameter("switchTargetDistance")
   self.keepTargetInSight = config.getParameter("keepTargetInSight", true)
@@ -67,7 +67,7 @@ function init()
     for _,notification in pairs(notifications) do
       --if notification.healthLost == 0 then
 	  if not (self.stunned or animator.animationState("body") == "holdStagger" or animator.animationState("body") == "outOfStagger") then
-		status.modifyResource("poise", math.max(-notification.healthLost * 0.5,-50))
+		status.modifyResource("poise", math.max(-notification.healthLost * 0.3, -50))
         return
 	  end
       --end
@@ -77,10 +77,19 @@ function init()
   self.poiseStunTicks = 0
   self.poiseMaxStunTicks = 90 --when poise broken, set poiseStunTicks to this value; will keep bladewolf stunned until poiseStunTicks reaches zero
   
+  self.storedRotation = 0
 end
 
 function update(dt)
   self.tookDamage = false
+  
+  animator.resetTransformationGroup("all")
+  if animator.animationState("body") == "flip" then
+    self.storedRotation = self.storedRotation + (config.getParameter("spinRate", 13) * -dt)
+    animator.rotateTransformationGroup("all", self.storedRotation)
+  else
+    self.storedRotation = 0
+  end
   
   if status.resourcePositive("stunned") then
 	self.stunned = true
@@ -95,8 +104,9 @@ function update(dt)
 	
 	animator.resetTransformationGroup("all")
 	if not (animator.animationState("body") == "intoStagger" 
-	or animator.animationState("body") == "holdStagger"
-	or animator.animationState("body") == "outOfStagger") then 
+		or animator.animationState("body") == "holdStagger"
+		or animator.animationState("body") == "outOfStagger") then 
+		
 		animator.setAnimationState("body", "intoStagger")
 	end
 	
@@ -112,9 +122,9 @@ function update(dt)
   
   world.debugText(status.resource("poise"), mcontroller.position(),"yellow")
   
-  self.poiseStunTicks = math.max(0,self.poiseStunTicks - 1)
+  self.poiseStunTicks = math.max(0, self.poiseStunTicks - 1)
   if self.poiseStunTicks > 0 then
-	status.setResource("stunned",1.0)
+	status.setResource("stunned", 1.0)
   end
 
   if not status.resourcePositive("health") then
@@ -149,24 +159,24 @@ function update(dt)
 	-- poise stuff
 	self.poiseDamageListener:update()
 	if status.resource("poise") <= 1.0 then
-		self.poiseStunTicks = self.poiseMaxStunTicks
-		status.setResource("poise",100)
-		animator.setAnimationState("body", "intoStagger",true)
-		animator.playSound("poiseBroken")
+	  self.poiseStunTicks = self.poiseMaxStunTicks
+	  status.setResource("poise", config.getParameter("poise", 100))
+	  animator.setAnimationState("body", "intoStagger",true)
+	  animator.playSound("poiseBroken")
 		
-		status.addEphemeralEffect("vulnerability", self.poiseMaxStunTicks * dt * 2)
+	  status.addEphemeralEffect("vulnerability", self.poiseMaxStunTicks * dt * 2)
 		
-		status.setResource("stunned", 1.0)
+	  status.setResource("stunned", 1.0)
 	end
 	
 	if self.behaviorTick >= self.behaviorTickRate and not self.stunned then
-		self.behaviorTick = self.behaviorTick - self.behaviorTickRate
+	  self.behaviorTick = self.behaviorTick - self.behaviorTickRate
 		
-		self.damageSources:clear()
-		self.damageParts = {}
+	  self.damageSources:clear()
+	  self.damageParts = {}
 		
-		setDamageSources()
-		monster.setDamageParts(self.damageParts)
+	  setDamageSources()
+	  monster.setDamageParts(self.damageParts)
 	end
 	--sb.logInfo(sb.printJson(self.state.stateCooldownTimers()))
 
@@ -201,7 +211,7 @@ function update(dt)
 		animator.resetTransformationGroup("all")
 		animator.setAnimationState("body","idle")
 		
-		status.setResource("poise",100)
+		status.setResource("poise", config.getParameter("poise", 100))
 		
 		mcontroller.setVelocity({0,0})
       end
@@ -344,8 +354,8 @@ function updatePhase(dt)
     if nextPhase.trigger and nextPhase.trigger == "healthPercentage" then
       if status.resourcePercentage("health") < nextPhase.healthPercentage then
         self.phase = self.phase + 1
-		status.setResource("stunned",0)
-		status.setResource("poise",100)
+		status.setResource("stunned", 0)
+		status.setResource("poise", config.getParameter("poise", 100))
       end
     end
   end
@@ -519,16 +529,22 @@ function willFall()
   return self.willFall
 end
 
+--Updated to avoid unique id's
 function setBattleMusicEnabled(enabled)
   if self.musicEnabled ~= enabled then
     local musicStagehands = config.getParameter("musicStagehands", {})
-    for _,stagehand in pairs(musicStagehands) do
-      local entityId = world.loadUniqueEntity(stagehand)
-
-      if entityId and world.entityExists(entityId) then
-        world.callScriptedEntity(entityId, "setMusicEnabled", enabled)
-        self.musicEnabled = enabled
-      end
-    end
+	if #musicStagehands > 0 then
+  	  local entityQuery = world.entityQuery(mcontroller.position(), self.trackTargetDistance)
+	  for _, entityId in ipairs(entityQuery) do
+	    if world.stagehandType(entityId) then
+		  for _, stagehand in pairs(musicStagehands) do
+		    if entityId and world.stagehandType(entityId) == stagehand and world.entityExists(entityId) then
+			  world.callScriptedEntity(entityId, "setMusicEnabled", enabled)
+			  self.musicEnabled = enabled
+		    end
+		  end
+	    end
+	  end
+	end
   end
 end
