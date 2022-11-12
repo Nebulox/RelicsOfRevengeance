@@ -67,7 +67,7 @@ function init()
     for _,notification in pairs(notifications) do
       --if notification.healthLost == 0 then
 	  if not (self.stunned or animator.animationState("body") == "holdStagger" or animator.animationState("body") == "outOfStagger") then
-		status.modifyResource("poise", math.max(-notification.healthLost * 0.3, -50))
+		status.modifyResource("poise", math.max(-notification.healthLost * 0.475, -40))
         return
 	  end
       --end
