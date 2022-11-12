@@ -59,6 +59,10 @@ end
 
 function neb_wulfjump.enteringState(stateData)
   animator.setAnimationState("body", "generalWindup")
+  
+  --animator.setParticleEmitterOffsetRegion("smoke", mcontroller.boundBox())
+  --animator.burstParticleEmitter("smoke")
+  animator.playSound("windupAlt")
 end
 
 function neb_wulfjump.update(dt, stateData)
@@ -78,13 +82,13 @@ function neb_wulfjump.update(dt, stateData)
     mcontroller.controlFace(targetDir)
     stateData.windupTimer = stateData.windupTimer - dt
 	
-	if (not neb_wulfjump.checkShortDistance() == true) and (self.state.stateCooldown("neb_wulfbackjump") == 0) then --transitions to backjump if too close
+	--if (not neb_wulfjump.checkShortDistance() == true) and (self.state.stateCooldown("neb_wulfbackjump") == 0) then --transitions to backjump if too close
 	
 		--sb.logInfo("switch to different state!!")
 		-- note: debatable if this even works....
-		neb_wulfbackjump.enter()
-		return true
-	end
+		--neb_wulfbackjump.enter()
+		--return true
+	--end
 	
     return false
   end

@@ -52,9 +52,7 @@
 		//GENERAL WINDUP
 		  "generalWindup" : {
 			"frames" : 4,
-            "cycle" : 0.3,
-            "mode" : "transition",
-            "transition" : "idle"
+            "cycle" : 0.3
 		  },
 		//RUN
 		  "run" : {
@@ -517,6 +515,14 @@
       ]
     },
 
+	"smoke" : {
+      "emissionRate" : 10,
+	  "burstCount" : 10,
+      "particles" : [
+		{"particle" : "rocketbarrelpuff"}
+      ]
+    },
+
     "deathPoof" : {
       "particles" : [
         {
@@ -551,6 +557,7 @@
     "death" : [ "/sfx/npc/boss/kluexboss_death.ogg" ],
 	
 	"poiseBroken" : ["/sfx/objects/vase_break_large1.ogg"],
+	"windupAlt" : ["/sfx/npc/monsters/penguintank_aim.ogg"],
 	
     "spawnAdd" : [ "/sfx/objects/vase_break_large1.ogg" ],
 	

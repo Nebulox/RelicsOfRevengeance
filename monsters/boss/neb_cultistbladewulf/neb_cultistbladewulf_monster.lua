@@ -67,7 +67,9 @@ function init()
     for _,notification in pairs(notifications) do
       --if notification.healthLost == 0 then
 	  if not (self.stunned or animator.animationState("body") == "holdStagger" or animator.animationState("body") == "outOfStagger") then
-		status.modifyResource("poise", math.max(-notification.healthLost * 0.475, -40))
+		local poiseDamageRecieved = math.max(-notification.healthLost * 0.3, -40)
+		--world.debugText(poiseDamageRecieved, {mcontroller.position()[1],mcontroller.position()[2]+5},"red")
+		status.modifyResource("poise", poiseDamageRecieved)
         return
 	  end
       --end
@@ -78,6 +80,9 @@ function init()
   self.poiseMaxStunTicks = 90 --when poise broken, set poiseStunTicks to this value; will keep bladewolf stunned until poiseStunTicks reaches zero
   
   self.storedRotation = 0
+  self.rotationMult = 1
+  
+  script.setUpdateDelta(1)
 end
 
 function update(dt)
@@ -85,7 +90,7 @@ function update(dt)
   
   animator.resetTransformationGroup("all")
   if animator.animationState("body") == "flip" then
-    self.storedRotation = self.storedRotation + (config.getParameter("spinRate", 13) * -dt)
+    self.storedRotation = self.storedRotation + (self.rotationMult * config.getParameter("spinRate", 13) * -dt)
     animator.rotateTransformationGroup("all", self.storedRotation)
   else
     self.storedRotation = 0

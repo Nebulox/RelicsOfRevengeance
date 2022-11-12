@@ -27,8 +27,8 @@
       "/monsters/boss/neb_cultistbladewulf/idleState.lua"
     ],
 	
-	"spinRate" : 12,
-	"poise" : 200,
+	"spinRate" : 20,
+	"poise" : 100,
 
     "skillCount" : 10,
     "skills" : [ "neb_wulfcombo", "neb_wulfjump_combo","neb_wulfspawnads","neb_wulfbackjump_kunai","neb_wulfbackjump","neb_wulfjump","neb_wulfrun","neb_wulfteleport","neb_wulfspinattack"],
@@ -43,7 +43,7 @@
         "healthPercentage" : 0.5,
         "enterPhase" : "neb_wulfspawnads",
         "skills" : [ "neb_wulfspinattack","neb_wulfbackjump_kunai", "neb_wulfteleport", "neb_wulfcombo","neb_wulfjump_combo","neb_wulfjump","neb_wulfbackjump","neb_wulfrun" ]
-		//"skills" : ["neb_wulfjump_combo"]
+		//"skills" : ["neb_wulfbackjump_kunai"]
       }//,
       //{
         //"trigger" : "healthPercentage",
@@ -172,7 +172,7 @@
           "baseValue" : 800
         },
         "protection" : {
-          "baseValue" : 120
+          "baseValue" : 60
         },
         "healthRegen" : {
           "baseValue" : 0.0

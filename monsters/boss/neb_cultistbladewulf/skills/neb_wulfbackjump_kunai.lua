@@ -39,6 +39,8 @@ function neb_wulfbackjump_kunai.enter()
   
   --check if mob can reasonable jump behind to mitigate some awkward stuckness that can occur
   local boundingBox = mcontroller.boundBox()
+  -- updates bounding box to be in world coordinates
+  boundingBox = {boundingBox[1]+mcontroller.position()[1],boundingBox[2]+mcontroller.position()[2],boundingBox[3]+mcontroller.position()[1],boundingBox[4]+mcontroller.position()[2]}
   local endBox = {boundingBox[1]-(xDir * 3),boundingBox[2]+3,boundingBox[3]-(xDir * 3),boundingBox[4]+3}
   local invalidPosition = world.rectTileCollision(endBox, {"Null", "Block", "Dynamic", "Slippery"})
   if invalidPosition then return nil end
@@ -55,6 +57,9 @@ end
 
 function neb_wulfbackjump_kunai.enteringState(stateData)
   animator.setAnimationState("body", "jumpWindup")
+  self.rotationMult = -1 --backwards flip
+  
+  stateData.targetPosition = self.targetPosition
 end
 
 function neb_wulfbackjump_kunai.update(dt, stateData)
@@ -93,7 +98,7 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
     stateData.bufferTime = stateData.bufferTime - dt
 
     if stateData.bufferTime <= 0 then
-	  local aimVector = world.distance(self.targetPosition, mcontroller.position())
+	  local aimVector = world.distance(stateData.targetPosition, mcontroller.position())
 	  local aimDir = math.atan(aimVector[2],aimVector[1])
 	  
 	  animator.setAnimationState("body", "flip")
@@ -123,7 +128,7 @@ function neb_wulfbackjump_kunai.update(dt, stateData)
   
   if not stateData.finishedTurn then
 	--stateData.degreesTurned = stateData.degreesTurned + (35 / 180 * math.pi * dt)
-	animator.rotateTransformationGroup("all", 35/180*math.pi)
+	--animator.rotateTransformationGroup("all", 35/180*math.pi)
   end
 
   if stateData.winddownTimer > 0 then

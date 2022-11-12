@@ -14,7 +14,7 @@
 		
 		"windupTime" : 0.75,
 		"skillTime" : 0.01,
-		"winddownTime" : 0.75,
+		"winddownTime" : 0.01,
 		
 		"jumpVelocity" : [-30,20],
 		

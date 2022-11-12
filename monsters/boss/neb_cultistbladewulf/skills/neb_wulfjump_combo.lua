@@ -63,6 +63,7 @@ end
 function neb_wulfjump_combo.enteringState(stateData)
   --animator.setAnimationState("eye", "windup")
   animator.setAnimationState("body", "jumpWindup")
+  self.rotationMult = 1 --forwards flip
 end
 
 function neb_wulfjump_combo.update(dt, stateData)
@@ -162,7 +163,7 @@ function neb_wulfjump_combo.update(dt, stateData)
 	end
 	
 	if not mcontroller.onGround() then return false end
-	if stateData.phase == 2 then animator.resetTransformationGroup("all") end
+	if stateData.phase == 2 then animator.resetTransformationGroup("all") else animator.setAnimationState("body","idle") end
 	
 	if animator.animationState("body") == "flip" then animator.setAnimationState("body", "idle") end
 	

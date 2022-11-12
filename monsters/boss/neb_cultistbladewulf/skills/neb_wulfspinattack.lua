@@ -47,6 +47,8 @@ function neb_wulfspinattack.enteringState(stateData)
   animator.setAnimationState("body", "flipWindup")
   animator.setAnimationState("flash", "on")
   
+  self.rotationMult = 1 --forwards flip
+  
   --animator.playSound("spawnCharge")
 end
 
@@ -78,7 +80,7 @@ function neb_wulfspinattack.update(dt, stateData)
 		local aimDir = math.atan(aimVector[2],aimVector[1])
 		
 		  
-		mcontroller.setVelocity({math.cos(aimDir) * 70, math.max(math.sin(aimDir) * 70,45)}) -- aims directly at target, jumps towards them.
+		mcontroller.setVelocity({math.cos(aimDir) * 70, math.max(math.sin(aimDir) * 80,45)}) -- aims directly at target, jumps towards them.
 		-- may look to calculate an actual formula to have better intercepts (i.e. considering gravity; target entity will be assumed to be stationary because I can't be bother to do *that* much math :) )
 		  
 		--animator.playSound("spawnAdd")
@@ -115,16 +117,18 @@ function neb_wulfspinattack.update(dt, stateData)
 	
 	if stateData.winddownTimer <= 0 then
 		stateData.timesSpun = stateData.timesSpun + 1
+		
 		if stateData.timesSpun < 3 then
-			stateData.windupTimer = config.getParameter("neb_wulfspinattack.windupTime", 1.0) * 0.5
-			stateData.timer = config.getParameter("neb_wulfspinattack.skillTime", 0.3)
-			stateData.winddownTimer = config.getParameter("neb_wulfspinattack.winddownTime", 1.0)
+			--monster.say("reset timers for spin attack")
+			stateData.windupTimer = 0.01
+			stateData.timer = 0.01
+			stateData.winddownTimer = 0.01
 			stateData.touchedGround = false
 			
 			animator.setAnimationState("body", "flipWindup")
 			
 			if stateData.timesSpun == 2 then
-				stateData.winddownTimer = 0.5
+				stateData.winddownTimer = 1.25
 			end
 			--animator.setAnimationState("flash", "on")
 			
