@@ -108,7 +108,10 @@ function neb_wulfspinattack.update(dt, stateData)
 	if not stateData.touchedGround then
 		animator.setAnimationState("body", "idle")
 		
-		if stateData.timesSpun == 2 then animator.setAnimationState("body", "intoStagger") end
+		if stateData.timesSpun == 2 then 
+			animator.setAnimationState("body", "intoStagger")
+			if status.resource("poise") > 20 then status.setResource("poise",math.max(status.resource("poise") - 20, 20)) end
+		end
 		
 		stateData.touchedGround = true
 	end
@@ -138,7 +141,7 @@ function neb_wulfspinattack.update(dt, stateData)
     return false
   end
   
-  animator.setAnimationState("body", "idle")
+  animator.setAnimationState("body", "outOfStagger")
   
   self.state.stateCooldown(neb_wulfspinattack.cooldownCategory,config.getParameter("neb_wulfspinattack.cooldownTime"))
   return true

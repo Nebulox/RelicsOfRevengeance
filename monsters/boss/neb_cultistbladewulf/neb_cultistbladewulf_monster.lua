@@ -82,7 +82,23 @@ function init()
   self.storedRotation = 0
   self.rotationMult = 1
   
-  script.setUpdateDelta(1)
+  --used to define position where Occasus summons can spawn; defined only on init of entity.
+  local startingPosition = mcontroller.position()
+  local rEndPosition = {startingPosition[1]+30,startingPosition[2]}
+  local lEndPosition = {startingPosition[1]-30,startingPosition[2]}
+  
+  self.spawnBounds = {}
+  self.spawnBounds[1] = world.lineCollision(startingPosition, lEndPosition); if self.spawnBounds[1] == nil then self.spawnBounds[1] = lEndPosition end
+  self.spawnBounds[2] = world.lineCollision(startingPosition, rEndPosition); if self.spawnBounds[2] == nil then self.spawnBounds[2] = rEndPosition end
+  
+  --slightly reduce bounds area to (hopefully) avoid spawning any NPCs in walls
+  self.spawnBounds[1][1] = self.spawnBounds[1][1] + 5
+  self.spawnBounds[2][1] = self.spawnBounds[2][1] - 5
+  
+  self.summonSpawnTimer = 0
+  self.summonSpawnTime = 20 -- should be in seconds
+  
+  --script.setUpdateDelta(1)
 end
 
 function update(dt)
@@ -131,6 +147,8 @@ function update(dt)
   if self.poiseStunTicks > 0 then
 	status.setResource("stunned", 1.0)
   end
+  
+  self.summonSpawnTimer = math.max(0, self.summonSpawnTimer - dt)
 
   if not status.resourcePositive("health") then
     local inState = self.state.stateDesc()
@@ -197,6 +215,23 @@ function update(dt)
       setBattleMusicEnabled(true)
 
       animator.setGlobalTag("phase", "phase"..currentPhase())
+	  
+	  --spawn summons, only on phase 2
+	  if self.phase == 2 and self.summonSpawnTimer == 0 then
+		self.summonSpawnTimer = self.summonSpawnTime
+		
+		local spawnBoundsDiff = self.spawnBounds[2][1] - self.spawnBounds[1][1]
+		local resXPosition = world.xwrap(self.spawnBounds[1][1] + spawnBoundsDiff * math.random())
+		
+		local npc1 = world.spawnNpc({resXPosition, self.spawnBounds[1][2]}, "human", "cultist", monster.level()-3)
+		world.sendEntityMessage(npc1, "applyStatusEffect", "beamin")
+		
+		resXPosition = world.xwrap(self.spawnBounds[1][1] + spawnBoundsDiff * math.random())
+		local npc2 = world.spawnNpc({resXPosition, self.spawnBounds[1][2]}, "human", "cultist", monster.level()-3)
+		world.sendEntityMessage(npc2, "applyStatusEffect", "beamin")
+	  end
+	  
+	  
     else
       if self.hadTarget then
         --Lost target, reset boss

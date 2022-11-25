@@ -60,7 +60,7 @@ function neb_wulfspawnads.update(dt, stateData)
 	  animator.setAnimationState("body", "enterPhase")
 	
 	  --update this later, spawn actual NPCs or mobs for release. placeholder right now.
-      world.spawnProjectile("moontantspawn", mcontroller.position(), entity.id(), {0,-1}, false, {power = 0, level = monster.level()} )
+      --world.spawnProjectile("moontantspawn", mcontroller.position(), entity.id(), {0,-1}, false, {power = 0, level = monster.level()} )
 
 
       --animator.playSound("spawnAdd")

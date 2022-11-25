@@ -9,7 +9,7 @@
     	"minDistance" : 10,
 		"maxDistance" : 40,
 		
-		"minVerticalDistance" : 5,
+		"minVerticalDistance" : 7,
 		"maxVerticalDistance" : 30,
 		
 		"windupTime" : 0.75,
