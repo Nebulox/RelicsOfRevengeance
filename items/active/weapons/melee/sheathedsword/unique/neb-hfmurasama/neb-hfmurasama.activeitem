@@ -158,7 +158,7 @@
 		"allowFlip": true,
         "twoHanded": true,
 		
-		"holdTime" : 1.15,
+		"holdTime" : 0.85,
 		"walkWhileHolding" : true,
 		"chargeDirectives" : "?fade=FFFFFF=0.025?border=2;FF484850;00000000",
 		

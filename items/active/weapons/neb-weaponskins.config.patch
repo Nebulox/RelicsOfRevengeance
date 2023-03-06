@@ -234,6 +234,94 @@
             }
           }
         }
+      },
+      "shrioA": {
+	    "skinName" : "Shiro Var-A",
+	    "unlockDescription" : "Unlocked by default.",
+        "prerequisiteQuests": [],
+	  
+        "skinConfig": {
+          "description": "A weapon forged of nanomaterial, a blade of whitest white.",
+          "shortdescription": "Shiro Var-A",
+          "inventoryIcon": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/shiroa.png:sheathed",
+          "animationParts": {
+            "blade": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/shiroa.png",
+            "bladeFullbright": "",
+            "swoosh": "physical"
+          },
+          "scriptedAnimationParameters": {
+		    "alwaysBehind" : true,
+            "sheathRotation": 95,
+            "sheathOffset": [
+              -0,
+              -0.875
+            ],
+            "sheathSprites": {
+              "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/shiroa.png:sheathed?flipy",
+              "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/shiroa.png:sheathAlone?flipy",
+              "hidden": ""
+            },
+            "sheathSpritesFullbright": {
+              "sheathed": "",
+              "unsheathed": "",
+              "hidden": ""
+            }
+          },
+          "primaryAbility": {
+            "chargeRingConfig": {
+              "image": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/shiroring.png"
+            },
+            "stances": {
+              "fire6": {
+                "projectileType": "neb-murasamathousandcutsshiro"
+              }
+            }
+          }
+        }
+      },
+      "shrioB": {
+	    "skinName" : "Shiro Var-B",
+	    "unlockDescription" : "Unlocked by default.",
+        "prerequisiteQuests": [],
+	  
+        "skinConfig": {
+          "description": "A weapon forged of nanomaterial, a blade of whitest white.",
+          "shortdescription": "Shiro Var-B",
+          "inventoryIcon": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/shirob.png:sheathed",
+          "animationParts": {
+            "blade": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/shirob.png",
+            "bladeFullbright": "",
+            "swoosh": "physical"
+          },
+          "scriptedAnimationParameters": {
+		    "alwaysBehind" : true,
+            "sheathRotation": 95,
+            "sheathOffset": [
+              -0,
+              -0.875
+            ],
+            "sheathSprites": {
+              "sheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/shirob.png:sheathed?flipy",
+              "unsheathed": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/shirob.png:sheathAlone?flipy",
+              "hidden": ""
+            },
+            "sheathSpritesFullbright": {
+              "sheathed": "",
+              "unsheathed": "",
+              "hidden": ""
+            }
+          },
+          "primaryAbility": {
+            "chargeRingConfig": {
+              "image": "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/shiroring.png"
+            },
+            "stances": {
+              "fire6": {
+                "projectileType": "neb-murasamathousandcutsshiro"
+              }
+            }
+          }
+        }
       }
     }
   }

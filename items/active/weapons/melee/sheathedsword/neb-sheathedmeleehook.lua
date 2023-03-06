@@ -36,7 +36,7 @@ end
 
 function updateSheath(state)
   local weaponRot = (((math.log(math.abs(mcontroller.xVelocity()) + 0.35, 3) + 1) * (mcontroller.xVelocity() > 0 and 1 or -1)) * mcontroller.facingDirection() + ((math.log(math.abs(mcontroller.yVelocity()) + 0.35, 2) + 1) * (mcontroller.yVelocity() > 0 and -1 or 1)))
-  local sheathLayer = mcontroller.facingDirection() * (config.getParameter("zLevelFlipped", false) and -1 or 1)
+  local sheathLayer = self.animConfig.alwaysBehind and -1 or (mcontroller.facingDirection() * (self.animConfig.zLevelFlipped and -1 or 1))
   
   local sheathProperties = {}
   
