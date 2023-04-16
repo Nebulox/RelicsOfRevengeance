@@ -33,7 +33,7 @@
       "fireUnsheath" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
       "fireUnsheathCharged" : ["/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_4.ogg"],
 	  "chargePing" : [ "/sfx/npc/monsters/orbide_windup2.ogg" ],
-	  "parry" : [ "/sfx/melee/murasama/neb_murasama_parry.ogg" ],
+	  "parry" : [ "/sfx/melee/neb-murasama/neb_murasama_parry.ogg" ],
 	  
       "unsheathSword" : [ "/sfx/melee/neb-sheathsword.ogg" ]
     }
