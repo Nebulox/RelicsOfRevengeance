@@ -250,7 +250,7 @@
             "swoosh": "physical"
           },
           "scriptedAnimationParameters": {
-		    "alwaysBehind" : true,
+            "alwaysBehind" : true,
             "sheathRotation": 95,
             "sheathOffset": [
               -0,
@@ -294,7 +294,7 @@
             "swoosh": "physical"
           },
           "scriptedAnimationParameters": {
-		    "alwaysBehind" : true,
+            "alwaysBehind" : true,
             "sheathRotation": 95,
             "sheathOffset": [
               -0,

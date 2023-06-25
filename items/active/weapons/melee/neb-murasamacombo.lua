@@ -324,7 +324,7 @@ function NebMurasamaCombo:fire(overWrite, charged)
 		    local params = copy(projectileConfig)
 		    --params.power = params.power * config.getParameter("damageLevelMultiplier")
 		    params.power = self.baseDps * config.getParameter("damageLevelMultiplier") / #self.reflectedProjectiles
-		    params.speed = params.speed * 1.25
+		    params.speed = (params.speed or 50) * 1.25
 		  
 		    --Projectile spawn code
 		    if not world.pointTileCollision(mcontroller.position()) then
