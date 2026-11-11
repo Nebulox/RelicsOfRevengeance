@@ -82,7 +82,7 @@
               "fire3" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire4" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire5" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-              "fire6" : ["/sfx/melee/sword_parry.ogg"]
+              "fire6" : []
             }
           },
           "scriptedAnimationParameters": {
@@ -193,7 +193,7 @@
               "fire3" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire4" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire5" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-              "fire6" : ["/sfx/melee/sword_parry.ogg"]
+              "fire6" : []
             }
           },
           "scriptedAnimationParameters": {
@@ -378,7 +378,7 @@
               "fire3" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire4" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire5" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-              "fire6" : ["/sfx/melee/sword_parry.ogg"]
+              "fire6" : []
             }
           },
           "scriptedAnimationParameters": {
@@ -490,7 +490,7 @@
               "fire3" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire4" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire5" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-              "fire6" : ["/sfx/melee/sword_parry.ogg"]
+              "fire6" : []
             }
           },
           "scriptedAnimationParameters": {
