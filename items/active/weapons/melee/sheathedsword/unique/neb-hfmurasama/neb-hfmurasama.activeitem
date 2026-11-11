@@ -4,36 +4,37 @@
   "level" : 7,
   "maxStack" : 1,
   "rarity" : "Essential",
-  "description" : "A VT7 High-Frequency Blade. There will be bloodshed.",
-  "shortdescription" : "HF Murasama",
+  "description" : "A high frequency solid solarium blade, infused with solus energy.",
+  "shortdescription" : "Solus Murasama",
   "tooltipKind" : "base",
   "category" : "broadsword",
   "twoHanded" : true,
   "itemTags" : ["weapon","melee","broadsword","katana"],
 
-  "inventoryIcon" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathed",
+  "inventoryIcon" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusstandard.png:sheathed",
   
   "animation" : "neb-hfmurasama.animation",
   "animationParts" : {
-    "blade" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png",
-	"bladeFullbright" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png",
+    "blade" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusstandard.png",
+	  "bladeFullbright" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusstandardfullbright.png",
 	
-	"swoosh" : ""
+	  "swoosh" : "solus"
   },
   "animationCustom" : { 
     "sounds" : {
-      "fire" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-      "fire2" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-      "fire3" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-      "fire4" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-      "fire5" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-      "fire6" : ["/sfx/melee/sword_parry.ogg"],
+      "fire": [ "/sfx/melee/laser_weapon_swing1.ogg", "/sfx/melee/laser_weapon_swing2.ogg", "/sfx/melee/laser_weapon_swing3.ogg" ],
+      "fire2": [ "/sfx/melee/laser_weapon_swing1.ogg", "/sfx/melee/laser_weapon_swing2.ogg", "/sfx/melee/laser_weapon_swing3.ogg" ],
+      "fire3": [ "/sfx/melee/laser_weapon_swing1.ogg", "/sfx/melee/laser_weapon_swing2.ogg", "/sfx/melee/laser_weapon_swing3.ogg" ],
+      "fire4": [ "/sfx/melee/laser_weapon_swing1.ogg", "/sfx/melee/laser_weapon_swing2.ogg", "/sfx/melee/laser_weapon_swing3.ogg" ],
+      "fire5": [ "/sfx/melee/laser_weapon_swing1.ogg", "/sfx/melee/laser_weapon_swing2.ogg", "/sfx/melee/laser_weapon_swing3.ogg" ],
+      "bladeStormWindup": [ "/sfx/melee/sword_parry.ogg" ],
+      "fire6": [ ],
 	  
-	  "chargeSheath" : ["/sfx/melee/neb-murasama/neb_murasama_chargeslash_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_5.ogg"],
+	    "chargeSheath" : ["/sfx/melee/neb-murasama/neb_murasama_chargeslash_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_5.ogg"],
       "fireUnsheath" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
       "fireUnsheathCharged" : ["/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_4.ogg"],
-	  "chargePing" : [ "/sfx/npc/monsters/orbide_windup2.ogg" ],
-	  "parry" : [ "/sfx/melee/neb-murasama/neb_murasama_parry.ogg" ],
+	    "chargePing" : [ "/sfx/npc/monsters/orbide_windup2.ogg" ],
+	    "parry" : [ "/sfx/melee/neb-murasama/neb_murasama_parry.ogg" ],
 	  
       "unsheathSword" : [ "/sfx/melee/neb-sheathsword.ogg" ]
     }
@@ -43,16 +44,16 @@
     "sheathRotation" : -105,
     "sheathOffset" : [-0.625, -1.375],
     "sheathSprites" : {
-      "sheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathed",
-	  "unsheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditional.png:sheathAlone",
+      "sheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusstandard.png:sheathed",
+	    "unsheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusstandard.png:sheathAlone",
 	
-	  "hidden" : ""
+	    "hidden" : ""
     },
     "sheathSpritesFullbright" : {
-      "sheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png:sheathed",
-	  "unsheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalfullbright.png:sheathAlone",
+      "sheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusstandardfullbright.png:sheathed",
+	    "unsheathed" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusstandardfullbright.png:sheathAlone",
 	
-	  "hidden" : ""
+	    "hidden" : ""
     }
   },
   "sheathTimer" : 2.5,	//Time until weapon is sheathed while no action is present
@@ -91,78 +92,91 @@
     "comboSteps": 6,
     "stepDamageConfig": [
       {
-		"damageSourceKind" : "broadsword",
-		"baseDamageFactor": 1.1,
-		"knockback": 10
+        "damageSourceKind" : "broadsword",
+        "baseDamageFactor": 1.1,
+        "knockback": 10
       },
       {
-		"damageSourceKind" : "broadsword",
-		"baseDamageFactor": 0.9,
-		"knockback": 15
+        "damageSourceKind" : "broadsword",
+        "baseDamageFactor": 0.9,
+        "knockback": 15
       },
       {
-		"damageSourceKind" : "shortsword",
-		"baseDamageFactor": 1,
-		"knockback": 10
+        "damageSourceKind" : "shortsword",
+        "baseDamageFactor": 1,
+        "knockback": 10
       },
       {
-		"damageSourceKind" : "broadsword",
-		"baseDamageFactor": 0.8,
-		"knockback": 15
+        "damageSourceKind" : "broadsword",
+        "baseDamageFactor": 0.8,
+        "knockback": 15
       },
       {
-		"damageSourceKind" : "broadsword",
-		"baseDamageFactor": 1.2,
-		"knockback": 5
+        "damageSourceKind" : "broadsword",
+        "baseDamageFactor": 1.2,
+        "knockback": 5
       },
       {
-		"damageSourceKind" : "broadsword",
-		"baseDamageFactor": 1.5,
-		"knockback": 20
+        "damageSourceKind" : "broadsword",
+        "baseDamageFactor": 1.5,
+        "knockback": 20
       }
     ],
 	
+    "completedSpeedFactor" : 0.25,
     "chargeRingConfig" : {
-	  "image" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/traditionalring.png",
-	  "startEndScale" : [2, 0.25],
-	  "fullbright" : true,
-	  "rotationRate" : 1
-	},
+      "image" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusring.png",
+      "startEndScale" : [2, 0.25],
+      "fullbright" : true,
+      "rotationRate" : 1
+    },
 	
-	"stances" : {
-	  "idle" : {
-		"allowRotate": false,
-		"allowFlip": true,
-		"weaponRotation": 15,
-		"armRotation": -115,
-		"twoHanded": false,
-	  	"aimAngle": 0
-	  },
+    "stances" : {
+      "idleUnsheathed" : {
+        "allowRotate": false,
+        "allowFlip": true,
+        "weaponRotation": -25,
+        "armRotation": -35,
+        "twoHanded": true,
+        "weaponOffset" : [-0, -0.125],
+        "aimAngle": 0
+      },
+      "idleSheathed" : {
+        "allowRotate": false,
+        "allowFlip": true,
+        "weaponRotation": 15,
+        "armRotation": 10,
+        "twoHanded": false,
+        "aimAngle": 0,
+        
+        "frontArmFrame" : "idle.3",
+        "backArmFrame" : "idle.3"
+      },
 	  
-	  //Unsheath
+	    //Unsheath
       "windupUnsheath" : {
-        "duration": 0.075,
+        "duration": 0.1,
 		
-		"weaponRotation": -245,
-		"armRotation": -5,
-		"aimAngle": 0,
-		"weaponOffset" : [-0.5, -0.5],
-		
-		"frontArmFrame" : "walk.5",
+        "weaponRotation": -245,
+        "armRotation": -5,
+        "aimAngle": 0,
+        "weaponOffset" : [-0.5, -0.5],
+        
+        "frontArmFrame" : "walk.5",
 		
         "animationStates" : {
           "sheathState" : "halfSheathed"
         },
 		
-		"allowRotate": true,
-		"allowFlip": true,
+        "allowRotate": true,
+        "allowFlip": true,
         "twoHanded": true,
+        
+        "holdTime" : 0.85,
+        "walkWhileHolding" : true,
+        "chargeDirectives" : "?fade=FFFFFF=0.025?border=2;FF484850;00000000",
 		
-		"holdTime" : 0.85,
-		"walkWhileHolding" : true,
-		"chargeDirectives" : "?fade=FFFFFF=0.025?border=2;FF484850;00000000",
-		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
       "fireUnsheath" : {
         "duration": 0.2125,
@@ -178,7 +192,7 @@
         "allowFlip": false,
         "twoHanded": true,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
       "waitUnsheath" : {
         "duration": 0.2,
@@ -190,10 +204,10 @@
         "allowFlip": true,
         "twoHanded": true,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
 	
-	  //Step 1
+	    //Step 1
       "windup1" : {
         "duration": 0.15,
 	  
@@ -206,7 +220,7 @@
         "allowFlip": true,
         "twoHanded": false,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
       "preslash1" : {
         "duration": 0.05,
@@ -220,7 +234,7 @@
         "allowFlip": false,
         "twoHanded": false,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
       "fire1" : {
         "duration": 0.1625,
@@ -232,7 +246,7 @@
         "allowFlip": false,
         "twoHanded": true,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
       "wait1" : {
         "duration": 0.5,
@@ -244,10 +258,10 @@
         "allowFlip": true,
         "twoHanded": true,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
 	
-	  //Step 2
+	    //Step 2
       "windup2" : {
         "duration": 0.15,
 	  
@@ -291,7 +305,7 @@
         "twoHanded": false
       },
 	
-	  //Step 3
+	    //Step 3
       "windup3" : {
         "duration": 0.15,
 	  
@@ -304,7 +318,7 @@
         "allowFlip": true,
         "twoHanded": false,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
       "preslash3" : {
         "duration": 0.05,
@@ -316,7 +330,7 @@
         "allowFlip": false,
         "twoHanded": false,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
       "fire3" : {
         "duration": 0.175,
@@ -328,7 +342,7 @@
         "allowFlip": false,
         "twoHanded": false,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
       "wait3" : {
         "duration": 0.5,
@@ -340,10 +354,10 @@
         "allowFlip": true,
         "twoHanded": false,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
 	
-	  //Step 4
+	    //Step 4
       "windup4" : {
         "duration": 0.15,
 		
@@ -386,7 +400,7 @@
         "twoHanded": true
       },
 	 
-	  //Step 5
+	    //Step 5
       "windup5": {
         "duration": 0.125,
 		
@@ -398,7 +412,7 @@
         "allowFlip": true,
         "twoHanded": false,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
       "preslash5":{
         "duration": 0.05,
@@ -410,7 +424,7 @@
         "allowFlip": false,
         "twoHanded": false,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       },
       "fire5": {
         "duration": 0.15,
@@ -420,9 +434,7 @@
 		
         "allowRotate": false,
         "allowFlip": false,
-        "twoHanded": false,
-		
-		"directives" : "?flipx"
+        "twoHanded": false
       },
       "wait5": {
         "duration": 0.5,
@@ -432,58 +444,60 @@
 		
         "allowRotate": false,
         "allowFlip": true,
-        "twoHanded": false,
-		
-		"directives" : "?flipx"
+        "twoHanded": false
       },
 
       "windup6": {
-        "duration": 0.35,
+        "duration": 0.2,
 		
-		"bladeStorm" : true,
-		
-		"weaponRotation": -245,
-		"armRotation": -5,
-		"aimAngle": 0,
-		"weaponOffset" : [-0.5, -0.5],
-		
-		"frontArmFrame" : "walk.5",
-		
-		"allowRotate": false,
-		"allowFlip": true,
+        "bladeStorm" : true,
+        
+        "weaponRotation": -245,
+        "armRotation": -5,
+        "aimAngle": 0,
+        "weaponOffset" : [-0.5, -0.5],
+        
+        "frontArmFrame" : "walk.5",
+
+        "burstParticleEmitters" : [
+          "flash"
+        ],
+        
+        "allowRotate": false,
+        "allowFlip": true,
         "twoHanded": true,
 		
-		"directives" : "?flipx"
+	    	"directives" : "?flipx"
       },
 	  
       "fire6": {
-        "duration": 0.55,
+        "duration": 0.4,
 		
-		"weaponRotation": -245,
-		"armRotation": -25,
-		"aimAngle": 0,
-		"weaponOffset" : [-0.5, -0.5],
-		
-		"frontArmFrame" : "walk.5",
-		
-		"targetOffset" : [0, 1],
-		"target" : [7, 0],
-		"targetTolerance" : 3.0,
-		
-		//Slightly marks enemies within forgivenessRange which moves the slash a little
-		"forgivenessRange" : 25,
-		
-		"projectileType" : "neb-murasamathousandcuts",
-		"projectileParameters" : {},
-		"projectileDamage" : 1.5,
-		
-		"allowRotate": false,
-		"allowFlip": true,
+        "weaponRotation": -245,
+        "armRotation": -25,
+        "aimAngle": 0,
+        "weaponOffset" : [-0.5, -0.5],
+        
+        "frontArmFrame" : "walk.5",
+        
+        "targetOffset" : [0, 1],
+        "target" : [7, 0],
+        "targetTolerance" : 3.0,
+        
+        //Slightly marks enemies within forgivenessRange which moves the slash a little
+        "forgivenessRange" : 25,
+        
+        "projectileType" : "neb-murasamathousandcutssolus",
+        "projectileParameters" : {},
+        "projectileDamage" : 1.5,
+        
+        "allowRotate": false,
+        "allowFlip": true,
         "twoHanded": true,
 		
-		"directives" : "?flipx"
+		    "directives" : "?flipx"
       }
-	}
+	  }
   },
 
   "builder" : "/items/buildscripts/buildunrandweapon.lua"

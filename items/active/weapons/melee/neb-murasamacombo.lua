@@ -18,6 +18,8 @@ function NebMurasamaCombo:init()
 
   self.animKeyPrefix = self.animKeyPrefix or ""
 
+  self.stances.idle = self.stances.idleSheathed
+
   self.weapon.onLeaveAbility = function()
     self.weapon:setStance(self.stances.idle)
   end
@@ -26,6 +28,12 @@ end
 -- Ticks on every update regardless if this is the active ability
 function NebMurasamaCombo:update(dt, fireMode, shiftHeld)
   WeaponAbility.update(self, dt, fireMode, shiftHeld)
+
+  self.stances.idle = (animator.animationState("sheathState") == "unsheathed") and self.stances.idleUnsheathed or self.stances.idleSheathed
+  if not self.weapon.currentAbility and self.previousSheathState ~= animator.animationState("sheathState") and (animator.animationState("sheathState") == "hidden" or animator.animationState("sheathState") == "unsheathed") then
+    self.weapon:setStance(self.stances.idle)
+  end
+  self.previousSheathState = animator.animationState("sheathState")
 
   if self.cooldownTimer > 0 then
     self.cooldownTimer = math.max(0, self.cooldownTimer - self.dt)
@@ -68,14 +76,9 @@ function NebMurasamaCombo:windup(overWrite)
   self.weapon:setStance(stance)
 
   if stance.bladeStorm then
-    local animStateKey = self.animKeyPrefix .. (self.comboStep > 1 and "fire"..self.comboStep or "fire")
-    animator.setAnimationState("swoosh", animStateKey)
-    animator.playSound(animStateKey)
-	
-    animator.setAnimationState("sheathState", "halfSheathed")
+    animator.playSound("bladeStormWindup")
 
-    local swooshKey = self.animKeyPrefix .. (self.elementalType or self.weapon.elementalType) .. "swoosh"
-    animator.setParticleEmitterOffsetRegion(swooshKey, self.swooshOffsetRegions[self.comboStep])
+  animator.setAnimationState("sheathState", "halfSheathed")
   end
   
   self.wasAlt = overWrite
@@ -85,13 +88,13 @@ function NebMurasamaCombo:windup(overWrite)
   local charged = "regular"
   if stance.holdTime then
     --while timer < stance.holdTime and self.fireMode == (self.activatingFireMode or self.abilitySlot) do
-	local ringFactor = 0
-	local ringRotation = math.random() * math.pi * 2
-	
-	animator.playSound("chargeSheath", -1)
-	local targetGrav = world.gravity(mcontroller.position()) * -0.005
-	
-	local bufferTimer = 1.0 --can hold for this long after being fully charged
+    local ringFactor = 0
+    local ringRotation = math.random() * math.pi * 2
+    
+    animator.playSound("chargeSheath", -1)
+    local targetGrav = world.gravity(mcontroller.position()) * -0.005
+    
+    local bufferTimer = 1.0 --can hold for this long after being fully charged
     while timer < stance.holdTime + bufferTimer and self.fireMode ~= "none" do
 	  --Count down timer
 	  timer = timer + self.dt
@@ -101,11 +104,12 @@ function NebMurasamaCombo:windup(overWrite)
 	  
 	  --Enable walk while charging
 	  if stance.walkWhileHolding == true then
-        mcontroller.controlModifiers({runningSuppressed=true})
+      mcontroller.controlModifiers({runningSuppressed=true})
 	  end
 	  
 	  --Charge sound
 	  animator.setSoundPitch("chargeSheath", ringFactor > 0 and 0.1 + ringFactor or 0.01)
+
 	  --If the charge has made a enough progress to be considered a charge attack, trigger the visual effects
 	  if timer > stance.duration then
 	    --The factor (0-1) of the charge, 1 being full
@@ -114,35 +118,35 @@ function NebMurasamaCombo:windup(overWrite)
 	    --Fake time slow effect, where the player slows down while charging
 	    mcontroller.controlApproachVelocity({0, targetGrav}, 350 * ringFactor)
 		
-		--Ring local animator VFX
+		  --Ring local animator VFX
 	    ringRotation = ringRotation + (self.dt * self.chargeRingConfig.rotationRate)
 	    local ring = {
-		  fullbright = self.chargeRingConfig.fullbright,
-		  image = self.chargeRingConfig.image,
+		    fullbright = self.chargeRingConfig.fullbright,
+		    image = self.chargeRingConfig.image,
 	      color = {255, 255, 255, math.min(255, 255 * ringFactor)},
 	      scale = math.max((ringFactor * (self.chargeRingConfig.startEndScale[2] - self.chargeRingConfig.startEndScale[1]) + self.chargeRingConfig.startEndScale[1]),0),
 	      centered = true,
-		  rotation = ringRotation,
-          position = vec2.add(mcontroller.position(), activeItem.handPosition()),
-		
-		  renderLayer = mcontroller.facingDirection() > 0 and "Player-1" or "Player+1"
-        }
-        activeItem.setScriptedAnimationParameter("ringProperties", ring)
+		    rotation = ringRotation,
+        position = vec2.add(mcontroller.position(), activeItem.handPosition()),
+  
+        renderLayer = mcontroller.facingDirection() > 0 and "Player-1" or "Player+1"
+      }
+      activeItem.setScriptedAnimationParameter("ringProperties", ring)
 	  end
 	  
 	  if timer > stance.holdTime then animator.stopAllSounds("chargeSheath") end
 
       coroutine.yield()
     end
-	--Finish our charging
-	animator.stopAllSounds("chargeSheath")
+    --Finish our charging
+    animator.stopAllSounds("chargeSheath")
     if timer >= stance.holdTime then
       charged = "charged"
 	  
-	  --Charge finish effects
-	  animator.setGlobalTag("bladeDirectives", stance.chargeDirectives or "")
-	  animator.playSound("chargePing")
-	end
+      --Charge finish effects
+      animator.setGlobalTag("bladeDirectives", stance.chargeDirectives or "")
+      animator.playSound("chargePing")
+    end
   end
   
   --Clear effects
@@ -173,6 +177,13 @@ function NebMurasamaCombo:bladeStorm()
   animator.setGlobalTag("stanceDirectives", stance.directives or "")
   self.weapon:setStance(stance)
   self.weapon:updateAim()
+
+  local animStateKey = self.animKeyPrefix .. (self.comboStep > 1 and "fire"..self.comboStep or "fire")
+  animator.setAnimationState("swoosh", animStateKey)
+  animator.playSound(animStateKey)
+
+  local swooshKey = self.animKeyPrefix .. (self.elementalType or self.weapon.elementalType) .. "swoosh"
+  animator.setParticleEmitterOffsetRegion(swooshKey, self.swooshOffsetRegions[self.comboStep])
 
   local oldPosition = mcontroller.position()
   local targetPosition = vec2.add(oldPosition, vec2.rotate({mcontroller.facingDirection() * stance.target[1], stance.target[2]}, self.weapon.aimAngle * mcontroller.facingDirection()))
@@ -222,7 +233,7 @@ function NebMurasamaCombo:bladeStorm()
     self.comboStep = self.comboStep + 1
     self:setState(self.wait)
   else
-    self.cooldownTimer = self.cooldowns[self.comboStep]
+    self.cooldownTimer = self.cooldowns[self.comboStep] * (self.completedSpeedFactor or 1)
     self.comboStep = 1
   end
 end

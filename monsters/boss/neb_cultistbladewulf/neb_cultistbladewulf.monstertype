@@ -27,8 +27,8 @@
       "/monsters/boss/neb_cultistbladewulf/idleState.lua"
     ],
 	
-	"spinRate" : 20,
-	"poise" : 100,
+    "spinRate" : 20,
+    "poise" : 100,
 
     "skillCount" : 10,
     "skills" : [ "neb_wulfcombo", "neb_wulfjump_combo","neb_wulfspawnads","neb_wulfbackjump_kunai","neb_wulfbackjump","neb_wulfjump","neb_wulfrun","neb_wulfteleport","neb_wulfspinattack"],
