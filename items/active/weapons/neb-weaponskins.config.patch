@@ -82,7 +82,9 @@
               "fire3" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire4" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire5" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-              "fire6" : []
+              "fire6" : [],
+              "fireUnsheath" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
+              "fireUnsheathCharged" : ["/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_4.ogg"]
             }
           },
           "scriptedAnimationParameters": {
@@ -193,7 +195,9 @@
               "fire3" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire4" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire5" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-              "fire6" : []
+              "fire6" : [],
+              "fireUnsheath" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
+              "fireUnsheathCharged" : ["/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_4.ogg"]
             }
           },
           "scriptedAnimationParameters": {
@@ -378,7 +382,9 @@
               "fire3" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire4" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire5" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-              "fire6" : []
+              "fire6" : [],
+              "fireUnsheath" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
+              "fireUnsheathCharged" : ["/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_4.ogg"]
             }
           },
           "scriptedAnimationParameters": {
@@ -490,7 +496,9 @@
               "fire3" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire4" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
               "fire5" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-              "fire6" : []
+              "fire6" : [],
+              "fireUnsheath" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
+              "fireUnsheathCharged" : ["/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_4.ogg"]
             }
           },
           "scriptedAnimationParameters": {
@@ -521,6 +529,81 @@
               }
             }
           }
+        }
+      }
+    }
+  },
+  {
+    "op": "add",
+    "path": "/weaponSkins/neb-bladewolfcapturepod",
+    "value": {
+      "cultist": {
+        "skinName" : "Occassus Blade Wolf Pod",
+        "unlockDescription" : "Receive the swan's final gesture.",
+        "prerequisiteQuests": ["cultist_mission1"],
+		
+        "skinConfig": {
+          "description": "An Occassus prototype, reminiscent of a design long past.",
+          "shortdescription": "Occassus Blade Wolf Pod",
+          "inventoryIcon" : "skins/neb-bladewolfcapturepod-cultist.png:healthy.1",
+          "animationParts": {
+            "filledcapturepod" : "skins/neb-bladewolfcapturepod-cultist.png"
+          },
+          "tooltipFields" : {
+            "subtitle" : "Blade Wolf",
+            "objectImage" : "/monsters/boss/neb_cultistbladewulf/neb_cultistbladewulf.png:idle.1"
+          },
+          "icons" : {
+            "healthy" : "/items/active/unsorted/filledcapturepod/bladewolfcapturepod/skins/neb-bladewolfcapturepod-cultist.png:healthy.1",
+            "dead" : "/items/active/unsorted/filledcapturepod/bladewolfcapturepod/skins/neb-bladewolfcapturepod-cultist.png:dead.1"
+          },
+          "projectileType" : "neb-bladewolfcapturepod-cultist"
+        }
+      },
+      "starseries": {
+        "skinName" : "Starsent Blade Wolf Pod",
+        "unlockDescription" : "Unlocked by default.",
+        "prerequisiteQuests": [],
+		
+        "skinConfig": {
+          "description": "A companion for when there is nothing left.",
+          "shortdescription": "Starsent Blade Wolf Pod",
+          "inventoryIcon" : "skins/neb-bladewolfcapturepod-starseries.png:healthy.1",
+          "animationParts": {
+            "filledcapturepod" : "skins/neb-bladewolfcapturepod-starseries.png"
+          },
+          "tooltipFields" : {
+            "subtitle" : "Blade Wolf",
+            "objectImage" : "/monsters/boss/neb_cultistbladewulf/neb_cultistbladewulf.png:idle.1"
+          },
+          "icons" : {
+            "healthy" : "/items/active/unsorted/filledcapturepod/bladewolfcapturepod/skins/neb-bladewolfcapturepod-starseries.png:healthy.1",
+            "dead" : "/items/active/unsorted/filledcapturepod/bladewolfcapturepod/skins/neb-bladewolfcapturepod-starseries.png:dead.1"
+          },
+          "projectileType" : "neb-bladewolfcapturepod-starseries"
+        }
+      },
+      "traditional": {
+        "skinName" : "Fenrir Blade Wolf Pod",
+        "unlockDescription" : "Unlocked by default.",
+        "prerequisiteQuests": [],
+		
+        "skinConfig": {
+          "description": "A mass-produced model of an older, more intelligent design..",
+          "shortdescription": "Fenrir Blade Wolf Pod",
+          "inventoryIcon" : "skins/neb-bladewolfcapturepod-traditional.png:healthy.1",
+          "animationParts": {
+            "filledcapturepod" : "skins/neb-bladewolfcapturepod-traditional.png"
+          },
+          "tooltipFields" : {
+            "subtitle" : "Blade Wolf",
+            "objectImage" : "/monsters/boss/neb_cultistbladewulf/neb_cultistbladewulf.png:idle.1"
+          },
+          "icons" : {
+            "healthy" : "/items/active/unsorted/filledcapturepod/bladewolfcapturepod/skins/neb-bladewolfcapturepod-traditional.png:healthy.1",
+            "dead" : "/items/active/unsorted/filledcapturepod/bladewolfcapturepod/skins/neb-bladewolfcapturepod-traditional.png:dead.1"
+          },
+          "projectileType" : "neb-bladewolfcapturepod-traditional"
         }
       }
     }

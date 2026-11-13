@@ -1,0 +1,44 @@
+{
+  "id" : "neb-bladewolfunlock2",
+  "prerequisites" : [ "neb-bladewolfunlock", "mechunlock" ],
+  "title" : "^orange;Rebuilt Relics",
+  "text" : "I looked into that device you brought me... I believe the U.S.C.M. had blueprints for a robot using this type of core. Perhaps you could go and investigate, I happen to know of ^green;a ship housing this type of technology^reset;.",
+  "completionText" : "Ah! I will send a copy of the ^green;blueprint^white; to the ^green;pet station^white;. Very interesting design if you ask me. I hope you can put that ^orange;BL4D3W0LF Core^white; to use!",
+  "moneyRange" : [100, 100],
+  "rewards" : [],
+
+  "updateDelta" : 10,
+  "script" : "/quests/scripts/instance.lua",
+  "scriptConfig" : {
+    "portraits" : {
+      "questStarted" : {
+        "portrait" : [ {"image" : "/quests/outpost/penguinscientistportrait.png"} ],
+        "title" : "Dr. Akaggy"
+      },
+      "questComplete" : {
+        "portrait" : [ {"image" : "/quests/outpost/penguinscientistportrait.png"} ],
+        "title" : "Dr. Akaggy"
+      }
+    },
+
+    "descriptions" : {
+      "enterInstance" : "Talk to ^orange;Dr. Akaggy^reset; to beam to the ^orange;U.S.C.M. Freighter^reset;",
+      "findGoal" : "Find the ^orange;schematics^reset;",
+      "turnIn" : "Return to ^orange;Dr. Akaggy^reset; at the ^orange;Outpost^reset;"
+    },
+
+    "warpEntityUid" : "outpostpenguinscientist",
+    "warpAction" : ["instanceworld:mechtestbasic", "deploy", true],
+    "warpDialog" : "/interface/confirmation/teleportconfirmation.config:mechunlock",
+
+    "goalTrigger" : "proximity",
+    "proximityRange" : 10,
+    "goalEntityUid" : "mechtestbasicteleporter",
+    "indicateGoal" : false,
+    "trackGoalEntity" : false,
+
+    "turnInEntityUid" : "outpostpenguinscientist",
+
+    "giveBlueprints" : [ "neb-bladewolfcapturepod" ]
+  }
+}

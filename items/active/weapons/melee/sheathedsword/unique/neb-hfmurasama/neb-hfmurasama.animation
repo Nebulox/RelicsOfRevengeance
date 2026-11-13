@@ -86,8 +86,8 @@
             }
           },
           "halfSheathed" : {
-            "frames" : 1,
-            "cycle" : 0.2,
+            "frames" : 3,
+            "cycle" : 0.25,
             "mode" : "transition",
             "transition" : "sheathed",
             "properties": {

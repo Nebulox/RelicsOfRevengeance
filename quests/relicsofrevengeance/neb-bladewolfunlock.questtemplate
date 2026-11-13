@@ -1,0 +1,33 @@
+{
+  "id" : "neb-bladewolfunlock",
+  "prerequisites" : [ ],
+  "title" : "^orange;Rebuilt Relics",
+  "text" : "I scavenged this ^orange;BL4D3W0LF Core^white; from the Ocassus' prototype. I should consult ^green;Dr. Akaggy in the outpost^white; about what I can do with it.",
+  "completionText" : "Hmm, this seems to be of U.S.C.M. design, what are the Occassus doing with it? Give me a moment to take a look at it.",
+  "moneyRange" : [250, 250],
+  "canAbandon" : false,
+  "rewards" : [],
+
+  "updateDelta" : 10,
+  "script" : "/quests/scripts/main.lua",
+  "scriptConfig" : {
+    "portraits" : {
+      "questStarted" : "player",
+      "questComplete" : {
+        "portrait" : [ {"image" : "/quests/outpost/penguinscientistportrait.png"} ],
+        "title" : "Dr. Akaggy"
+      }
+    },
+
+    "requireTurnIn" : true,
+
+    "conditions" : [
+      {
+        "type" : "gatherItem",
+        "itemName" : "neb-bladewolfcore",
+        "count" : 1,
+        "consume" : false
+      }
+    ]
+  }
+}

@@ -1,10 +1,10 @@
 {
   "frameGrid" : {
     "size" : [24, 64],
-    "dimensions" : [4, 1],
+    "dimensions" : [6, 1],
 
     "names" : [
-      [ "unsheathed", "halfSheathed.1", "sheathed", "sheathAlone" ]
+      [ "unsheathed", "halfSheathed.1", "halfSheathed.2", "halfSheathed.3", "sheathed", "sheathAlone" ]
     ]
   }
 }

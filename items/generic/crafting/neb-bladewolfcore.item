@@ -1,0 +1,12 @@
+{
+  "itemName" : "neb-bladewolfcore",
+  "price" : 10000,
+  "rarity" : "Essential",
+  "category" : "quest",
+  "inventoryIcon" : "neb-bladewolfcore.png",
+  "description" : "The core of an Ocassus prototype bot, it seems to still have some life.",
+  "shortdescription" : "BL4D3W0LF Core",
+  "itemTags" : [ "questitem", "reagent" ],
+
+  "pickupQuestTemplates" : [ "neb-bladewolfunlock" ]
+}

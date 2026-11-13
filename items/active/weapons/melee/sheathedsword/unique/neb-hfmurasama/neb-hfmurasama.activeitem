@@ -4,7 +4,7 @@
   "level" : 7,
   "maxStack" : 1,
   "rarity" : "Essential",
-  "description" : "A high frequency solid solarium blade, infused with solus energy.",
+  "description" : "A high frequency solarium blade, infused with solus energy.",
   "shortdescription" : "Solus Murasama",
   "tooltipKind" : "base",
   "category" : "broadsword",
@@ -31,11 +31,13 @@
       "fire6": [ ],
 	  
 	    "chargeSheath" : ["/sfx/melee/neb-murasama/neb_murasama_chargeslash_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_chargeslash_5.ogg"],
-      "fireUnsheath" : ["/sfx/melee/neb-murasama/neb_murasama_swing_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_4.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_5.ogg", "/sfx/melee/neb-murasama/neb_murasama_swing_6.ogg"],
-      "fireUnsheathCharged" : ["/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_1.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_2.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_3.ogg", "/sfx/melee/neb-murasama/neb_murasama_unsheathcharged_4.ogg"],
+      "fireUnsheath" : [ "/sfx/melee/laser_weapon_swing1.ogg", "/sfx/melee/laser_weapon_swing2.ogg", "/sfx/melee/laser_weapon_swing3.ogg" ],
+      "fireUnsheathCharged" : [ "/sfx/melee/laser_weapon_swing1.ogg", "/sfx/melee/laser_weapon_swing2.ogg", "/sfx/melee/laser_weapon_swing3.ogg" ],
+      "activateSheath" : [ "/sfx/gun/rifle1.ogg", "/sfx/gun/rifle2.ogg" ],
+      
 	    "chargePing" : [ "/sfx/npc/monsters/orbide_windup2.ogg" ],
 	    "parry" : [ "/sfx/melee/neb-murasama/neb_murasama_parry.ogg" ],
-	  
+
       "unsheathSword" : [ "/sfx/melee/neb-sheathsword.ogg" ]
     }
   },
@@ -126,7 +128,7 @@
     "completedSpeedFactor" : 0.25,
     "chargeRingConfig" : {
       "image" : "/items/active/weapons/melee/sheathedsword/unique/neb-hfmurasama/skins/solusring.png",
-      "startEndScale" : [2, 0.25],
+      "startEndScale" : [1.5, 0.25],
       "fullbright" : true,
       "rotationRate" : 1
     },
@@ -155,7 +157,8 @@
 	  
 	    //Unsheath
       "windupUnsheath" : {
-        "duration": 0.1,
+        "preDuration": 0.15,
+        "duration": 0.15,
 		
         "weaponRotation": -245,
         "armRotation": -5,
@@ -479,6 +482,8 @@
         "weaponOffset" : [-0.5, -0.5],
         
         "frontArmFrame" : "walk.5",
+
+        "staySheathed" : true,
         
         "targetOffset" : [0, 1],
         "target" : [7, 0],

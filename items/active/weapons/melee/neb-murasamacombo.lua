@@ -57,9 +57,9 @@ function NebMurasamaCombo:update(dt, fireMode, shiftHeld)
   if self.lastFireMode == "none" and fireMode ~= "none" then
     if self.wasAlt and (fireMode == "primary") then
       self.edgeTriggerTimer = self.edgeTriggerGrace
-	elseif not self.wasAlt then
+	  elseif not self.wasAlt then
       self.edgeTriggerTimer = self.edgeTriggerGrace
-	end
+	  end
   end
   self.lastFireMode = fireMode
   if not self.weapon.currentAbility and self:shouldActivate() then
@@ -78,7 +78,7 @@ function NebMurasamaCombo:windup(overWrite)
   if stance.bladeStorm then
     animator.playSound("bladeStormWindup")
 
-  animator.setAnimationState("sheathState", "halfSheathed")
+    animator.setAnimationState("sheathState", "halfSheathed")
   end
   
   self.wasAlt = overWrite
@@ -96,59 +96,60 @@ function NebMurasamaCombo:windup(overWrite)
     
     local bufferTimer = 1.0 --can hold for this long after being fully charged
     while timer < stance.holdTime + bufferTimer and self.fireMode ~= "none" do
-	  --Count down timer
-	  timer = timer + self.dt
-	  
-	  --Prevent energy regen while charging
-	  status.setResourcePercentage("energyRegenBlock", 0.6)
-	  
-	  --Enable walk while charging
-	  if stance.walkWhileHolding == true then
-      mcontroller.controlModifiers({runningSuppressed=true})
-	  end
-	  
-	  --Charge sound
-	  animator.setSoundPitch("chargeSheath", ringFactor > 0 and 0.1 + ringFactor or 0.01)
+      --Count down timer
+      timer = timer + self.dt
+      
+      --Prevent energy regen while charging
+      status.setResourcePercentage("energyRegenBlock", 0.6)
+      
+      --Enable walk while charging
+      if stance.walkWhileHolding == true then
+        mcontroller.controlModifiers({runningSuppressed=true})
+      end
+      
+      --Charge sound
+      animator.setSoundPitch("chargeSheath", ringFactor > 0 and 0.1 + ringFactor or 0.01)
 
-	  --If the charge has made a enough progress to be considered a charge attack, trigger the visual effects
-	  if timer > stance.duration then
-	    --The factor (0-1) of the charge, 1 being full
-	    ringFactor = (timer / (stance.holdTime - stance.duration))
-		
-	    --Fake time slow effect, where the player slows down while charging
-	    mcontroller.controlApproachVelocity({0, targetGrav}, 350 * ringFactor)
-		
-		  --Ring local animator VFX
-	    ringRotation = ringRotation + (self.dt * self.chargeRingConfig.rotationRate)
-	    local ring = {
-		    fullbright = self.chargeRingConfig.fullbright,
-		    image = self.chargeRingConfig.image,
-	      color = {255, 255, 255, math.min(255, 255 * ringFactor)},
-	      scale = math.max((ringFactor * (self.chargeRingConfig.startEndScale[2] - self.chargeRingConfig.startEndScale[1]) + self.chargeRingConfig.startEndScale[1]),0),
-	      centered = true,
-		    rotation = ringRotation,
-        position = vec2.add(mcontroller.position(), activeItem.handPosition()),
-  
-        renderLayer = mcontroller.facingDirection() > 0 and "Player-1" or "Player+1"
-      }
-      activeItem.setScriptedAnimationParameter("ringProperties", ring)
-	  end
-	  
-	  if timer > stance.holdTime then animator.stopAllSounds("chargeSheath") end
+      --If the charge has made a enough progress to be considered a charge attack, trigger the visual effects
+      if timer > stance.preDuration then
+        --The factor (0-1) of the charge, 1 being full
+        ringFactor = (timer / (stance.holdTime - stance.preDuration))
+      
+        --Fake time slow effect, where the player slows down while charging
+        mcontroller.controlApproachVelocity({0, targetGrav}, 400 * ringFactor)
+      
+        --Ring local animator VFX
+        ringRotation = ringRotation + (self.dt * self.chargeRingConfig.rotationRate)
+        local ring = {
+          fullbright = self.chargeRingConfig.fullbright,
+          image = self.chargeRingConfig.image,
+          color = {255, 255, 255, math.min(255, 255 * ringFactor)},
+          scale = math.max((ringFactor * (self.chargeRingConfig.startEndScale[2] - self.chargeRingConfig.startEndScale[1]) + self.chargeRingConfig.startEndScale[1]),0),
+          centered = true,
+          rotation = ringRotation,
+          position = vec2.add(mcontroller.position(), activeItem.handPosition()),
+    
+          renderLayer = mcontroller.facingDirection() > 0 and "Player-1" or "Player+1"
+        }
+        activeItem.setScriptedAnimationParameter("ringProperties", ring)
+      end
 
-      coroutine.yield()
-    end
-    --Finish our charging
-    animator.stopAllSounds("chargeSheath")
-    if timer >= stance.holdTime then
-      charged = "charged"
-	  
-      --Charge finish effects
-      animator.setGlobalTag("bladeDirectives", stance.chargeDirectives or "")
-      animator.playSound("chargePing")
-    end
+      --Finish our charging
+      animator.stopAllSounds("chargeSheath")
+      if timer >= stance.holdTime and charged ~= "charged" then
+        charged = "charged"
+      
+        --Charge finish effects
+        animator.setGlobalTag("bladeDirectives", stance.chargeDirectives or "")
+        animator.playSound("chargePing")
+      end
+      
+      if timer > stance.holdTime then animator.stopAllSounds("chargeSheath") end
+
+        coroutine.yield()
+      end
   end
-  
+    
   --Clear effects
   animator.setGlobalTag("bladeDirectives", self.chargeDirectives or "")
   activeItem.setScriptedAnimationParameter("ringProperties", nil)
@@ -173,6 +174,10 @@ end
 -- waiting for next combo input
 function NebMurasamaCombo:bladeStorm()
   local stance = self.stances["fire" .. self.comboStep]
+
+  if not stance.staySheathed then
+    animator.setAnimationState("sheathState", "unsheathed")
+  end
 
   animator.setGlobalTag("stanceDirectives", stance.directives or "")
   self.weapon:setStance(stance)
@@ -226,6 +231,7 @@ function NebMurasamaCombo:bladeStorm()
   
   util.wait(stance.duration, function()
   end)
+  
   animator.setGlobalTag("stanceDirectives", "")
   animator.setAnimationState("sheathState", "unsheathed")
 
@@ -251,7 +257,7 @@ function NebMurasamaCombo:wait(overWrite, wasCharged, shortenDuration)
     elseif self:shouldActivate() then
       self:setState(self.windup, self.activatingFireMode == "alt" and "Unsheath" or nil)
       return
-	end
+	  end
   end)
 
   self.wasAlt = nil
@@ -305,16 +311,18 @@ function NebMurasamaCombo:fire(overWrite, charged)
     damageConfig.knockback = damageConfig.knockback * 1.35
     damageConfig.baseDamage = damageConfig.baseDamage * 1.35
     if isCharged then
-	  local chargeTime = self.stances["windup" .. stanceSuffix].holdTime or 1
+      animator.playSound("activateSheath")
+      
+	    local chargeTime = self.stances["windup" .. stanceSuffix].holdTime or 1
       damageConfig.knockback = damageConfig.knockback * 1.35 * chargeTime
       damageConfig.baseDamage = damageConfig.baseDamage * 1.35 * chargeTime
 	  
-	  --Consume energy if charged
+	    --Consume energy if charged
       status.overConsumeResource("energy", status.resourceMax("energy"))
     end
   
-    --Seting up the damage listener for actions on shield hit
-	self.hasBlocked = false --Yes, I could've retooled the "hit" var for this purpose, but I thought it would be better to use a seperate variable regardless - Echo
+    --Setting up the damage listener for actions on shield hit
+	  self.hasBlocked = false --Yes, I could've retooled the "hit" var for this purpose, but I thought it would be better to use a seperate variable regardless - Echo
     shieldDamageListener = damageListener("damageTaken", function(notifications)
 	  --Optionally spawn a parry projectile when the shield is hit
 	  for _, notification in pairs(notifications) do

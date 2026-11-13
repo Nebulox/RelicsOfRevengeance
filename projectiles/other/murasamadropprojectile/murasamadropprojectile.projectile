@@ -16,6 +16,6 @@
   "orientationLocked" : true,
   "pointToLight" : true,
   "spinRate" : 1.5,
-  "minSpinSpeed": 5,
+  "minSpinSpeed": 15,
   "spinDirection" : -1
 }

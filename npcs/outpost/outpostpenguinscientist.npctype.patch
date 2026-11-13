@@ -1,0 +1,17 @@
+[
+  {
+    "op": "add",
+    "path": "/scriptConfig/offeredQuests/-",
+    "value": "neb-bladewolfunlock2"
+  },
+  {
+    "op": "add",
+    "path": "/scriptConfig/turnInQuests/-",
+    "value": "neb-bladewolfunlock"
+  },
+  {
+    "op": "add",
+    "path": "/scriptConfig/turnInQuests/-",
+    "value": "neb-bladewolfunlock"
+  }
+]

@@ -1,0 +1,134 @@
+{
+  "itemName" : "neb-bladewolfcapturepod",
+  "price" : 10000,
+  "maxStack" : 1,
+  "rarity" : "Essential",
+  "category" : "throwableItem",
+  "description" : "A U.S.C.M. design brought to life.",
+  "shortdescription" : "U.S.C.M. Blade Wolf Pod",
+  "tooltipKind" : "filledcapturepod",
+  "twoHanded" : false,
+  "itemTags" : ["weapon"],
+  "level" : 6,
+  "fixedLevel" : false,
+  "tooltipFields" : {
+    "subtitle" : "Blade Wolf",
+    "objectImage" : "/monsters/boss/neb_cultistbladewulf/neb_cultistbladewulf.png:idle.1"
+  },
+
+  "populateMonster" : "neb_cultistbladewulf",
+  "randomFramesForPortrait" : [ "idle.1" ],
+
+  "collectiblesOnPickup" : {
+    //"monsters" : "neb_cultistbladewulfpet"
+  },
+
+  "inventoryIcon" : "neb-bladewolfcapturepod.png:healthy.1",
+  "animation" : "/items/active/unsorted/filledcapturepod/filledcapturepod.animation",
+  "animationParts" : {
+    "filledcapturepod" : "neb-bladewolfcapturepod.png"
+  },
+  "animationCustom" : { },
+  "scripts" : [ "neb-bladewolfcapturepod.lua" ],
+
+  "icons" : {
+    "healthy" : "/items/active/unsorted/filledcapturepod/bladewolfcapturepod/neb-bladewolfcapturepod.png:healthy.1",
+    "dead" : "/items/active/unsorted/filledcapturepod/bladewolfcapturepod/neb-bladewolfcapturepod.png:dead.1"
+  },
+
+  "deadPodShake" : {
+    "frequency" : 2,
+    "phase" : 0, // degrees
+    "amplitude" : 45 // degrees
+  },
+
+  "stances" : {
+    "idle" : {
+      "armRotation" : -20,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : true,
+      "allowFlip" : true
+    },
+    "windup" : {
+      "duration" : 0.1,
+      "transitionFunction" : "fire",
+      "armRotation" : 70,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : false,
+      "allowFlip" : false
+    },
+    "dead" : {
+      "duration" : 0.5,
+      "transition" : "idle",
+      "armRotation" : 50,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : false,
+      "allowFlip" : false
+    },
+    "throw" : {
+      "armRotation" : 0,
+      "animationState" : {
+        "weapon" : "hidden"
+      },
+      "allowRotate" : true,
+      "allowFlip" : true
+    },
+    "catch" : {
+      "duration" : 0.2,
+      "transition" : "idle",
+      "armRotation" : 60,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : false,
+      "allowFlip" : true
+    },
+    "monsterEnergyCatch" : {
+      "duration" : 1.5,
+      "transition" : "podTeleportCatch",
+      "transitionFunction" : "showEnergyBall",
+      "armRotation" : 60,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : false,
+      "allowFlip" : true
+    },
+    "podTeleportCatch" : {
+      "duration" : 0.3,
+      "transition" : "idle",
+      "armRotation" : 60,
+      "animationState" : {
+        "weapon" : "visible"
+      },
+      "allowRotate" : false,
+      "allowFlip" : true
+    }
+  },
+
+  "projectileType" : "neb-bladewolfcapturepod",
+  "projectileParameters" : {
+    "speed" : 50,
+    "level" : 0
+  },
+
+  "podUuid" : null,
+  "pets" : [],
+  "currentCollar" : null,
+
+  // The player script stores the pet's state while the filledcapturepod is
+  // inactive. When the filledcapturepod becomes active again, it updates
+  // its own version of the state.
+  // But if the filledcapturepod has been updated via a pettether or
+  // pethealingstation then the filledcapturepod should take priority and
+  // update the player script's state instead.
+  // If anything makes changes to the parameters on a filledcapturepod, e.g.
+  // to heal the pets, it should set podItemHasPriority to true.
+  "podItemHasPriority" : false
+}

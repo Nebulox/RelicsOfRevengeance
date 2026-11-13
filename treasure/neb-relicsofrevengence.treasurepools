@@ -1,0 +1,13 @@
+{
+  "neb-bladewolf": [
+    [0, {
+      "fill" : [
+        {"item" : "money", "count" : 5000}
+      ],
+      "pool" : [
+        {"weight" : 0.5, "item" : "neb-hfmurasama", "count" : 1},
+        {"weight" : 0.5, "item" : "neb-bladewolfcore", "count" : 1}
+      ]
+    }]
+  ]
+}

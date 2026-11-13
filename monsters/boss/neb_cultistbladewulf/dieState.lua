@@ -16,12 +16,7 @@ function dieState.enteringState(stateData)
   --Open generator door
   world.objectQuery(mcontroller.position(), 80, { name = "cultistdoor", callScript = "openDoor" })
 
-  --Chance to drop sword
-  if math.random() > (1 - config.getParameter("swordDropChance", 0.1)) then
-    local aimVec = {math.random() * 2 - 1, math.random() * 3 + 2}
-    world.spawnProjectile("neb-murasamadropprojectile", mcontroller.position(), entity.id(), aimVec)
-    animator.playSound("rareDrop")
-  end
+  animator.setAnimationState("body", "enterPhase")
   
   animator.playSound("hurt")
 end
