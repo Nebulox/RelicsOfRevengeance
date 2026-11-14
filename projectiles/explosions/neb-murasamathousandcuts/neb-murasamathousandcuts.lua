@@ -13,17 +13,17 @@ function destroy()
       action = "projectile",
       type = world.entityName(entity.id()),
       config = {
-	    damageRepeatTimeout = 0.15,
-	    periodicActions = jarray(),
-		
-      startPosition = mcontroller.position(),
-      loops = config.getParameter("loops", 0) - 1
-	  },
-    rotate = true,
-    inheritDamageFactor = 1,
-    fuzzAngle = 360
-	}
-	
-	projectile.processAction(action)
+        damageRepeatTimeout = 0.15,
+        periodicActions = jarray(),
+      
+        startPosition = mcontroller.position(),
+        loops = config.getParameter("loops", 0) - 1
+      },
+      rotate = true,
+      inheritDamageFactor = 1,
+      fuzzAngle = 360
+    }
+    
+    projectile.processAction(action)
   end
 end

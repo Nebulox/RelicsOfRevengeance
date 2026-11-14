@@ -1,0 +1,345 @@
+{
+  "metadata" : {
+    "name" : "neb-bladewolfdungeon",
+    "species" : "human",
+    "rules" : [
+    ],
+    "anchor" : [ "neb-layout1" ],
+    "gravity" : 80,
+    "maxRadius" : 1000,
+    "maxParts" : 3,
+    "extendSurfaceFreeSpace" : 100,
+    "breathable" : true,
+    "protected" : true
+  },
+
+  "parts" : [
+    // LAYOUTS
+    {
+      "name" : "neb-layout1",
+      "rules" : [
+      ],
+      "def" : [ "tmx", "layout/neb-layout1.json" ],
+      "chance" : 100
+    },
+    
+    // BOSS ROOMS
+    {
+      "name" : "neb-bossroom1",
+      "rules" : [
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "bossroom/neb-bossroom1.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "neb-bossroom2",
+      "rules" : [
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "bossroom/neb-bossroom2.json" ],
+      "chance" : 0
+    },
+
+    // ROOM FILLERS
+    {
+      "name" : "lair_room1a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room1a", "lair_room1b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room1a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room1b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room1a", "lair_room1b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room1b.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room2a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room2a", "lair_room2b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room2a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room2b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room2a", "lair_room2b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room2b.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room3a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room3a", "lair_room3b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room3a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room3b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room3a", "lair_room3b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room3b.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room4a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room4a", "lair_room4aClone", "lair_room5a", "lair_room5b", "lair_room5c", "lair_room5cClone" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room4a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room4aClone",
+      // THIS IS HERE TO ENSURE ROOM HAS AN EQUAL CHANCE OF APPEARING VERSUS THE MIRRORED ROOMS.
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room4a", "lair_room4aClone", "lair_room5a", "lair_room5b", "lair_room5c", "lair_room5cClone" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room4a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room5a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room4a", "lair_room4aClone", "lair_room5a", "lair_room5b", "lair_room5c", "lair_room5cClone" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room5a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room5b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room4a", "lair_room4aClone", "lair_room5a", "lair_room5b", "lair_room5c", "lair_room5cClone" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room5b.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room5c",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room4a", "lair_room4aClone", "lair_room5a", "lair_room5b", "lair_room5c", "lair_room5cClone" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room5c.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room5cClone",
+      // THIS IS HERE TO ENSURE ROOM HAS AN EQUAL CHANCE OF APPEARING VERSUS THE MIRRORED ROOMS.
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room4a", "lair_room4aClone", "lair_room5a", "lair_room5b", "lair_room5c", "lair_room5cClone" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room5c.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room6a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room6a", "lair_room6b", "lair_room7a", "lair_vertical3a", "lair_vertical4a" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room6a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room6b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room6a", "lair_room6b", "lair_room7b", "lair_vertical3b", "lair_vertical4b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room6b.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room7a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room6a", "lair_room7a", "lair_room7b", "lair_vertical3a", "lair_vertical4a" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room7a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_room7b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_room6b", "lair_room7a", "lair_room7b", "lair_vertical3b", "lair_vertical4b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_room7b.json" ],
+      "chance" : 0
+    },
+
+
+    // VERTICAL ROOM FILLERS
+    {
+      "name" : "lair_vertical1a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical1a", "lair_vertical1b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical1a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_vertical1b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical1a", "lair_vertical1b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical1b.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_vertical2a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical2a", "lair_vertical2b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical2a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_vertical2b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical2a", "lair_vertical2b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical2b.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_vertical3a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical3a", "lair_vertical3b", "lair_room6a", "lair_room7a" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical3a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_vertical3b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical3a", "lair_vertical3b", "lair_room6b", "lair_room7b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical3b.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_vertical4a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical4a", "lair_vertical4b", "lair_room6a", "lair_room7a" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical4a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_vertical4b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical4a", "lair_vertical4b", "lair_room6b", "lair_room7b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical4b.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_vertical5a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical5a", "lair_vertical5b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical5a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_vertical5b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical5a", "lair_vertical5b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical5b.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_vertical6a",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical6a", "lair_vertical6b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical6a.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "lair_vertical6b",
+      "rules" : [
+        [ "doNotCombineWith", [ "lair_vertical6a", "lair_vertical6b" ] ],
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "/dungeons/other/cultistlair/lair_vertical6b.json" ],
+      "chance" : 0
+    },
+
+    // ADDED ROOMS
+    {
+      "name" : "neb-room1",
+      "rules" : [
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "rooms/neb-room1.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "neb-room2",
+      "rules" : [
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "rooms/neb-room2.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "neb-room3",
+      "rules" : [
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "rooms/neb-room3.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "neb-room4",
+      "rules" : [
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "rooms/neb-room4.json" ],
+      "chance" : 0
+    },
+    {
+      "name" : "neb-room5",
+      "rules" : [
+        [ "ignorePartMaximumRule" ]
+      ],
+      "def" : [ "tmx", "rooms/neb-room5.json" ],
+      "chance" : 0
+    }
+  ]
+}

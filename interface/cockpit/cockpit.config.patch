@@ -40,8 +40,12 @@
       "inverse": false
     },
 	
-    { "op": "add", "path": "/displayDungeons/mon-bladewolfdungeon", "value": 
-      { "description" : "A cultist base detected. Traces of experimental robotic tech detected. Exercise caution.", "icon" : "/interface/cockpit/dungeons/mon-bladewolfdungeonicon.png" }
+    { "op": "add", "path": "/displayDungeons/neb-bladewolfdungeon", "value": 
+      { 
+        "name" : "Cultist Facility",
+        "description" : "A cultist base detected. Traces of experimental robotic tech detected, caution is encouraged.", 
+        "icon" : "/interface/cockpit/dungeons/neb-bladewolfdungeonicon.png" 
+      }
     }
   ]
 ]

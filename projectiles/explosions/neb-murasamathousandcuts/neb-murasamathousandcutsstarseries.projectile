@@ -26,48 +26,48 @@
       "rotate" : true,
       "type" : "neb-murasamathousandcutsstarseries",
       "config" : {
-	    "damageRepeatTimeout" : 0.15,
-	    "periodicActions" : []
-	  },
+        "damageRepeatTimeout" : 0.15,
+        "periodicActions" : []
+      },
       "inheritDamageFactor" : 1,
       "fuzzAngle" : 360
     },
-	{
+	  {
       "time" : 0.1,
       "repeat" : false,
       "action" : "projectile",
       "rotate" : true,
       "type" : "neb-murasamathousandcutsstarseries",
       "config" : {
-	    "damageRepeatTimeout" : 0.15,
-	    "periodicActions" : []
-	  },
+        "damageRepeatTimeout" : 0.15,
+        "periodicActions" : []
+      },
       "inheritDamageFactor" : 1,
       "fuzzAngle" : 360
     },
-	{
+	  {
       "time" : 0.15,
       "repeat" : false,
       "action" : "projectile",
       "rotate" : true,
       "type" : "neb-murasamathousandcutsstarseries",
       "config" : {
-	    "damageRepeatTimeout" : 0.15,
-	    "periodicActions" : []
-	  },
+        "damageRepeatTimeout" : 0.15,
+        "periodicActions" : []
+      },
       "inheritDamageFactor" : 1,
       "fuzzAngle" : 360
     },
-	{
+	  {
       "time" : 0.2,
       "repeat" : false,
       "action" : "projectile",
       "rotate" : true,
       "type" : "neb-murasamathousandcutsstarseries",
       "config" : {
-	    "damageRepeatTimeout" : 0.15,
-	    "periodicActions" : []
-	  },
+        "damageRepeatTimeout" : 0.15,
+        "periodicActions" : []
+      },
       "inheritDamageFactor" : 1,
       "fuzzAngle" : 360
     }

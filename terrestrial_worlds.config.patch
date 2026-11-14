@@ -4,7 +4,7 @@
     "path": "/planetTypes/forest/layers/surface/dungeons/-",
     "value": [
       1,
-      "mon-bladewolfdungeon"
+      "neb-bladewolfdungeon"
     ]
   },
   {
@@ -12,7 +12,7 @@
     "path": "/planetTypes/desert/layers/surface/dungeons/-",
     "value": [
       2,
-      "mon-bladewolfdungeon"
+      "neb-bladewolfdungeon"
     ]
   },
   {
@@ -20,7 +20,7 @@
     "path": "/planetTypes/savannah/layers/surface/dungeons/-",
     "value": [
       2,
-      "mon-bladewolfdungeon"
+      "neb-bladewolfdungeon"
     ]
   },
   {
@@ -28,7 +28,7 @@
     "path": "/planetTypes/snow/layers/surface/dungeons/-",
     "value": [
       2,
-      "mon-bladewolfdungeon"
+      "neb-bladewolfdungeon"
     ]
   },
   {
@@ -36,7 +36,7 @@
     "path": "/planetTypes/jungle/layers/surface/dungeons/-",
     "value": [
       3,
-      "mon-bladewolfdungeon"
+      "neb-bladewolfdungeon"
     ]
   },
   {
@@ -44,7 +44,7 @@
     "path": "/planetTypes/alien/layers/surface/dungeons/-",
     "value": [
       1,
-      "mon-bladewolfdungeon"
+      "neb-bladewolfdungeon"
     ]
   },
   {
@@ -52,7 +52,7 @@
     "path": "/planetTypes/tundra/layers/surface/dungeons/-",
     "value": [
       1,
-      "mon-bladewolfdungeon"
+      "neb-bladewolfdungeon"
     ]
   },
   {
@@ -60,7 +60,7 @@
     "path": "/planetTypes/midnight/layers/surface/dungeons/-",
     "value": [
       1,
-      "mon-bladewolfdungeon"
+      "neb-bladewolfdungeon"
     ]
   },
   {
@@ -68,7 +68,7 @@
     "path": "/planetTypes/volcanic/layers/surface/dungeons/-",
     "value": [
       1,
-      "mon-bladewolfdungeon"
+      "neb-bladewolfdungeon"
     ]
   },
   {
@@ -76,7 +76,7 @@
     "path": "/planetTypes/scorchedcity/layers/surface/dungeons/-",
     "value": [
       2,
-      "mon-bladewolfdungeon"
+      "neb-bladewolfdungeon"
     ]
   }
 ]
